@@ -1,0 +1,16 @@
+url: http://karlsen.abemedia.co.uk
+assets:
+  digest: true
+  js_compressor: false
+  css_compressor: false
+  sources:
+    - _assets/bower
+    - _assets/less
+    - _assets/images
+    - _assets/js
+    - _media
+exclude:
+    - .asset-cache
+    - bower.json
+    - Gemfile
+    - Gemfile.lock

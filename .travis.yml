@@ -1,0 +1,31 @@
+language: ruby
+rvm:
+- 2.2
+
+cache: 
+- bundler
+- directories:
+  - .asset-cache
+  
+script:
+- bundle exec jekyll build
+- bundle exec htmlproofer ./_site --allow-hash-href --check-html --http-status-ignore 0
+- cd _site
+- touch .nojekyll
+- git init
+- git config user.name "Travis-CI"
+- git config user.email "travis@fishlove.co.uk"
+- git add .
+- git commit -m "Deployed to Github Pages"
+- git push --force --quiet "https://${GH_TOKEN}@github.com/fishlove/fishlove.github.io" master > /dev/null 2>&1
+
+git:
+  depth: 10
+  
+notifications:
+  email: false
+  
+env:
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: BEd9kNgyk6g2vkGPLNhOiBhN+JkGB7TX6vyqWYhR+TgHINHb0pYm181knzBQtXSTuH32b88prXamybwHbwr32UhKY0vJPJFUxFD1GROtzidsOluEbu3RB5AvpQRBkg+eFhjqtyFjn8gtE8/wFsvqL6FsGIHxHHz7YjxS1GQXeg1FHRg+zvHXpaRDD64hTXJlsfmi0Rp6mah3cKG/246TAmZjRv+R+e0NbDVP5z82n9w1kxU1q5cfzwvpB4nqHrTlDyIZoQZV10dSbWazEJhdPD6pCt5FAKmJxsBmytc7fhlAMK70G6qm9a/B+euaw7dGLQkc9q2p5HtYUJDLqFeS3DMZPau2SyEEuVj+3sgDWjyl6AR4gjb3HU1zdZQ3i5sXwwO1ITMVbCEhWyevGLgNXC6aZgVmajyWv1sSXi6vWOUmGE5M8sgngAxHJ/ywjS/XdZB9vwD3XlAzCfwSSFU6QAg6YYtG7aElR/MdFbGzj5ZL70PFjOEsNRj1sATBJbuNdq6WIzikaJsG175dlRNo/GAH8OoMsy0V98gr6WOkhv03bDGiM2A2s0p01M4hRjR/juSTvE5udyahO+v/ZLuuJ+oFome6avtjG292+kzWs7IxL5xcP9oKKtwAktYwb4Gyw/LiMULAv7IvKGm+Ow3POeTk1a/3U9Wdt1dUn0bUs2w=

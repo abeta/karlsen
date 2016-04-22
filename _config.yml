@@ -1,0 +1,71 @@
+title: Karlsen Auto Design
+description: 'Karlsen'
+url: 'https://karlsenauto.com'
+permalink: none
+locale: en_GB
+timezone: Europe/London
+analytics:
+    provider: google_analytics
+    tracking_id: 
+sharing:
+    provider:
+        - facebook
+        - twitter
+        - google
+        - linkedin
+        - pinterest
+        - stumbleupon
+        - delicious
+        - reddit
+        - tumblr
+        - buffer
+        - vk
+    limit: 'false'
+    style: icons
+defaults:
+    -
+        scope:
+            path: ''
+            type: pages
+        values:
+            layout: page
+    -
+        scope:
+            path: ''
+            type: showroom
+        values:
+            layout: car
+collections:
+    showroom:
+        output: true
+        permalink: '/showroom/:path.html'
+mediaurl: _media
+gems:
+    - autoprefixer-rails
+    - jekyll-assets
+    - jekyll-sitemap
+assets:
+    digest: true
+    js_compressor: uglifier
+    css_compressor: yui
+    sources:
+        - _assets/bower
+        - _assets/less
+        - _assets/images
+        - _assets/js
+        - _media
+baseurl: /
+comments:
+    provider: '1'
+profiles:
+    provider:
+        - facebook
+        - twitter
+        - youtube
+    facebook: 'https://www.facebook.com/karlsenauto'
+    twitter: 'https://twitter.com/karlsenauto'
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - bower.json

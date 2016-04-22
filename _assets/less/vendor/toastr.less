@@ -1,0 +1,27 @@
+@import "../../bower/toastr/toastr.less";
+
+@grey: rgba(0,0,0,0.6);
+@green: @brand-success;
+@red: @brand-primary;
+@blue: @brand-info;
+@orange: @brand-warning;
+
+#toast-container {
+	width: 100%;
+
+	> div {
+		width: 100%;
+	}
+}
+
+		
+@media all and (min-width: 768px) {
+	#toast-container {
+		width: 50%;
+	}
+}
+@media all and (min-width: 992px) {
+	#toast-container {
+		width: 40%;
+	}
+}

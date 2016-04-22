@@ -1,0 +1,12 @@
+{
+  "name": "karlsen",
+  "dependencies": {
+    "jquery": "1.*",
+    "bootstrap": "~3.3.6",
+    "fontawesome": "~4.5.0",
+    "toastr": "~2.1.2",
+    "select2": "~4.0.2",
+    "quicksand": "https://github.com/razorjack/quicksand.git#master",
+    "packery": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js"
+  }
+}

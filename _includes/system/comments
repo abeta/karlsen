@@ -1,0 +1,4 @@
+{% if site.comments.provider and page.comments != false %}
+{% capture comments %}system/_comments/{{site.comments.provider}}.html{% endcapture %}
+{% include {{comments}} %}
+{% endif %}

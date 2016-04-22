@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields>
+        <fieldset name="general">
+            <field name="support_us_header" type="text" label="Support Us Header" filter="string" class="form-control" />
+            <field name="support_us_text" type="textarea" label="Support Us Text" filter="raw" class="form-control editor" />
+        </fieldset>
+    </fields>
+</form>

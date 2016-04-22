@@ -1,0 +1,74 @@
+.carousel {
+    .item {
+        left: 0 !important;
+        transition-property: opacity;
+    }
+    .carousel-control {
+        background-image: none;
+    }
+    .carousel-header {
+        font-weight:bold; 
+        top: 0; 
+        left:0; 
+        right: 0; 
+        position: absolute; 
+        z-index:99; 
+        color: @brand-primary; 
+        padding: 100px 0 0; 
+        margin: 0; 
+    }
+    .active.left,
+    .active.right {
+        opacity: 0;
+        z-index: 2;
+    }
+}
+.carousel-caption {
+    left: 0;
+    right: 0;
+}
+@media screen and (max-width: 768px) {
+    .arrow-down {
+        display: none;
+    }
+    .carousel-caption .btn {
+        .btn-block;
+        margin-top: 15px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .carousel-caption {
+        top: auto;
+        .banner-text;
+        
+        .btn {
+            .pull-right;
+        }
+    }
+    .carousel-control {
+        width: 7%;
+    }
+}
+.arrow-down {
+    position: absolute;
+    bottom: 5px;
+    color: #fff;
+    font-size: 56px;
+    text-align: center;
+    margin-left: -28px;
+    top: auto;
+    left: 50%;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    filter: alpha(opacity=75);
+    opacity: .75;
+    animation: bounce 2s ease infinite;
+    z-index: 30;
+}
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-20px);}
+	60% {transform: translateY(-8px);}
+}
+.bounce {
+	animation-name: bounce;
+}

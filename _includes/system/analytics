@@ -1,0 +1,2 @@
+{% capture analytics %}system/_analytics/{{site.analytics.provider}}.html{% endcapture %}
+{% include {{analytics}} %}

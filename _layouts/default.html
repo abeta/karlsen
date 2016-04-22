@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% capture description %}{% if page.description %}{{ page.description }}{% elsif page.lead %}{{ page.lead | strip_html }}{% elsif page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ description | xml_escape }}" />
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% elsif page.tags %}{{ page.tags | join: ', ' }}{% else %}{{ site.keywords }}{% endif %}" />
+    <meta name="author" content="{{ site.author }}" />
+    <link rel="icon" href="{{ site.url }}/favicon.ico" />
+    <link rel="canonical" href="{{ page.url | remove: 'index.html' | prepend: site.url }}"/>
+    <title>{{ page.title | markdownify | strip_html }} | {{ site.title }}</title>
+    {% stylesheet app %}
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <meta property="og:title" content="{{ page.title | markdownify | strip_html }}" />
+    <meta property="og:description" content="{{ description | xml_escape }}" />
+    {% if page.image %}<meta property="og:image" content="{{ page.image | remove_first: '_media/' | asset_path | prepend: site.url }}" />{% endif %}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.title }}"/>
+    <meta property="og:locale" content="{{ site.locale }}"/>
+    <meta property="og:url" content="{{ page.url | remove: 'index.html' | prepend: site.url }}" />
+    {% if site.facebook_app %}<meta property="fb:app_id" content="{{ site.facebook_app }}" />{% endif %}
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@{{ site.profiles.twitter | replace: '@', '' | split: '/' | last }}"/>
+    <meta name="twitter:domain" content="{{ site.url }}"/>
+    <meta name="twitter:creator" content="@abemedia"/>
+  </head>
+  <body>
+  <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <div id="nav" class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle btn-lg" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ site.url }}">
+          <img src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}">
+        </a>
+      </div>
+      <form id="search-form" action="{{ site.url }}/search.html" method="get" class="navbar-search" role="search">
+        <div class="input-group input-group-lg">
+          <input class="form-control" type="search" name="q" placeholder="Search..." autocomplete="off" id="search_control">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" value="Search"><span class="fa fa-search"></span></button>
+          </span>
+          <span class="input-group-btn">
+            <a id="close_search" class="btn btn-link">&times; Close Search</a>
+          </span>
+        </div>
+      </form>
+      <div class="navbar-extra">
+        <a id="search" class="btn btn-link hidden-xs">
+          <span class="fa fa-2x fa-search"></span><span class="sr-only">Search</span>
+          <!--input type="search" name="search" id="search" value="" /-->
+        </a>
+        <a href="{{ site.url }}/cart.html" class="btn btn-default btn-lg navbar-cart">
+          <span class="fa fa-shopping-cart"></span> <span class="hidden-sm hidden-xs">&nbsp;<span class="simpleCart_quantity"></span></span>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+        {% assign pages = (site.pages | where: 'published', 1 | where: 'parent', nil | sort: 'order') %}
+        {% for item in pages %}
+          {% assign submenu = (site.pages | where: 'published', 1 | where: 'parent', item.slug | sort: 'order') %}
+          <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
+            <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">
+              {% if item.slug == 'index' %}Home{% else %}{{ item.title }}{% endif %}
+            </a>
+            {% if (submenu | size) > 0 %}
+            <ul class="nav">
+              {% for item in submenu %}
+              <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
+                <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">
+                  {{ item.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {{content}}
+  <footer class="footer" style="background: #000">
+    <div class="container">
+      <div class="small">
+        <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }} | <a href="{{ site.url }}/privacy-policy.html">Privacy Policy</a> | <a href="{{ site.url }}/returns-policy.html">Returns Policy</a> | <a href="{{ site.url }}/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+        <small>All the photographs within this website are the copyright © of Fishlove and their respective photographers and may not be reproduced or used for any personal or commercial use without exception.
+        Please <a href="{{ site.url }}/contact.html">contact us</a> for press and media enquiries.</small>
+      </div>
+    </div>
+  </footer>
+  {% javascript app %}
+  {% include system/analytics %}
+</body>
+</html>

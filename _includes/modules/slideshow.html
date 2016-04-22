@@ -1,0 +1,51 @@
+  <div id="carousel" class="carousel slide fh" data-ride="carousel" pause="false">
+  
+    <div class="h1 fa-5x carousel-header">
+      <div class="container">{{ page.title }}</div>
+    </div>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner fh">
+      {% capture i %}0{% endcapture %}
+      {% for item in include.category %}
+      {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
+      <div class="item img-cover img-fixed fh {% if {{i}} == '0' %}active{% endif %}" style="background-image:url({{ image }})">
+        {% if item.sponsors %}
+        <div class="carousel-header text-right h4 hidden-xs" style="margin-top: 13px">
+          <div class="container">
+            <p>In association with</p>
+            <p>
+              {% for item in item.sponsors %}
+              {% capture logo %}{% assign img = item.logo | remove_first: '_media/' | img: "magick:resize:200x50^" | split: '"' %}{{ img[1] }}{% endcapture %}
+              <a href="{{ item.url }}" target="_blank" title="{{ item.name }}"><img src="{{ logo }}" alt="{{ item.name }}"></a> 
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="carousel-caption">
+          <div class="container">
+            {% if item.heading %}<div class="h1">{{ item.heading }}</div>{% endif %}
+            <span class="h1">{{ item.title }}</span>
+            <span class="h4">{{ item.year }}</span>
+            <a class="btn btn-primary btn-lg" href="{{ site.url }}{{ item.url }}">
+              {% if item.sell_posters %}Buy posters{% else %}View collection{% endif %}
+            </a> 
+          </div>
+        </div>
+      </div>
+      {% capture i %}{{ i | plus:1 }}{% endcapture %}
+      {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    <a class="arrow-down" href="#content">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+  </div>

@@ -1,0 +1,23 @@
+//= require jquery.js
+//= require bootstrap/js/transition.js
+//= require bootstrap/js/alert.js
+//= require bootstrap/js/button.js
+//= require bootstrap/js/carousel.js
+//= require bootstrap/js/collapse.js
+//= require bootstrap/js/dropdown.js
+//= require bootstrap/js/modal.js
+//= require bootstrap/js/tooltip.js
+//= require bootstrap/js/popover.js
+//= require bootstrap/js/scrollspy.js
+//= require bootstrap/js/tab.js
+//= require bootstrap/js/affix.js
+//= require toastr.js
+//= require select2.js
+//= require quicksand/jquery-animate-css-rotate-scale.js
+//= require quicksand/jquery-css-transform.js
+//= require quicksand/jquery.easing.1.3.js
+//= require quicksand/jquery.quicksand.js
+//= require packery/index.js
+
+//= require_tree ./plugins
+//= require_directory ./widgets

@@ -1,0 +1,8 @@
+---
+layout: nil
+---
+User-agent: *
+{% if site.url == 'http://karlsen.abemedia.co.uk' %}Disallow: /
+{% else %}Disallow: /api
+Sitemap: {{ site.url }}{{ site.baseurl }}sitemap.xml
+{% endif %}

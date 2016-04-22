@@ -1,0 +1,9 @@
+pages:
+    title: Pages
+    icon: sitemap
+showroom:
+    title: Showroom
+    icon: car
+blog:
+    title: Blog
+    icon: news-o

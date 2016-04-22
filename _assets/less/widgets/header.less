@@ -1,0 +1,22 @@
+.header-tabs {
+    @media(min-width:768px) {
+        .container();
+        position: absolute;
+        bottom: 100%;
+        z-index: 99;
+        border-bottom: none;
+        &>li{
+            float: right;
+            &>a{
+                color: #fff;
+                border-bottom: none;
+            }
+            &>a:hover{
+                color: @text-color;
+            }
+        }
+    }
+    @media(min-width:992px) {
+        font-size: 1.5em;
+    }
+}

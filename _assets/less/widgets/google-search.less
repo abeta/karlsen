@@ -1,0 +1,164 @@
+/* Google Custom Search - Bootstrap Theme
+-------------------------------------------------- */
+
+@gs-title-size: @font-size-h4;
+@gs-url-color: @brand-success;
+@gs-thumbnail-size: 200px;
+
+
+
+/* Search Form
+-------------------------------------------------- */
+
+/* Form Wrapper */
+table.gsc-search-box {
+  width: 100%;
+  margin: 0 0 (@line-height-computed / 2);
+}
+
+/* Query Field */
+.gsc-input {
+  width: 100%;
+  input& {
+    background: #fff none !important;
+    .form-control();
+    .input-lg();
+    .border-right-radius(0);
+  }
+}
+
+/* Search Button */
+input.gsc-search-button {
+  .btn();
+  .btn-primary();
+  .btn-lg();
+  .border-left-radius(0);
+}
+
+/* Google Logo */
+.gsc-branding {
+  float: right;
+}
+
+.gsc-completion-container {
+}
+
+
+
+/* Grid
+-------------------------------------------------- */
+.gsc-wrapper {
+  .make-row();
+}
+
+/* Results Column */
+.gsc-resultsbox-visible {
+  .make-sm-column(8);
+}
+
+/* Ads Column */
+.gsc-adBlock {
+  .make-sm-column(4);
+  .pull-right();
+  margin-top: @line-height-computed;
+}
+
+
+
+/* Search Results
+-------------------------------------------------- */
+
+/* Result Wrapper */
+.gsc-result {
+  margin-top: @line-height-computed;
+  td {
+    vertical-align: top;
+  }
+}
+
+/* Result Title */
+.gs-title {
+  font-size: @gs-title-size;
+}
+
+/* Result URL */
+.gs-visibleUrl-long {
+  color: @gs-url-color;
+}
+
+/* Result Thumbnail */
+.gs-image-box {
+  margin-right: 10px;
+  width: @gs-thumbnail-size;
+}
+a.gs-image {
+  .thumbnail();
+  margin-bottom: 0;
+  &:hover,
+  &:focus {
+    border-color: @link-color;
+  }
+}
+
+
+
+/* Pagination
+-------------------------------------------------- */
+.gsc-cursor {
+  display: inline-block;
+  margin: @line-height-computed 0;
+  border-radius: @border-radius-base;
+}
+.gsc-cursor-page {  
+  position: relative;
+  float: left; // Collapse white-space
+  padding: @padding-base-vertical @padding-base-horizontal;
+  line-height: @line-height-base;
+  text-decoration: none;
+  color: @pagination-color;
+  background-color: @pagination-bg;
+  border: 1px solid @pagination-border;
+  margin-left: -1px;
+  cursor: pointer;
+  &:hover, 
+  &:focus {
+    z-index: 3;
+    color: @pagination-hover-color;
+    background-color: @pagination-hover-bg;
+    border-color: @pagination-hover-border;
+  }
+  &:first-child {
+    margin-left: 0;
+    .border-left-radius(@border-radius-base);
+  }
+  &:last-child {
+    .border-right-radius(@border-radius-base);
+  }
+}
+.gsc-cursor-current-page {
+  &,
+  &:hover,
+  &:focus {
+    z-index: 2;
+    color: @pagination-active-color;
+    background-color: @pagination-active-bg;
+    border-color: @pagination-active-border;
+    cursor: default;
+  }
+}
+
+
+
+/* Hidden Elements
+-------------------------------------------------- */
+.gs-watermark, 
+.gsc-resultsHeader, 
+.gsc-tabsAreaInvisible, 
+.gs-visibleUrl-short, 
+.gsc-url-top, 
+.gsc-thumbnail-inside, 
+.gsc-adBlockInvisible, 
+.gsc-adBlockNoHeight
+.gsc-clear-button {
+  display: none !important; 
+}

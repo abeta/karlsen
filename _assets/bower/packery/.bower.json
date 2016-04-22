@@ -1,0 +1,13 @@
+{
+  "name": "packery",
+  "_cacheHeaders": {
+    "ETag": "\"c8353909645e3a00e8d28f6ca41875647a01e1dc\"",
+    "Content-Length": "19562",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:c83539096",
+  "main": "index.js",
+  "_source": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js",
+  "_target": "*",
+  "_originalSource": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js"
+}

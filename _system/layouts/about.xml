@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields>
+        <fieldset name="partners">
+            <field name="partners_intro" type="editor" label="Partners Intro" filter="raw" class="form-control" />
+            <field name="partners_outro" type="editor" label="Partners Outro" filter="raw" class="form-control" />
+            <field name="partners" type="multiform" label="Partners" filter="array">
+                <field name="name" type="text" label="Title" filter="string" class="form-control" />
+                <field name="url" type="text" label="URL" filter="string" class="form-control" />
+                <field name="logo" type="media" label="Logo" filter="string" class="form-control" directory="images/partners" />
+            </field>
+        </fieldset>
+        <fieldset name="thanks">
+            <field name="thanks_intro" type="editor" label="Thanks Intro" filter="raw" class="form-control" />
+            <field name="thanks" type="multiform" label="Thanks" filter="array">
+                <field name="name" type="text" label="Name" filter="string" class="form-control" />
+                <field name="position" type="text" label="Position" filter="string" class="form-control" />
+                <field name="company" type="text" label="Company" filter="string" class="form-control" />
+            </field>
+        </fieldset>
+    </fields>
+</form>

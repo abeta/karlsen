@@ -1,0 +1,13 @@
+{
+  "name": "quicksand",
+  "homepage": "https://github.com/razorjack/quicksand",
+  "_release": "f1686e4dab",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f1686e4dab86279da2af500ec10f6ce285cacc01"
+  },
+  "_source": "https://github.com/razorjack/quicksand.git",
+  "_target": "master",
+  "_originalSource": "https://github.com/razorjack/quicksand.git"
+}

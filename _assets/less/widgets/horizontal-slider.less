@@ -1,0 +1,133 @@
+.donslide {
+    margin-top: floor(@navbar-height + 1);
+    .item {
+        min-height: 200px;
+        transition: 0.5s ease-in-out all;
+        cursor: pointer;
+        .img-cover;
+        &:hover .donslide-caption .donslide-header, .donslide-caption .donslide-btn {
+            background-color: rgba(229,0,0,0.8);
+            color: #fff;
+        }
+        .donslide-caption {
+            transition: 0.5s ease-in-out all;
+            padding: 20px;
+            text-align: right;
+            
+            .donslide-header, .donslide-text {
+                background-color: rgba(255,255,255,0.8);
+                clear: both;
+            }
+            
+            .donslide-header, .donslide-btn  {
+                white-space: nowrap;
+                margin: 0 0 15px 15px;
+            }
+            
+            .donslide-header {
+                color: #000;
+                font-size: 1.5em;
+                padding: 15px;
+                display: inline-block;
+            }
+            
+            .donslide-btn {
+                line-height: 1.1;
+                max-width: 0;
+                text-transform: uppercase;
+                float: right;
+            }
+            
+            .donslide-btn, .donslide-text {
+                .opacity(0);
+                transition: 0.5s ease-in-out all;
+                max-height: 0;
+                display: block;
+                overflow: hidden;
+                color: transparent;
+            }
+        }
+        &.active {
+            transition-delay: 0;
+            cursor: initial;
+            width: 100%;
+            
+            .donslide-caption {
+                margin-bottom: 0;
+                
+                .donslide-text, .donslide-btn {
+                    .opacity(1);
+                    max-height: 10000px;
+                    max-width: 10000px;
+                    padding: 15px;
+                    color: #000;
+                }
+                .donslide-btn {
+                    color: #fff;
+                    &:hover {
+                        text-decoration: none !important;
+                        background-color: rgba(229,0,0,1);
+                        transition-delay: 0;
+                    }
+                }
+            }
+            
+            &:hover .donslide-caption .donslide-header {
+                background-color: rgba(255,255,255,0.8);
+                color: #000;
+            }
+        }
+    }
+}
+@media(min-width: 768px) {
+    .donslide {
+        display: table;
+        width: 100%;
+        margin: 0;
+        
+        .item {
+            display: table-cell;
+            width: 1%;
+            overflow: hidden;
+            position: relative;
+            min-width: 125px;
+            transition-delay: 1s;
+            .img-cover;
+            
+            & + .item {
+                border-left: 1px solid #000;
+            }
+            .donslide-caption {
+                transform: rotate(90deg);
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                transform-origin: 100% 0;
+                margin-bottom: -150px;
+                transition-delay: 0.5s;
+                
+                .donslide-header, .donslide-btn  {
+                    white-space: nowrap;
+                    margin: 0 0 15px 15px;
+                }
+                
+                .donslide-header {
+                    font-size: 3em;
+                }
+                
+                .donslide-btn {
+                    font-size: 1.5em;
+                }
+            }
+            &.active {
+                .donslide-caption {
+                    transform: rotate(0deg);
+                    
+                    .donslide-text, .donslide-btn {
+                        transition-delay: 1s;
+                    }
+                }
+            }
+        }
+    }
+}
