@@ -32,11 +32,11 @@ defaults:
     -
         scope:
             path: ''
-            type: showroom
+            type: cars
         values:
             layout: car
 collections:
-    showroom:
+    cars:
         output: true
         permalink: '/showroom/:path.html'
 mediaurl: _media
