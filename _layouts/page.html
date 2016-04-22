@@ -1,8 +1,12 @@
 ---
 layout: default
 ---
+{% if page.image %}
 {% include modules/banner.html %}
-<div class="section" id="content">
+{% else %}
+{% assign class = 'section-page' %}
+{% endif %}
+<div class="section {{ class }}" id="content">
   <div class="container">
     <article class="section-content">{% include template/content.html %}</article>
   </div>

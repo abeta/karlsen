@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields>
+        <fieldset name="options">
+            <field name="price" type="text" label="Price" filter="integer" class="form-control" />
+            <field name="mileage" type="text" label="Mileage" filter="integer" class="form-control" />
+            <field name="colour" type="list" label="Colour" class="form-control">
+                <option value="beige">Beige</option>
+                <option value="black">Black</option>
+                <option value="blue">Blue</option>
+                <option value="bronze">Bronze</option>
+                <option value="brown">Brown</option>
+                <option value="burgundy">Burgundy</option>
+                <option value="gold">Gold</option>
+                <option value="green">Green</option>
+                <option value="grey">Grey</option>
+                <option value="indigo">Indigo</option>
+                <option value="magenta">Magenta</option>
+                <option value="maroon">Maroon</option>
+                <option value="multicolour">Multicolour</option>
+                <option value="navy">Navy</option>
+                <option value="orange">Orange</option>
+                <option value="pink">Pink</option>
+                <option value="purple">Purple</option>
+                <option value="red">Red</option>
+                <option value="silver">Silver</option>
+                <option value="turquoise">Turquoise</option>
+                <option value="white">White</option>
+                <option value="yellow">Yellow</option>
+                <option value="unlisted">Unlisted</option>
+            </field>
+            <field name="image" type="media" label="Image" filter="string" class="form-control" directory="_media/cars" />
+        </fieldset>
+    </fields>
+</form>
