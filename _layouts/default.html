@@ -31,7 +31,7 @@
   </head>
   <body>
   <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-  <div id="nav" class="navbar navbar-fixed-top navbar-default" role="navigation">
+  <div id="nav" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle btn-lg" data-toggle="collapse" data-target=".navbar-collapse">
@@ -41,24 +41,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{{ site.url }}">
-          <img src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}">
-        </a>
-      </div>
-      <form id="search-form" action="{{ site.url }}/search.html" method="get" class="navbar-search" role="search">
-        <div class="input-group input-group-lg">
-          <input class="form-control" type="search" name="q" placeholder="Search..." autocomplete="off" id="search_control">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" value="Search"><span class="fa fa-search"></span></button>
-          </span>
-          <span class="input-group-btn">
-            <a id="close_search" class="btn btn-link">&times; Close Search</a>
-          </span>
-        </div>
-      </form>
-      <div class="navbar-extra">
-        <a id="search" class="btn btn-link hidden-xs">
-          <span class="fa fa-2x fa-search"></span><span class="sr-only">Search</span>
-          <!--input type="search" name="search" id="search" value="" /-->
+          <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}">
         </a>
       </div>
       <div class="collapse navbar-collapse">

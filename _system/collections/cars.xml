@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields>
+        <fieldset name="general">
+            <field name="car" type="custom" template="car.html" filter="array" raw="true" class="form-control" />
+        </fieldset>
         <fieldset name="options">
             <field name="price" type="text" label="Price" filter="integer" class="form-control" />
             <field name="mileage" type="text" label="Mileage" filter="integer" class="form-control" />

@@ -1,0 +1,361 @@
+<select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year"></select>
+<select class="carquery" name="{{ element.name }}[make]" id="{{ element.id }}_make"></select>
+<select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model"></select>
+<select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim"></select>
+
+<script type="text/javascript">
+(function() {
+/*******************************************************************/
+/* carquery.0.3.4.js                            */
+/* javascript object for interacting with the CarQuery JSON API    */
+/* Copyright (C) 2015  CarQueryAPI (contact@carqueryapi.com)          */
+/* http://www.carqueryapi.com                       */
+/*                                    */
+/* This program is free software; you can redistribute it and/or   */
+/* modify it under the terms of the GNU General Public License     */
+/* as published by the Free Software Foundation; either version 2  */
+/* of the License, or (at your option) any later version.          */
+/*                                    */
+/* This code is distributed in the hope that it will be useful,    */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of  */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the   */
+/* GNU General Public License for more details.               */
+/*******************************************************************/
+
+var CarQuery = function(){}
+
+CarQuery.prototype = {
+
+    base_url:           "http://www.carqueryapi.com/api/0.3/",
+    cur_make:           "",
+    cur_model:          "",
+    cur_trim:           "",
+    cur_year:           "",
+    default_trim_name:  "None",
+    empty_option_html:  "<option value=''></option>",
+    make_select_id:     "",
+    model_select_id:    "",
+    settings:           null,
+    trim_select_id:     "",
+    year_select_id:     "",
+    
+    init : function(year, make_id, model, trim)
+    {
+        $.ajaxSetup({
+            "error":function() {
+                alert('Bad Response from CarQuery API.\nThe service may not be avilable at this time.');
+            }
+        });
+        
+        //Check if initial values were set
+        this.settings = {};
+        if(year !== null)
+            this.saveSetting('year', year);
+        if(make_id !== null)
+            this.saveSetting('make', make_id);
+        if(model !== null)
+            this.saveSetting('model', model);
+        if(trim !== null)
+            this.saveSetting('trim', trim);
+    },
+    
+    initYearMakeModelTrim: function(year_select_id, make_select_id, model_select_id, trim_select_id)
+    {
+        //Set the ids for the select elements
+        this.year_select_id =  year_select_id;
+        this.make_select_id =  make_select_id;
+        this.model_select_id = model_select_id;
+        this.trim_select_id = trim_select_id;        
+        
+        //Populate the car-years select element
+        this.populateYearSelect();
+        
+        var sender = this;
+        
+        //Set the change event for the years dropdown to populate the makes select
+        $("select#"+year_select_id).bind('change', function(){sender.yearSelectChange();});
+        
+        //Set the change event for the makes dropdown to populate the models select
+        $("select#"+make_select_id).bind('change', function(){sender.makeSelectChange();});
+        
+        //Set the change event for the models dropdown to populate the trims select
+        $("select#"+model_select_id).bind('change', function(){sender.modelSelectChange();});
+        
+        //Set the change event for the trim dropdown to save the selected trim
+        $("select#"+trim_select_id).bind('change', function(){sender.trimSelectChange();});
+    },
+    
+    populateYearSelect: function()
+    {  
+        //Set a loading message while we retrieve the data
+        $("select#"+this.year_select_id).html("<option value=''>Loading Years...</option>");
+        
+        var sender = this;
+           
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getYears"}, function(data) {
+    
+            if(!sender.responseError(data))
+            {
+                var options = sender.empty_option_html;
+                
+                //Set min and max year range
+                var minYear = data.Years.min_year;
+                var maxYear = data.Years.max_year;
+                
+                if(sender.year_select_min !== null && minYear < sender.year_select_min )
+                    minYear = sender.year_select_min;
+                if(sender.year_select_max !== null && maxYear > sender.year_select_max )
+                    maxYear = sender.year_select_max;
+                
+                for (var i = maxYear; i >= minYear; i--)
+                {
+                    options += '<option value="' + i + '">' + i + '</option>';
+                }
+            
+                $("select#"+sender.year_select_id).html(options);
+                
+                $("select#"+sender.make_select_id).html(sender.empty_option_html);
+                $("select#"+sender.model_select_id).html(sender.empty_option_html);
+            
+            
+                if(sender.settings.year !== null)
+                {
+                    $('select#'+sender.year_select_id).val(sender.settings.year);
+                    sender.yearSelectChange();
+                }
+                
+                $("select#"+sender.year_select_id).trigger("chosen:updated");
+            }
+        
+        });
+    },
+    
+    populateMakeSelect: function(data)
+    {
+        if(!this.responseError(data))
+        {
+            var options = '<option value="">Please choose a make</option>';
+            var makes = data.Makes;
+            for (var key in makes)
+            {
+                if (makes.hasOwnProperty(key))
+                {
+                    var s = '';
+                    if(this.settings.make !== null && this.settings.make == makes[key].make_id) s = 'selected="selected"';
+                    options += '<option value="' + makes[key].make_id + '" '+s+'>' + makes[key].make_display + '</option>';
+                }
+            }
+            
+            $("select#"+this.make_select_id).html(options);
+            
+            $("select#"+this.make_select_id).trigger("chosen:updated");
+        }
+    },
+    
+    populateModelSelect: function(data)
+    {    
+        var models = data.Models;
+    
+        var options = '';
+        for (var i = 0; i < models.length; i++)
+        {
+            var s = '';
+            if(this.settings.model !== null && this.settings.model == models[i].model_name) s = 'selected="selected"';
+            
+            options += '<option value="' + models[i].model_name + '" '+s+'>' + models[i].model_name + '</option>';
+        }
+        
+        $("select#"+this.model_select_id).html(options);
+        
+        $("select#"+this.model_select_id).trigger("chosen:updated");
+    },
+    
+    populateTrimSelect: function(data)
+    {    
+        var trims = data.Trims;
+        var display;
+        
+        var options = '';
+        for (var i = 0; i < trims.length; i++)
+        {
+            var s = '';
+            if(this.settings.trim !== null && this.settings.trim == trims[i].model_id) s = 'selected="selected"';
+        
+            trim_display = trims[i].model_trim;
+            if(trim_display === "") trim_display = this.default_trim_name;
+            
+            options += '<option value="' + trims[i].model_id + '" '+s+'>' +  trim_display + '</option>';
+        }
+        
+        $("select#"+this.trim_select_id).html(options);
+        
+        this.cur_trim = $("select#"+this.trim_select_id).val();
+        
+        $("select#"+this.trim_select_id).trigger("chosen:updated");
+    },
+    
+    
+    populateCarData : function(model_data_id)
+    {
+        this.model_data_id = model_data_id;
+        this.cur_trim = $("select#"+this.trim_select_id).val();
+    
+        //Make sure there is a trim selected
+        if(this.cur_trim === null || this.cur_trim === "")
+        {
+            $("#"+this.model_data_id).html("");
+            alert('Please select a year, make, and model.');
+            return;
+        }
+        
+        //Set a loading message while we retrieve the data
+        $("#"+this.model_data_id).html("Loading Model Data...");
+
+        var sender = this;
+        
+        //Get Car Model JSON for the selected make
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
+            if(!sender.responseError(data))
+            {
+                var out = sender.carDataHTML(data[0]);
+                $("#"+sender.model_data_id).html(out);
+            }
+        });
+    },
+
+    saveSetting : function(setting, value)
+    {   
+        //JSON library is required to manage settings
+        if(typeof JSON == 'undefined') return;
+    
+        this.settings[setting] = value;
+    },
+    
+    yearSelectChange: function ()
+    {        
+        this.cur_year = $("select#"+this.year_select_id).val();
+        
+        //Set Cookie to save year selection
+        this.saveSetting('year', this.cur_year);
+        
+         //if no year supplied, clear makes, models, return;
+        if(this.cur_year === "")
+        {
+            $("select#"+this.make_select_id).html(this.empty_option_html);
+            $("select#"+this.model_select_id).html(this.empty_option_html);
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            return;
+        }
+        
+         //Set a loading message while we retrieve the data
+        $("select#"+this.make_select_id).html("<option value=''>Loading Makes...</option>");
+        
+        var sender = this;
+        
+        //Get Car Model JSON for the selected make
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getMakes", year:this.cur_year}, function(data) {
+            if(!sender.responseError(data))
+            {
+                sender.populateMakeSelect(data);
+                sender.makeSelectChange();
+            }
+        });
+    },
+    
+    makeSelectChange: function ()
+    {
+        this.cur_make = $("select#"+this.make_select_id).val();
+        
+        //If value has been selected, save make selection
+        if(this.cur_make !== "" && this.cur_make !== null)
+            this.saveSetting('make', this.cur_make);
+        
+        //if no make supplied, clear models, return;
+        if(this.cur_make === "")
+        {
+            $("select#"+this.model_select_id).html(this.empty_option_html);
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            return;
+        }
+    
+        //Set a loading message while we retrieve the data
+        $("select#"+this.model_select_id).html("<option value=''>Loading Models...</option>");
+    
+        var sender = this;
+    
+        //Get Car Model JSON for the selected make
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getModels", make:this.cur_make, year:this.cur_year}, function(data) {
+        
+            if(!sender.responseError(data))
+            {
+                sender.populateModelSelect(data);
+            
+                sender.cur_model = $('select#'+sender.model_select_id).val();
+                
+                //Re-populate the trim select
+                sender.modelSelectChange();
+            }
+        });
+    },
+    
+    modelSelectChange: function ()
+    {
+        this.cur_model = $("select#"+this.model_select_id).val();
+        
+        //If value has been selected, save model selection
+        if(this.cur_model !== "" && this.cur_model !== null)
+            this.saveSetting('model', this.cur_model);
+
+        //If there is no trim select, we don't need to do anything else here
+        if(this.trim_select_id === '' || this.trim_select_id === null) return;
+            
+        //if no model supplied, clear trim, return;
+        if(this.cur_model === "")
+        {
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            return;
+        }
+        
+        //Set a loading message while we retrieve the data
+        $("select#"+this.trim_select_id).html("<option value=''>Loading Trims...</option>");
+        
+        var sender = this;
+        
+        //Get Car Model JSON for the selected make
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getTrims", make:this.cur_make, year:this.cur_year, model:this.cur_model, full_results:0 }, function(data) {
+        
+            if(!sender.responseError(data))
+                sender.populateTrimSelect(data);
+            
+            sender.cur_trim = $('select#'+sender.trim_select_id).val();
+        });
+    },
+    
+    trimSelectChange: function ()
+    {
+        this.cur_trim = $("select#"+this.trim_select_id).val();
+    
+        //If value has been selected, save trim selection
+        if(this.cur_trim !== "" && this.cur_trim !== null)
+            this.saveSetting('trim', this.cur_trim);
+    },
+    
+    responseError: function (data)
+    {
+        if(typeof data.error != 'undefined' && data.error !== '')
+        {
+            alert(data.error);
+            return true;
+        }
+        else
+            return false;
+    }
+};
+
+
+var carquery = new CarQuery();
+carquery.init('{{ element.value.year }}', '{{ element.value.make }}', '{{ element.value.model }}', '{{ element.value.trim }}');
+carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
+    
+}());
+</script>

@@ -2,8 +2,18 @@
 layout: default
 ---
 {% include modules/banner.html %}
+{% if content != "" %}
 <div class="section" id="content">
   <div class="container">
     <article class="section-content">{% include template/content.html %}</article>
+  </div>
+</div>
+{% endif %}
+<div class="section" id="content">
+  <div class="container section-content">
+    {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
+    {% for item in cars %}
+    <a href="{{ item.url }}">{{ item.image | remove_first: '_media/' | img: "magick:resize:300" }}</a>
+    {% endfor %}
   </div>
 </div>
