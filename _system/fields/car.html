@@ -96,7 +96,7 @@ CarQuery.prototype = {
     
             if(!sender.responseError(data))
             {
-                var options = sender.empty_option_html;
+                var options = '<option value="">Please choose a year</option>';
                 
                 //Set min and max year range
                 var minYear = data.Years.min_year;
