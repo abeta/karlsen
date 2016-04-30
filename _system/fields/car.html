@@ -1,7 +1,18 @@
-<select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" data-width="24%"></select>
-<select class="carquery" name="{{ element.name }}[make]" id="{{ element.id }}_make" data-width="24%"></select>
-<select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" data-width="24%"></select>
-<select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" data-width="24%"></select>
+<div class="row">
+  <div class="col-sm-3">
+    <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year"></select>
+  </div>
+  <div class="col-sm-3">
+    <select class="carquery" name="{{ element.name }}[make]" id="{{ element.id }}_make"></select>
+  </div>
+  <div class="col-sm-3">
+    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model"></select>
+  </div>
+  <div class="col-sm-3">
+    <select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim"></select>
+  </div>
+</div>
+
 
 <script type="text/javascript">
 (function() {
