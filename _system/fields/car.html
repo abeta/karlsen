@@ -109,7 +109,7 @@ CarQuery.prototype = {
     {
         var el = $("select#"+id),
             opt = el.find("option");
-            console.log(opt.length);
+            console.log(el);
         if(opt.length != 1) {
             el.html("<option value=''>"+message+"</option>");
         }
