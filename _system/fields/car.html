@@ -61,7 +61,8 @@ CarQuery.prototype = {
     init : function(year, make_id, model, trim)
     {
         $.ajaxSetup({
-            "error":function() {
+            cache: true
+            error: function() {
                 alert('Bad Response from CarQuery API.\nThe service may not be avilable at this time.');
             }
         });
