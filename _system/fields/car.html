@@ -263,7 +263,10 @@ CarQuery.prototype = {
     },
     
     yearSelectChange: function ()
-    {        
+    {
+         //Set a loading message while we retrieve the data
+        this.setMessage(this.make_select_id, "Loading Makes...");
+        
         this.cur_year = $("select#"+this.year_select_id).val();
         
         //Set Cookie to save year selection
@@ -277,9 +280,6 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
-        
-         //Set a loading message while we retrieve the data
-        this.setMessage(this.make_select_id, "Loading Makes...");
         
         var sender = this;
         
@@ -295,6 +295,9 @@ CarQuery.prototype = {
     
     makeSelectChange: function ()
     {
+        //Set a loading message while we retrieve the data
+        this.setMessage(this.model_select_id, "Loading Models...");
+        
         this.cur_make = $("select#"+this.make_select_id).val();
         
         //If value has been selected, save make selection
@@ -308,9 +311,6 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
-    
-        //Set a loading message while we retrieve the data
-        this.setMessage(this.model_select_id, "Loading Models...");
     
         var sender = this;
     
@@ -331,6 +331,9 @@ CarQuery.prototype = {
     
     modelSelectChange: function ()
     {
+        //Set a loading message while we retrieve the data
+        this.setMessage(this.trim_select_id, "Loading Trims...");
+        
         this.cur_model = $("select#"+this.model_select_id).val();
         
         //If value has been selected, save model selection
@@ -346,9 +349,6 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
-        
-        //Set a loading message while we retrieve the data
-        this.setMessage(this.trim_select_id, "Loading Trims...");
         
         var sender = this;
         
