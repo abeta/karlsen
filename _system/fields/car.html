@@ -189,7 +189,7 @@ CarQuery.prototype = {
     {    
         var models = data.Models;
     
-        var options = '';
+        var options = '<option value="">Please choose a model</option>';
         for (var i = 0; i < models.length; i++)
         {
             var s = '';
@@ -208,7 +208,7 @@ CarQuery.prototype = {
         var trims = data.Trims;
         var display;
         
-        var options = '';
+        var options = '<option value="">Please choose a trim</option>';
         for (var i = 0; i < trims.length; i++)
         {
             var s = '';
