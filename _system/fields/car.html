@@ -1,21 +1,21 @@
 <div class="row">
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year">
+    <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
       {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
     </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[make_id]" id="{{ element.id }}_make_id">
+    <select class="carquery" name="{{ element.name }}[make_id]" id="{{ element.id }}_make_id" required>
       {% if element.value.make_id %}<option selected value="{{ element.value.make_id }}">{{ element.value.make }}</option>{% endif %}
     </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model">
+    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
       {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
     </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id">
+    <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
       {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
     </select>
   </div>
