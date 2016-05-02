@@ -15,12 +15,12 @@
     </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim">
-      {% if element.value.trim %}<option selected value="{{ element.value.trim }}">{{ element.value.trim }}</option>{% endif %}
+    <select class="carquery" name="{{ element.name }}[model_id]" id="{{ element.id }}_model_id">
+      {% if element.value.model_id %}<option selected value="{{ element.value.model_id }}">{{ element.value.trim }}</option>{% endif %}
     </select>
   </div>
 </div>
-
+input:<input type="hidden" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" value="{{ element.value.trim }}" />
 
 <script type="text/javascript">
 (function() {
@@ -384,8 +384,12 @@ CarQuery.prototype = {
 
 
 var carquery = new CarQuery();
-carquery.init('{{ element.value.year }}', '{{ element.value.make }}', '{{ element.value.model }}', '{{ element.value.trim }}');
-carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
+carquery.init('{{ element.value.year }}', '{{ element.value.make }}', '{{ element.value.model }}', '{{ element.value.model_id }}');
+carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_model_id');
+
+$("select#{{ element.id }}_model_id").bind('change', function(){
+    $("select#{{ element.id }}_trim").val($("select#{{ element.id }}_model_id>option:selected").html())
+});
     
 }());
 </script>
