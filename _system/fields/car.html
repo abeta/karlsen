@@ -92,21 +92,23 @@ CarQuery.prototype = {
         
         var sender = this;
         
+        
+        sender.trimSelectChange();
+        sender.modelSelectChange();
+        sender.makeSelectChange();
+        sender.yearSelectChange();
+        
         //Set the change event for the years dropdown to populate the makes select
         $("select#"+year_select_id).bind('change', function(){sender.yearSelectChange();});
-        sender.yearSelectChange();
         
         //Set the change event for the makes dropdown to populate the models select
         $("select#"+make_select_id).bind('change', function(){sender.makeSelectChange();});
-        sender.makeSelectChange();
         
         //Set the change event for the models dropdown to populate the trims select
         $("select#"+model_select_id).bind('change', function(){sender.modelSelectChange();});
-        sender.modelSelectChange();
         
         //Set the change event for the trim dropdown to save the selected trim
         $("select#"+trim_select_id).bind('change', function(){sender.trimSelectChange();});
-        sender.trimSelectChange();
     },
     
     setMessage: function(id, message)
