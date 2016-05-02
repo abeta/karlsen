@@ -94,15 +94,19 @@ CarQuery.prototype = {
         
         //Set the change event for the years dropdown to populate the makes select
         $("select#"+year_select_id).bind('change', function(){sender.yearSelectChange();});
+        sender.yearSelectChange();
         
         //Set the change event for the makes dropdown to populate the models select
         $("select#"+make_select_id).bind('change', function(){sender.makeSelectChange();});
+        sender.makeSelectChange();
         
         //Set the change event for the models dropdown to populate the trims select
         $("select#"+model_select_id).bind('change', function(){sender.modelSelectChange();});
+        sender.modelSelectChange();
         
         //Set the change event for the trim dropdown to save the selected trim
         $("select#"+trim_select_id).bind('change', function(){sender.trimSelectChange();});
+        sender.trimSelectChange();
     },
     
     setMessage: function(id, message)
@@ -275,9 +279,9 @@ CarQuery.prototype = {
          //if no year supplied, clear makes, models, return;
         if(this.cur_year === "")
         {
-            $("select#"+this.make_select_id).html(this.empty_option_html);
-            $("select#"+this.model_select_id).html(this.empty_option_html);
-            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            $("select#"+this.make_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.model_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
             return;
         }
         
