@@ -378,10 +378,14 @@ CarQuery.prototype = {
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data))
                 //console.log(data);
-            
-            for (var prop in data) {
-                console.log(prop);
-                console.log(sender.getLabel(prop));
+            for (var prop in Things) {
+              Things[prop]
+            }
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    console.log(key);
+                    console.log(sender.getLabel(key));
+                }
             }
             
             //sender.cur_trim = $('select#'+sender.trim_select_id).val();
