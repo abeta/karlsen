@@ -377,9 +377,10 @@ CarQuery.prototype = {
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data))
-                console.log(data);
+                //console.log(data);
             
             for (var prop in data) {
+                console.log(prop);
                 console.log(sender.getLabel(prop));
             }
             
