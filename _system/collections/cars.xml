@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields>
-        <fieldset name="general">
+        <fieldset name="name">
             <field name="car" type="custom" template="car.html" filter="array" raw="true" class="form-control" />
         </fieldset>
         <fieldset name="options">
