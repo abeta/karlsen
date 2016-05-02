@@ -1,15 +1,23 @@
 <div class="row">
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year"></select>
+    <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year">
+      {% if element.value.year %}<option selected value="{{ element.value.year }}"></option>{% endif %}
+    </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[make]" id="{{ element.id }}_make"></select>
+    <select class="carquery" name="{{ element.name }}[make]" id="{{ element.id }}_make">
+      {% if element.value.make %}<option selected value="{{ element.value.make }}"></option>{% endif %}
+    </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model"></select>
+    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model">
+      {% if element.value.model %}<option selected value="{{ element.value.model }}"></option>{% endif %}
+    </select>
   </div>
   <div class="col-sm-3">
-    <select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim"></select>
+    <select class="carquery" name="{{ element.name }}[trim]" id="{{ element.id }}_trim">
+      {% if element.value.trim %}<option selected value="{{ element.value.trim }}"></option>{% endif %}
+    </select>
   </div>
 </div>
 
