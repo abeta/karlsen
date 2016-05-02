@@ -389,13 +389,13 @@ carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make_i
 
 $("select#{{ element.id }}_make_id").bind('change', function(){
     var txt = $("select#{{ element.id }}_make_id>option:selected").html();
-    $("select#{{ element.id }}_make").val(txt);
+    $("#{{ element.id }}_make").val(txt);
     console.log($("select#{{ element.id }}_make").val());
 });
 
 $("select#{{ element.id }}_model_id").bind('change', function(){
     var txt = $("select#{{ element.id }}_model_id>option:selected").html();
-    $("select#{{ element.id }}_trim").val(txt);
+    $("#{{ element.id }}_trim").val(txt);
     console.log($("select#{{ element.id }}_trim").val());
 });
     
