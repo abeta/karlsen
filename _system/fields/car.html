@@ -350,9 +350,10 @@ CarQuery.prototype = {
         if(this.cur_trim !== "" && this.cur_trim !== null)
             this.saveSetting('trim', this.cur_trim);
         
+        var sender = this;
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getTrim", trim:this.cur_trim}, function(data) {
-            if(!this.responseError(data))
+            if(!sender.responseError(data))
                 console.log(data);
             
             //sender.cur_trim = $('select#'+sender.trim_select_id).val();
