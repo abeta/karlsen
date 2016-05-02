@@ -85,15 +85,10 @@ CarQuery.prototype = {
         this.year_select_id =  year_select_id;
         this.make_select_id =  make_select_id;
         this.model_select_id = model_select_id;
-        this.trim_select_id = trim_select_id;    
-        
-        this.trimSelectChange();
-        this.modelSelectChange();
-        this.makeSelectChange();
-        this.yearSelectChange();    
+        this.trim_select_id = trim_select_id;  
         
         //Populate the car-years select element
-        //this.populateYearSelect();
+        this.populateYearSelect();
         
         var sender = this;
         
@@ -271,9 +266,6 @@ CarQuery.prototype = {
     {
         this.cur_year = $("select#"+this.year_select_id).val();
         
-         //Set a loading message while we retrieve the data
-        this.setMessage(this.make_select_id, "Loading Makes...");
-        
         //Set Cookie to save year selection
         this.saveSetting('year', this.cur_year);
         
@@ -285,6 +277,9 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
             return;
         }
+        
+         //Set a loading message while we retrieve the data
+        this.setMessage(this.make_select_id, "Loading Makes...");
         
         var sender = this;
         
@@ -300,9 +295,6 @@ CarQuery.prototype = {
     
     makeSelectChange: function ()
     {
-        //Set a loading message while we retrieve the data
-        this.setMessage(this.model_select_id, "Loading Models...");
-        
         this.cur_make = $("select#"+this.make_select_id).val();
         
         //If value has been selected, save make selection
@@ -316,6 +308,9 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
+        
+        //Set a loading message while we retrieve the data
+        this.setMessage(this.model_select_id, "Loading Models...");
     
         var sender = this;
     
@@ -336,9 +331,6 @@ CarQuery.prototype = {
     
     modelSelectChange: function ()
     {
-        //Set a loading message while we retrieve the data
-        this.setMessage(this.trim_select_id, "Loading Trims...");
-        
         this.cur_model = $("select#"+this.model_select_id).val();
         
         //If value has been selected, save model selection
@@ -354,6 +346,9 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
+        
+        //Set a loading message while we retrieve the data
+        this.setMessage(this.trim_select_id, "Loading Trims...");
         
         var sender = this;
         
