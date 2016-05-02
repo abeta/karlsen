@@ -109,10 +109,7 @@ CarQuery.prototype = {
     {
         var el = $("select#"+id),
             opt = el.find("option");
-        if(opt.length == 1) {
-            opt.html(opt.html() + " ("+message+")");
-        }
-        else {
+        if(opt.length != 1) {
             el.html("<option value=''>"+message+"</option>");
         }
         el.trigger("chosen:updated");
