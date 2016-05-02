@@ -109,8 +109,8 @@ CarQuery.prototype = {
     {
         var el = $("select#"+id),
             opt = el.find("option");
-        if(opt.length == 1) {
-            opt.html(opt.html() + "("+message+")");
+        if(opt.length && opt.length <= 2) {
+            opt.html(opt.html() + " ("+message+")");
         }
         else {
             el.html("<option value=''>"+message+"</option>");
