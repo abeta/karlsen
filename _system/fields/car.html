@@ -85,18 +85,17 @@ CarQuery.prototype = {
         this.year_select_id =  year_select_id;
         this.make_select_id =  make_select_id;
         this.model_select_id = model_select_id;
-        this.trim_select_id = trim_select_id;        
+        this.trim_select_id = trim_select_id;    
+        
+        this.trimSelectChange();
+        this.modelSelectChange();
+        this.makeSelectChange();
+        this.yearSelectChange();    
         
         //Populate the car-years select element
         this.populateYearSelect();
         
         var sender = this;
-        
-        
-        sender.trimSelectChange();
-        sender.modelSelectChange();
-        sender.makeSelectChange();
-        sender.yearSelectChange();
         
         //Set the change event for the years dropdown to populate the makes select
         $("select#"+year_select_id).bind('change', function(){sender.yearSelectChange();});
