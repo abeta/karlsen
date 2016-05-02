@@ -109,7 +109,7 @@ CarQuery.prototype = {
     {
         var el = $("select#"+id),
             opt = el.find("option");
-        if(opt.length && opt.length <= 2) {
+        if(opt.length == 2) {
             opt.html(opt.html() + " ("+message+")");
         }
         else {
