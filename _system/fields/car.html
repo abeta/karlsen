@@ -152,7 +152,7 @@ CarQuery.prototype = {
                 if(sender.settings.year !== null)
                 {
                     $('select#'+sender.year_select_id).val(sender.settings.year);
-                    //sender.yearSelectChange();
+                    sender.yearSelectChange();
                 }
                 
                 $("select#"+sender.year_select_id).trigger("chosen:updated");
