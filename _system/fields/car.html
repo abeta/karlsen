@@ -109,6 +109,7 @@ CarQuery.prototype = {
     {  
         //Set a loading message while we retrieve the data
         $("select#"+this.year_select_id).html("<option value=''>Loading Years...</option>");
+        $("select#"+this.year_select_id).trigger("chosen:updated");
         
         var sender = this;
            
@@ -269,6 +270,7 @@ CarQuery.prototype = {
         
          //Set a loading message while we retrieve the data
         $("select#"+this.make_select_id).html("<option value=''>Loading Makes...</option>");
+        $("select#"+this.make_select_id).trigger("chosen:updated");
         
         var sender = this;
         
@@ -300,6 +302,7 @@ CarQuery.prototype = {
     
         //Set a loading message while we retrieve the data
         $("select#"+this.model_select_id).html("<option value=''>Loading Models...</option>");
+        $("select#"+this.model_select_id).trigger("chosen:updated");
     
         var sender = this;
     
@@ -338,6 +341,7 @@ CarQuery.prototype = {
         
         //Set a loading message while we retrieve the data
         $("select#"+this.trim_select_id).html("<option value=''>Loading Trims...</option>");
+        $("select#"+this.trim_select_id).trigger("chosen:updated");
         
         var sender = this;
         
@@ -360,7 +364,7 @@ CarQuery.prototype = {
             this.saveSetting('trim', this.cur_trim);
         
         var sender = this;
-                console.log("ras");
+        
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data))
