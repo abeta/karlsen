@@ -379,7 +379,7 @@ CarQuery.prototype = {
             if(!sender.responseError(data)) {
                 console.log(data);
                 for (var key in data[0]) {
-                    if (data.hasOwnProperty(key)) {
+                    if (data[0].hasOwnProperty(key)) {
                         console.log(key);
                         console.log(sender.getLabel(key));
                     }
