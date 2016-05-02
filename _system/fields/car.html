@@ -105,11 +105,23 @@ CarQuery.prototype = {
         $("select#"+trim_select_id).bind('change', function(){sender.trimSelectChange();});
     },
     
+    setMessage: function(id, message)
+    {
+        var el = $("select#"+id),
+            opt = el.find("option");
+        if(opt.length == 1) {
+            opt.html($option.html() + "("+message+")");
+        }
+        else {
+            el.html("<option value=''>"+message+"</option>");
+        }
+        el.trigger("chosen:updated");
+    },
+    
     populateYearSelect: function()
     {  
         //Set a loading message while we retrieve the data
-        $("select#"+this.year_select_id).html("<option value=''>Loading Years...</option>");
-        $("select#"+this.year_select_id).trigger("chosen:updated");
+        this.setMessage(this.year_select_id, "Loading Years...");
         
         var sender = this;
            
@@ -269,8 +281,7 @@ CarQuery.prototype = {
         }
         
          //Set a loading message while we retrieve the data
-        $("select#"+this.make_select_id).html("<option value=''>Loading Makes...</option>");
-        $("select#"+this.make_select_id).trigger("chosen:updated");
+        this.setMessage(this.make_select_id, "Loading Makes...");
         
         var sender = this;
         
@@ -301,8 +312,7 @@ CarQuery.prototype = {
         }
     
         //Set a loading message while we retrieve the data
-        $("select#"+this.model_select_id).html("<option value=''>Loading Models...</option>");
-        $("select#"+this.model_select_id).trigger("chosen:updated");
+        this.setMessage(this.model_select_id, "Loading Models...");
     
         var sender = this;
     
@@ -340,8 +350,7 @@ CarQuery.prototype = {
         }
         
         //Set a loading message while we retrieve the data
-        $("select#"+this.trim_select_id).html("<option value=''>Loading Trims...</option>");
-        $("select#"+this.trim_select_id).trigger("chosen:updated");
+        this.setMessage(this.trim_select_id, "Loading Trims...");
         
         var sender = this;
         
