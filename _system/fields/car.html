@@ -397,8 +397,8 @@ CarQuery.prototype = {
 
 
 var carquery = new CarQuery();
-carquery.init('{{ element.value.year }}', '{{ element.value.make_id }}', '{{ element.value.model }}', '{{ element.value.model_id }}');
-carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make_id', '{{ element.id }}_model', '{{ element.id }}_model_id');
+carquery.init('{{ element.value.year }}', '{{ element.value.make_id }}', '{{ element.value.model }}', '{{ element.value.trim_id }}');
+carquery.initYearMakeModelTrim('{{ element.id }}_year', '{{ element.id }}_make_id', '{{ element.id }}_model', '{{ element.id }}_trim_id');
 
 $("select#{{ element.id }}_make_id").bind('change', function(){
     $("#{{ element.id }}_make").val($("select#{{ element.id }}_make_id>option:selected").html());
