@@ -361,7 +361,7 @@ CarQuery.prototype = {
         var sender = this;
                 console.log("ras");
         //Get Car Model JSON for the selected make
-        $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model_id:this.cur_trim}, function(data) {
+        $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
                 console.log(data);
             if(!sender.responseError(data))
                 console.log(data);
