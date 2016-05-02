@@ -33,6 +33,8 @@
                 <option value="unlisted">Unlisted</option>
             </field>
             <field name="image" type="media" label="Image" filter="string" class="form-control" directory="_media/cars" />
+            <field name="title" type="hidden" filter="string" />
+            <field name="slug" type="hidden" filter="CMD" />
         </fieldset>
     </fields>
 </form>
