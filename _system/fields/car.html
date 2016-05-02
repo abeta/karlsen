@@ -116,7 +116,7 @@ CarQuery.prototype = {
         el.trigger("chosen:updated");
     },
     
-    populateYearSelect: function()
+    populateYearSelect: function(refresh)
     {  
         //Set a loading message while we retrieve the data
         this.setMessage(this.year_select_id, "Loading Years...");
@@ -152,7 +152,7 @@ CarQuery.prototype = {
                 if(sender.settings.year !== null)
                 {
                     $('select#'+sender.year_select_id).val(sender.settings.year);
-                    sender.yearSelectChange();
+                    //sender.yearSelectChange();
                 }
                 
                 $("select#"+sender.year_select_id).trigger("chosen:updated");
