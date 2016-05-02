@@ -264,10 +264,10 @@ CarQuery.prototype = {
     
     yearSelectChange: function ()
     {
+        this.cur_year = $("select#"+this.year_select_id).val();
+        
          //Set a loading message while we retrieve the data
         this.setMessage(this.make_select_id, "Loading Makes...");
-        
-        this.cur_year = $("select#"+this.year_select_id).val();
         
         //Set Cookie to save year selection
         this.saveSetting('year', this.cur_year);
