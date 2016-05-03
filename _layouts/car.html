@@ -1,6 +1,7 @@
 ---
 layout: default
 specs: 
+-
   - 
     field: make_country 
     label: Country of Origin
@@ -19,6 +20,7 @@ specs:
   - 
     field: model_year 
     label: Year
+-    
   - 
     field: model_engine_position 
     label: Engine Location
@@ -32,23 +34,11 @@ specs:
     field: model_engine_cc 
     label: Engine Displacement (cc)
   - 
-    field: model_engine_l 
-    label: Engine Displacement (l)
-  - 
-    field: model_engine_ci
-    label: Engine Displacement (cubic inches)
-  - 
     field: model_engine_bore_mm
     label: Engine Bore (mm)
   - 
-    field: model_engine_bore_in 
-    label: Engine Bore (in)
-  - 
     field: model_engine_stroke_mm 
     label: Engine Stroke (mm)
-  - 
-    field: model_engine_stroke_in
-    label: Engine Stroke (in)
   - 
     field: model_engine_valves_per_cyl 
     label: Engine Valves Per Cylinder
@@ -58,12 +48,6 @@ specs:
   - 
     field: model_engine_power_hp 
     label: Engine Max Power (HP)
-  - 
-    field: model_engine_power_ps 
-    label: Engine Max Power (PS)
-  - 
-    field: model_engine_power_kw 
-    label: Engine Max Power (kW)
   - 
     field: model_engine_power_rpm 
     label: Engine Max Power RPM
@@ -85,15 +69,13 @@ specs:
   - 
     field: model_engine_fuel
     label: Engine Fuel Type
+-    
   - 
     field: model_drive
     label: Drive
   - 
     field: model_transmission_type
     label: Transmission Type
-  - 
-    field: model_top_speed_kph
-    label: Top Speed (KPH)
   - 
     field: model_top_speed_mph
     label: Top Speed (MPH)
@@ -110,56 +92,29 @@ specs:
     field: model_weight_kg 
     label: Weight (kg)
   - 
-    field: model_weight_lbs
-    label: Weight (lbs)
-  - 
     field: model_length_mm
     label: Length (mm)
-  - 
-    field: model_length_in
-    label: Length (in)
   - 
     field: model_width_mm 
     label: Width (mm)
   - 
-    field: model_width_in 
-    label: Width (in)
-  - 
     field: model_height_mm 
     label: Height (mm)
-  - 
-    field: model_height_in
-    label: Height (in)
   - 
     field: model_wheelbase_mm 
     label: Wheelbase (mm)
   - 
-    field: model_wheelbase_in 
-    label: Wheelbase (in)
-  - 
     field: model_lkm_city 
     label: Fuel Economy City (l/100km)
-  - 
-    field: model_mpg_city 
-    label: Fuel Economy City (mpg)
   - 
     field: model_lkm_hwy 
     label: Fuel Economy HWY (l/100km)
   - 
-    field: model_mpg_hwy 
-    label: Fuel Economy HWY (mpg)
-  - 
     field: model_lkm_mixed 
     label: Fuel Economy Mixed (l/100km)
   - 
-    field: model_mpg_mixed 
-    label: Fuel Economy Mixed (mpg)
-  - 
     field: model_fuel_cap_l 
     label: Fuel Capacity (l)
-  - 
-    field: model_fuel_cap_g 
-    label: Fuel Capacity (g)
 ---
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
@@ -335,6 +290,7 @@ specs:
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
     <div class="section-content row">
+      {% for specs in layout.specs %}
       <div class="col-sm-4">
         <table class="table table-striped">
           <tbody>
@@ -343,9 +299,11 @@ specs:
               <td>{{ spec.label }}:</td>
               <td>{{ page[spec.field] }}</td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>
