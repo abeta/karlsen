@@ -5,12 +5,12 @@
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
         <fieldset name="details" label="Car Details">
-            <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" />
-            <field name="make_display" type="text" label="Make" filter="string" class="form-control" />
-            <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" />
-            <field name="model_name" type="text" label="Model" filter="string" class="form-control" />
-            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" />
-            <field name="model_year" type="text" label="Year" filter="int" class="form-control" />
+            <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
+            <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" />
+            <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" readonly="true" />
+            <field name="model_name" type="text" label="Model" filter="string" class="form-control" readonly="true" />
+            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" readonly="true" />
+            <field name="model_year" type="text" label="Year" filter="int" class="form-control" readonly="true" />
                         
             <field name="model_engine_position" type="text" label="Engine Location" filter="string" class="form-control" />
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
@@ -25,8 +25,8 @@
             <field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="string" class="form-control" />
             <field name="model_engine_valves" type="text" label="Engine Valves" filter="string" class="form-control" />
             <field name="model_engine_power_hp" type="text" label="Engine Max Power (HP)" filter="string" class="form-control" />
-            <field name="model_engine_power_ps" type="text" label="Engine Max Power (PS)" filter="string" class="form-control" />
-            <field name="model_engine_power_kw" type="text" label="Engine Max Power (kW)" filter="string" class="form-control" />
+            <!--field name="model_engine_power_ps" type="text" label="Engine Max Power (PS)" filter="string" class="form-control" /-->
+            <!--field name="model_engine_power_kw" type="text" label="Engine Max Power (kW)" filter="string" class="form-control" /-->
             <field name="model_engine_power_rpm" type="text" label="Engine Max Power RPM" filter="string" class="form-control" />
             <field name="model_engine_torque_nm" type="text" label="Engine Max Torque (Nm)" filter="string" class="form-control" />
             <field name="model_engine_torque_lbft" type="text" label="Engine Max Torque (Lb-Ft)" filter="string" class="form-control" />
@@ -37,7 +37,7 @@
                         
             <field name="model_drive" type="text" label="Drive" filter="string" class="form-control" />
             <field name="model_transmission_type" type="text" label="Transmission Type" filter="string" class="form-control" />
-            <field name="model_top_speed_kph" type="text" label="Top Speed (KPH)" filter="string" class="form-control" />
+            <!--field name="model_top_speed_kph" type="text" label="Top Speed (KPH)" filter="string" class="form-control" /-->
             <field name="model_top_speed_mph" type="text" label="Top Speed (MPH)" filter="string" class="form-control" />
             <field name="model_0_to_100_kph" type="text" label="0-100 kph (0-62mph)" filter="string" class="form-control" />
                         
