@@ -385,9 +385,7 @@ CarQuery.prototype = {
                 console.log(data);
                 for (var key in data[0]) {
                     if (data[0].hasOwnProperty(key)) {
-                        console.log(" ");
-                        console.log(sender.getLabel(key));
-                        console.log(data[0][key]);
+                        $("#form_"+key).val(data[0][key]);
                     }
                 }
             }
