@@ -21,6 +21,7 @@
       <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
         {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
       </select>
+      <label for="{{ element.id }}_trim_id" class="sr-only">Model</label>
       <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
         {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
       </select>
