@@ -58,7 +58,7 @@ CarQuery.prototype = {
     trim_select_id:     "",
     year_select_id:     "",
     
-    init : function(year, make_id, model, trim)
+    init : function(year_select_id, make_select_id, model_select_id, trim_select_id)
     {
         $.ajaxSetup({
             cache: true,
@@ -66,26 +66,29 @@ CarQuery.prototype = {
                 alert('Bad Response from CarQuery API.\nThe service may not be avilable at this time.');
             }
         });
-        
-        //Check if initial values were set
-        this.settings = {};
-        if(year !== null)
-            this.saveSetting('year', year);
-        if(make_id !== null)
-            this.saveSetting('make', make_id);
-        if(model !== null)
-            this.saveSetting('model', model);
-        if(trim !== null)
-            this.saveSetting('trim', trim);
-    },
-    
-    initYearMakeModelTrim: function(year_select_id, make_select_id, model_select_id, trim_select_id)
-    {
+            
+            
         //Set the ids for the select elements
         this.year_select_id =  year_select_id;
         this.make_select_id =  make_select_id;
         this.model_select_id = model_select_id;
-        this.trim_select_id = trim_select_id;  
+        this.trim_select_id = trim_select_id;
+        
+        var year = $("select#"+year_select_id).val(),
+            make_id = $("select#"+make_select_id).val(),
+            model = $("select#"+model_select_id).val(),
+            trim = $("select#"+trim_select_id).val();
+        
+        //Check if initial values were set
+        this.settings = {};
+        if(year)
+            this.saveSetting('year', year);
+        if(make_id)
+            this.saveSetting('make', make_id);
+        if(model)
+            this.saveSetting('model', model);
+        if(trim)
+            this.saveSetting('trim', trim);
         
         //Populate the car-years select element
         this.populateYearSelect();
