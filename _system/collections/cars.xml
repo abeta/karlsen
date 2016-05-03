@@ -10,13 +10,13 @@
             <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" />
             <field name="model_name" type="text" label="Model" filter="string" class="form-control" />
             <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" />
-            <field name="model_year" type="text" label="Year" filter="string" class="form-control" />
+            <field name="model_year" type="text" label="Year" filter="int" class="form-control" />
                         
             <field name="model_engine_position" type="text" label="Engine Location" filter="string" class="form-control" />
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
-            <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="string" class="form-control" />
-            <field name="model_engine_cc" type="text" label="Engine Displacement (cc)" filter="string" class="form-control" />
-            <field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="string" class="form-control" />
+            <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="int" class="form-control" />
+            <field name="model_engine_cc" type="text" label="Engine Displacement (cc)" filter="int" class="form-control" />
+            <field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="float" class="form-control" />
             <field name="model_engine_ci" type="text" label="Engine Displacement (cubic inches)" filter="string" class="form-control" />
             <field name="model_engine_bore_mm" type="text" label="Engine Bore (mm)" filter="string" class="form-control" />
             <field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="string" class="form-control" />
@@ -41,8 +41,8 @@
             <field name="model_top_speed_mph" type="text" label="Top Speed (MPH)" filter="string" class="form-control" />
             <field name="model_0_to_100_kph" type="text" label="0-100 kph (0-62mph)" filter="string" class="form-control" />
                         
-            <field name="model_doors" type="text" label="Doors" filter="string" class="form-control" />
-            <field name="model_seats" type="text" label="Seats" filter="string" class="form-control" />
+            <field name="model_doors" type="text" label="Doors" filter="int" class="form-control" />
+            <field name="model_seats" type="text" label="Seats" filter="int" class="form-control" />
             <field name="model_weight_kg" type="text" label="Weight (kg)" filter="string" class="form-control" />
             <field name="model_weight_lbs" type="text" label="Weight (lbs)" filter="string" class="form-control" />
             <field name="model_length_mm" type="text" label="Length (mm)" filter="string" class="form-control" />
