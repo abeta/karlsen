@@ -13,15 +13,15 @@
   </div>
   <div class="col-sm-7">
     <label for="{{ element.id }}_model" class="sr-only">Model</label>
+    <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
+      {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
+    </select>
+  </div>
+  <div class="col-sm-3">
     <label for="{{ element.id }}_trim_id" class="sr-only">Trim</label>
-    <div class="input-group">
-      <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
-        {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
-      </select>
-      <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
-        {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
-      </select>
-    </div>
+    <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
+      {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
+    </select>
   </div>
 </div>
 <input type="hidden" name="{{ element.name }}[make]" id="{{ element.id }}_make" value="{{ element.value.make }}" />
