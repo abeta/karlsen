@@ -1,5 +1,165 @@
 ---
 layout: default
+specs: 
+  - 
+    field: make_country 
+    label: Country of Origin
+  - 
+    field: make_display 
+    label: Make
+  - 
+    field: model_body 
+    label: Body Style
+  - 
+    field: model_name 
+    label: Model
+  - 
+    field: model_trim 
+    label: Trim
+  - 
+    field: model_year 
+    label: Year
+  - 
+    field: model_engine_position 
+    label: Engine Location
+  - 
+    field: model_engine_type
+    label: Engine Type
+  - 
+    field: model_engine_cyl 
+    label: Engine Cylinders
+  - 
+    field: model_engine_cc 
+    label: Engine Displacement (cc)
+  - 
+    field: model_engine_l 
+    label: Engine Displacement (l)
+  - 
+    field: model_engine_ci
+    label: Engine Displacement (cubic inches)
+  - 
+    field: model_engine_bore_mm
+    label: Engine Bore (mm)
+  - 
+    field: model_engine_bore_in 
+    label: Engine Bore (in)
+  - 
+    field: model_engine_stroke_mm 
+    label: Engine Stroke (mm)
+  - 
+    field: model_engine_stroke_in
+    label: Engine Stroke (in)
+  - 
+    field: model_engine_valves_per_cyl 
+    label: Engine Valves Per Cylinder
+  - 
+    field: model_engine_valves 
+    label: Engine Valves
+  - 
+    field: model_engine_power_hp 
+    label: Engine Max Power (HP)
+  - 
+    field: model_engine_power_ps 
+    label: Engine Max Power (PS)
+  - 
+    field: model_engine_power_kw 
+    label: Engine Max Power (kW)
+  - 
+    field: model_engine_power_rpm 
+    label: Engine Max Power RPM
+  - 
+    field: model_engine_torque_nm 
+    label: Engine Max Torque (Nm)
+  - 
+    field: model_engine_torque_lbft
+    label: Engine Max Torque (Lb-Ft)
+  - 
+    field: model_engine_torque_kgm 
+    label: Engine Max Torque (kgf-m)
+  - 
+    field: model_engine_torque_rpm 
+    label: Engine Max Torque RPM
+  - 
+    field: model_engine_compression
+    label: Engine Compression Ratio
+  - 
+    field: model_engine_fuel
+    label: Engine Fuel Type
+  - 
+    field: model_drive
+    label: Drive
+  - 
+    field: model_transmission_type
+    label: Transmission Type
+  - 
+    field: model_top_speed_kph
+    label: Top Speed (KPH)
+  - 
+    field: model_top_speed_mph
+    label: Top Speed (MPH)
+  - 
+    field: model_0_to_100_kph
+    label: 0-100 kph (0-62mph)
+  - 
+    field: model_doors
+    label: Doors
+  - 
+    field: model_seats 
+    label: Seats
+  - 
+    field: model_weight_kg 
+    label: Weight (kg)
+  - 
+    field: model_weight_lbs
+    label: Weight (lbs)
+  - 
+    field: model_length_mm
+    label: Length (mm)
+  - 
+    field: model_length_in
+    label: Length (in)
+  - 
+    field: model_width_mm 
+    label: Width (mm)
+  - 
+    field: model_width_in 
+    label: Width (in)
+  - 
+    field: model_height_mm 
+    label: Height (mm)
+  - 
+    field: model_height_in
+    label: Height (in)
+  - 
+    field: model_wheelbase_mm 
+    label: Wheelbase (mm)
+  - 
+    field: model_wheelbase_in 
+    label: Wheelbase (in)
+  - 
+    field: model_lkm_city 
+    label: Fuel Economy City (l/100km)
+  - 
+    field: model_mpg_city 
+    label: Fuel Economy City (mpg)
+  - 
+    field: model_lkm_hwy 
+    label: Fuel Economy HWY (l/100km)
+  - 
+    field: model_mpg_hwy 
+    label: Fuel Economy HWY (mpg)
+  - 
+    field: model_lkm_mixed 
+    label: Fuel Economy Mixed (l/100km)
+  - 
+    field: model_mpg_mixed 
+    label: Fuel Economy Mixed (mpg)
+  - 
+    field: model_fuel_cap_l 
+    label: Fuel Capacity (l)
+  - 
+    field: model_fuel_cap_g 
+    label: Fuel Capacity (g)
 ---
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
@@ -175,174 +335,17 @@ layout: default
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
     <div class="section-content row">
-      <div class="col-sm-4"><table class="table table-striped">
-  <tbody>
-      <tr>
-        <td>Country of Origin:</td>
-        <td>Italy</td>
-      </tr>
-      <tr>
-        <td>Body Style:</td>
-        <td>Coupe</td>
-      </tr>
-        <tr>
-          <td valign="top">Exterior Colors:</td>
-          <td>Not Available</td>
-        </tr>
-        <tr>
-          <td valign="top">Interior Colors:</td>
-          <td>Not Available</td>
-        </tr>
+      <div class="col-sm-4">
+        <table class="table table-striped">
+          <tbody>
+            {% for spec in specs %}
             <tr>
-              <td>Drive:</td>
-              <td>Rear</td>
+              <td>{{ spec.label }}:</td>
+              <td>{{ page[spec.field] }}</td>
             </tr>
-            <tr>
-              <td>Transmission Type:</td>
-              <td>Manual</td>
-            </tr>
-            <tr>
-              <td>Top Speed (KPH):</td>
-              <td>Not Available</td>
-            </tr>
-            <tr>
-              <td>Top Speed (MPH):</td>
-              <td>Not Available</td>
-            </tr>
-            <tr>
-              <td>0-100 kph (0-62mph):</td>
-              <td>Not Available</td>
-            </tr>
-            </tbody>
-          </table></div>
-      <div class="col-sm-4"><table class="table table-striped">
-  <tbody>
-          <tr>
-            <td>Engine Location:</td>
-            <td>Front</td>
-          </tr>
-          <tr>
-            <td>Engine Type:</td>
-            <td>V</td>
-          </tr>
-          <tr>
-            <td>Engine Cylinders:</td>
-            <td>12</td>
-          </tr>
-          <tr>
-            <td>Engine Displacement (cc):</td>
-            <td>6000</td>
-          </tr>
-          <tr>
-            <td>Engine Displacement (l):</td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>Engine Displacement (cubic inches):</td>
-            <td>366</td>
-          </tr>
-          <tr>
-            <td>Engine Valves Per Cylinder:</td>
-            <td>4</td>
-          </tr>
-          <tr>
-            <td>Engine Valves:</td>
-            <td>48</td>
-          </tr>
-          <tr>
-            <td>Engine Max Power (HP):</td>
-            <td>611</td>
-          </tr>
-          <tr>
-            <td>Engine Max Power (PS):</td>
-            <td>619</td>
-          </tr>
-          <tr>
-            <td>Engine Max Power (kW):</td>
-            <td>455</td>
-          </tr>
-          <tr>
-            <td>Engine Max Power RPM:</td>
-            <td>9000</td>
-          </tr>
-          <tr>
-            <td>Engine Max Torque RPM:</td>
-            <td>9000</td>
-          </tr>
-          <tr>
-            <td>Engine Compression Ratio:</td>
-            <td>Not Available</td>
-          </tr>
-          <tr>
-            <td>Engine Fuel Type:</td>
-            <td>Gasoline</td>
-          </tr>
-            </tbody>
-          </table></div>
-      <div class="col-sm-4"><table class="table table-striped">
-  <tbody>
-              <tr>
-                <td>Doors:</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Seats:</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Weight (kg):</td>
-                <td>1688</td>
-              </tr>
-              <tr>
-                <td>Length (mm):</td>
-                <td>4666</td>
-              </tr>
-              <tr>
-                <td>Width (mm):</td>
-                <td>1961</td>
-              </tr>
-              <tr>
-                <td>Height (mm):</td>
-                <td>1336</td>
-              </tr>
-              <tr>
-                <td>Wheelbase (mm):</td>
-                <td>2751</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy City(l/100km):</td>
-                <td>21.4</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy City(mpg):</td>
-                <td>11</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy HWY(l/100km):</td>
-                <td>15.7</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy HWY(mpg):</td>
-                <td>15</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy Mixed(l/100km):</td>
-                <td>Not Available</td>
-              </tr>
-              <tr>
-                <td>Fuel Economy Mixed(mpg):</td>
-                <td>Not Available</td>
-              </tr>
-              <tr>
-                <td>Fuel Capacity(l):</td>
-                <td>105</td>
-              </tr>
-              <tr>
-                <td>Fuel Capacity(g):</td>
-                <td>27.7</td>
-              </tr>
-            </tbody>
-          </table></div>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

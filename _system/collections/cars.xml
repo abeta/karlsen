@@ -16,18 +16,18 @@
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
             <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="int" class="form-control" />
             <field name="model_engine_cc" type="text" label="Engine Displacement (cc)" filter="int" class="form-control" />
-            <field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="double" class="form-control" />
-            <field name="model_engine_ci" type="text" label="Engine Displacement (cubic inches)" filter="string" class="form-control" />
+            <!--field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="double" class="form-control" /-->
+            <!--field name="model_engine_ci" type="text" label="Engine Displacement (cubic inches)" filter="string" class="form-control" /-->
             <field name="model_engine_bore_mm" type="text" label="Engine Bore (mm)" filter="int" class="form-control" />
             <!--field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="double" class="form-control" /-->
             <field name="model_engine_stroke_mm" type="text" label="Engine Stroke (mm)" filter="int" class="form-control" />
             <!--field name="model_engine_stroke_in" type="text" label="Engine Stroke (in)" filter="double" class="form-control" /-->
             <field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="int" class="form-control" />
             <field name="model_engine_valves" type="text" label="Engine Valves" filter="int" class="form-control" />
-            <field name="model_engine_power_hp" type="text" label="Engine Max Power (HP)" filter="string" class="form-control" />
+            <field name="model_engine_power_hp" type="text" label="Engine Max Power (HP)" filter="int" class="form-control" />
             <!--field name="model_engine_power_ps" type="text" label="Engine Max Power (PS)" filter="string" class="form-control" /-->
             <!--field name="model_engine_power_kw" type="text" label="Engine Max Power (kW)" filter="string" class="form-control" /-->
-            <field name="model_engine_power_rpm" type="text" label="Engine Max Power RPM" filter="string" class="form-control" />
+            <field name="model_engine_power_rpm" type="text" label="Engine Max Power RPM" filter="int" class="form-control" />
             <field name="model_engine_torque_nm" type="text" label="Engine Max Torque (Nm)" filter="string" class="form-control" />
             <field name="model_engine_torque_lbft" type="text" label="Engine Max Torque (Lb-Ft)" filter="string" class="form-control" />
             <field name="model_engine_torque_kgm" type="text" label="Engine Max Torque (kgf-m)" filter="string" class="form-control" />
