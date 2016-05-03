@@ -366,6 +366,7 @@ CarQuery.prototype = {
                 sender.populateTrimSelect(data);
             
             sender.cur_trim = $('select#'+sender.trim_select_id).val();
+            sender.trimSelectChange();
         });
     },
     
