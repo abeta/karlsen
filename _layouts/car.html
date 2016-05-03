@@ -20,6 +20,24 @@ specs:
   - 
     field: model_year 
     label: Year
+  - 
+    field: model_drive
+    label: Drive
+  - 
+    field: model_transmission_type
+    label: Transmission Type
+  - 
+    field: model_top_speed_mph
+    label: Top Speed (MPH)
+  - 
+    field: model_0_to_100_kph
+    label: 0-100 kph (0-62mph)
+  - 
+    field: model_doors
+    label: Doors
+  - 
+    field: model_seats 
+    label: Seats
 -    
   - 
     field: model_engine_position 
@@ -70,24 +88,6 @@ specs:
     field: model_engine_fuel
     label: Engine Fuel Type
 -    
-  - 
-    field: model_drive
-    label: Drive
-  - 
-    field: model_transmission_type
-    label: Transmission Type
-  - 
-    field: model_top_speed_mph
-    label: Top Speed (MPH)
-  - 
-    field: model_0_to_100_kph
-    label: 0-100 kph (0-62mph)
-  - 
-    field: model_doors
-    label: Doors
-  - 
-    field: model_seats 
-    label: Seats
   - 
     field: model_weight_kg 
     label: Weight (kg)
@@ -294,12 +294,12 @@ specs:
       <div class="col-sm-4">
         <table class="table table-striped">
           <tbody>
-            {% for spec in specs %}
+            {% for spec in specs %}{% if page[spec.field] %}
             <tr>
               <td>{{ spec.label }}:</td>
               <td>{{ page[spec.field] }}</td>
             </tr>
-            {% endfor %}
+            {% endif %}{% endfor %}
           </tbody>
         </table>
       </div>
