@@ -7,7 +7,7 @@
             <field name="model" type="list" label="Model" />
             <field name="trim_id" type="list" label="Trim" />
         </fieldset>
-        <fieldset name="Car Details">
+        <fieldset name="details" name="Car Details">
             <field name="car" type="custom" template="car.html" filter="array" raw="true" class="form-control" />
         </fieldset>
         <fieldset name="options">
