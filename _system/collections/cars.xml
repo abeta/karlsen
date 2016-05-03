@@ -60,7 +60,7 @@
             <field name="model_lkm_mixed" type="text" label="Fuel Economy Mixed (l/100km)" filter="double" class="form-control" />
             <!--field name="model_mpg_mixed" type="text" label="Fuel Economy Mixed (mpg)" filter="string" class="form-control" /-->
             <field name="model_fuel_cap_l" type="text" label="Fuel Capacity (l)" filter="double" class="form-control" />
-            <field name="model_fuel_cap_g" type="text" label="Fuel Capacity (g)" filter="double" class="form-control" />
+            <!--field name="model_fuel_cap_g" type="text" label="Fuel Capacity (g)" filter="double" class="form-control" /-->
         </fieldset>
         <fieldset name="options">
             <field name="price" type="text" label="Price" filter="integer" class="form-control" />
