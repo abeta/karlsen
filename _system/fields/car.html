@@ -11,13 +11,13 @@
       {% if element.value.make_id %}<option selected value="{{ element.value.make_id }}">{{ element.value.make }}</option>{% endif %}
     </select>
   </div>
-  <div class="col-sm-7">
+  <div class="col-sm-3">
     <label for="{{ element.id }}_model" class="sr-only">Model</label>
     <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
       {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
     </select>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <label for="{{ element.id }}_trim_id" class="sr-only">Trim</label>
     <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
       {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
