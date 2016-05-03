@@ -2,9 +2,11 @@
   <div class="col-sm-2">
     <div class="input-group">
       <label for="{{ element.id }}_year" class="input-group-addon">Year</label>
+      <div>
       <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
         {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
       </select>
+      </div>
     </div>
   </div>
   <div class="col-sm-3">
