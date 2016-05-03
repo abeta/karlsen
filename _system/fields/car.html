@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-2">
-    <label for="{{ element.id }}_make_id" class="sr-only">Year</label>
+    <label for="{{ element.id }}_year" class="sr-only">Year</label>
     <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
       {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
     </select>
