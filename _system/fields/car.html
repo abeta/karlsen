@@ -3,9 +3,11 @@
     <div class="form-group">
       <div class="input-group">
         <label for="{{ element.id }}_year" class="input-group-addon">Year</label>
-        <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
-          {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
-        </select>
+        <div style="display: table-cell;">
+          <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
+            {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
+          </select>
+        </div>
       </div>
     </div>
   </div>
