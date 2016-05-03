@@ -63,6 +63,11 @@
             <!--field name="model_fuel_cap_g" type="text" label="Fuel Capacity (g)" filter="double" class="form-control" /-->
         </fieldset>
         <fieldset name="options">
+            <field name="status" type="list" label="Status" class="form-control" required="true">
+                <option value="for-sale">For Sale</option>
+                <option value="under-offer">Under Offer</option>
+                <option value="sold">Sold</option>
+            </field>
             <field name="price" type="text" label="Price" filter="integer" class="form-control" />
             <field name="mileage" type="text" label="Mileage" filter="integer" class="form-control" />
             <field name="colour" type="list" label="Colour" class="form-control" required="true">
