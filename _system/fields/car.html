@@ -6,12 +6,10 @@
     </select>
   </div>
   <div class="col-sm-3">
-    <div class="input-group">
-      <label for="{{ element.id }}_make_id" class="sr-only">Make</label>
-      <select class="carquery" name="{{ element.name }}[make_id]" id="{{ element.id }}_make_id" required>
-        {% if element.value.make_id %}<option selected value="{{ element.value.make_id }}">{{ element.value.make }}</option>{% endif %}
-      </select>
-    </div>
+    <label for="{{ element.id }}_make_id" class="sr-only">Make</label>
+    <select class="carquery" name="{{ element.name }}[make_id]" id="{{ element.id }}_make_id" required>
+      {% if element.value.make_id %}<option selected value="{{ element.value.make_id }}">{{ element.value.make }}</option>{% endif %}
+    </select>
   </div>
   <div class="col-sm-7">
     <label for="{{ element.id }}_model" class="sr-only">Model</label>
