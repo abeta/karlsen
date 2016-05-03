@@ -2,6 +2,7 @@
 <form>
     <fields>
         <fieldset name="name">
+            <field name="year" type="list" label="Year" class="form-control" />
             <field name="car" type="custom" template="car.html" filter="array" raw="true" class="form-control" />
         </fieldset>
         <fieldset name="options">
