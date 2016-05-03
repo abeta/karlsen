@@ -294,7 +294,7 @@ specs:
       <div class="col-sm-4">
         <table class="table table-striped">
           <tbody>
-            {% for spec in specs %}{% if page[spec.field] %}
+            {% for spec in specs %}{% if page[spec.field] > 0 %}
             <tr>
               <td>{{ spec.label }}:</td>
               <td>{{ page[spec.field] }}</td>
