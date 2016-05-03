@@ -18,12 +18,12 @@
             <field name="model_engine_cc" type="text" label="Engine Displacement (cc)" filter="int" class="form-control" />
             <field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="double" class="form-control" />
             <field name="model_engine_ci" type="text" label="Engine Displacement (cubic inches)" filter="string" class="form-control" />
-            <field name="model_engine_bore_mm" type="text" label="Engine Bore (mm)" filter="string" class="form-control" />
-            <field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="string" class="form-control" />
-            <field name="model_engine_stroke_mm" type="text" label="Engine Stroke (mm)" filter="string" class="form-control" />
-            <field name="model_engine_stroke_in" type="text" label="Engine Stroke (in)" filter="string" class="form-control" />
-            <field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="string" class="form-control" />
-            <field name="model_engine_valves" type="text" label="Engine Valves" filter="string" class="form-control" />
+            <field name="model_engine_bore_mm" type="text" label="Engine Bore (mm)" filter="int" class="form-control" />
+            <field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="double" class="form-control" />
+            <field name="model_engine_stroke_mm" type="text" label="Engine Stroke (mm)" filter="int" class="form-control" />
+            <field name="model_engine_stroke_in" type="text" label="Engine Stroke (in)" filter="double" class="form-control" />
+            <field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="int" class="form-control" />
+            <field name="model_engine_valves" type="text" label="Engine Valves" filter="int" class="form-control" />
             <field name="model_engine_power_hp" type="text" label="Engine Max Power (HP)" filter="string" class="form-control" />
             <!--field name="model_engine_power_ps" type="text" label="Engine Max Power (PS)" filter="string" class="form-control" /-->
             <!--field name="model_engine_power_kw" type="text" label="Engine Max Power (kW)" filter="string" class="form-control" /-->
@@ -45,13 +45,13 @@
             <field name="model_seats" type="text" label="Seats" filter="int" class="form-control" />
             <field name="model_weight_kg" type="text" label="Weight (kg)" filter="double" class="form-control" />
             <field name="model_weight_lbs" type="text" label="Weight (lbs)" filter="double" class="form-control" />
-            <field name="model_length_mm" type="text" label="Length (mm)" filter="double" class="form-control" />
+            <field name="model_length_mm" type="text" label="Length (mm)" filter="int" class="form-control" />
             <field name="model_length_in" type="text" label="Length (in)" filter="double" class="form-control" />
-            <field name="model_width_mm" type="text" label="Width (mm)" filter="double" class="form-control" />
+            <field name="model_width_mm" type="text" label="Width (mm)" filter="int" class="form-control" />
             <field name="model_width_in" type="text" label="Width (in)" filter="double" class="form-control" />
-            <field name="model_height_mm" type="text" label="Height (mm)" filter="double" class="form-control" />
+            <field name="model_height_mm" type="text" label="Height (mm)" filter="int" class="form-control" />
             <field name="model_height_in" type="text" label="Height (in)" filter="double" class="form-control" />
-            <field name="model_wheelbase_mm" type="text" label="Wheelbase (mm)" filter="double" class="form-control" />
+            <field name="model_wheelbase_mm" type="text" label="Wheelbase (mm)" filter="int" class="form-control" />
             <field name="model_wheelbase_in" type="text" label="Wheelbase (in)" filter="double" class="form-control" />
             <field name="model_lkm_city" type="text" label="Fuel Economy City (l/100km)" filter="double" class="form-control" />
             <!--field name="model_mpg_city" type="text" label="Fuel Economy City (mpg)" filter="string" class="form-control" /-->
