@@ -6,7 +6,7 @@
         </fieldset>
         <fieldset name="details" label="Car Details">
             <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
-            <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" />
+            <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" admintable="true" />
             <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" readonly="true" />
             <field name="model_name" type="text" label="Model" filter="string" class="form-control" readonly="true" />
             <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" readonly="true" />
