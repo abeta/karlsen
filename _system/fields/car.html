@@ -482,7 +482,10 @@ $("select#{{ element.id }}_make_id").bind('change', function(){
 
 $("select#{{ element.id }}_trim_id").bind('carquery:updated', function(){
     $("#{{ element.id }}_trim").val($("select#{{ element.id }}_trim_id>option:selected").html());
-    $("#form_title").val($("select#{{ element.id }}_make_id>option:selected").html() + " " + $("select#{{ element.id }}_trim_id>option:selected").html());}());
+    $("#form_title").val($("select#{{ element.id }}_make_id>option:selected").html() + " " + $("select#{{ element.id }}_trim_id>option:selected").html());
+});
+
+}());
 </script>
 
 
