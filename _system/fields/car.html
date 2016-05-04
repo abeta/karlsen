@@ -480,9 +480,13 @@ $("select#{{ element.id }}_make_id").bind('change', function(){
     $("#{{ element.id }}_make").val($("select#{{ element.id }}_make_id>option:selected").html());
 });
 
-$("select#{{ element.id }}_trim_id").bind('carquery:updated', function(){
-    $("#{{ element.id }}_trim").val($("select#{{ element.id }}_trim_id>option:selected").html());
-    $("#form_title").val($("select#{{ element.id }}_make_id>option:selected").html() + " " + $("select#{{ element.id }}_trim_id>option:selected").html());
+$("select#{{ element.id }}_trim_id").bind('carquery:updated', function() {
+    var make = $("select#{{ element.id }}_make_id>option:selected").html(),
+        model = $("select#{{ element.id }}_model>option:selected").html(),
+        trim = ($("select#{{ element.id }}_trim_id>option:selected").val() ? $("select#{{ element.id }}_trim_id>option:selected").html() : "";
+        
+    $("#{{ element.id }}_trim").val(trim);
+    $("#form_title").val(make +" "+ model +" "+ trim);
     $("#form_slug").val("");
 });
 
