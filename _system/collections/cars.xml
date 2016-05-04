@@ -30,7 +30,7 @@
             <field name="model_engine_power_rpm" type="text" label="Engine Max Power RPM" filter="int" class="form-control" />
             <field name="model_engine_torque_nm" type="text" label="Engine Max Torque (Nm)" filter="string" class="form-control" />
             <field name="model_engine_torque_lbft" type="text" label="Engine Max Torque (Lb-Ft)" filter="string" class="form-control" />
-            <field name="model_engine_torque_kgm" type="text" label="Engine Max Torque (kgf-m)" filter="string" class="form-control" />
+            <!--field name="model_engine_torque_kgm" type="text" label="Engine Max Torque (kgf-m)" filter="string" class="form-control /-->
             <field name="model_engine_torque_rpm" type="text" label="Engine Max Torque RPM" filter="string" class="form-control" />
             <field name="model_engine_compression" type="text" label="Engine Compression Ratio" filter="string" class="form-control" />
             <field name="model_engine_fuel" type="text" label="Engine Fuel Type" filter="string" class="form-control" />
@@ -97,7 +97,7 @@
                 <option value="unlisted">Unlisted</option>
             </field>
             <field name="image" type="media" label="Image" filter="string" class="form-control" directory="_media/cars" />
-            <field name="title" type="hidden" filter="string" />
+            <field name="title" type="hidden" filter="string" admintable="true" />
             <field name="slug" type="hidden" filter="CMD" />
         </fieldset>
     </fields>
