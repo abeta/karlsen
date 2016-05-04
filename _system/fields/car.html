@@ -389,6 +389,7 @@ CarQuery.prototype = {
                         $("#form_"+key).val(data[0][key]);
                     }
                 }
+                $("select#"+sender.trim_select_id).trigger("carquery:updated");
             }
             
             //sender.cur_trim = $('select#'+sender.trim_select_id).val();
@@ -479,12 +480,9 @@ $("select#{{ element.id }}_make_id").bind('change', function(){
     $("#{{ element.id }}_make").val($("select#{{ element.id }}_make_id>option:selected").html());
 });
 
-$("select#{{ element.id }}_trim_id").bind('change', function(){
+$("select#{{ element.id }}_trim_id").bind('carquery:updated', function(){
     $("#{{ element.id }}_trim").val($("select#{{ element.id }}_trim_id>option:selected").html());
-    $("#form_title").val($("select#{{ element.id }}_make_id>option:selected").html() + " " + $("select#{{ element.id }}_trim_id>option:selected").html());
-});
-    
-}());
+    $("#form_title").val($("select#{{ element.id }}_make_id>option:selected").html() + " " + $("select#{{ element.id }}_trim_id>option:selected").html());}());
 </script>
 
 

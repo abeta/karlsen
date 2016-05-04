@@ -1,120 +1,5 @@
 ---
 layout: default
-specs: 
--
-  - 
-    field: make_country 
-    label: Country of Origin
-  - 
-    field: make_display 
-    label: Make
-  - 
-    field: model_body 
-    label: Body Style
-  - 
-    field: model_name 
-    label: Model
-  - 
-    field: model_trim 
-    label: Trim
-  - 
-    field: model_year 
-    label: Year
-  - 
-    field: model_drive
-    label: Drive
-  - 
-    field: model_transmission_type
-    label: Transmission Type
-  - 
-    field: model_top_speed_mph
-    label: Top Speed (MPH)
-  - 
-    field: model_0_to_100_kph
-    label: 0-100 kph (0-62mph)
-  - 
-    field: model_doors
-    label: Doors
-  - 
-    field: model_seats 
-    label: Seats
--    
-  - 
-    field: model_engine_position 
-    label: Engine Location
-  - 
-    field: model_engine_type
-    label: Engine Type
-  - 
-    field: model_engine_cyl 
-    label: Engine Cylinders
-  - 
-    field: model_engine_cc 
-    label: Engine Displacement (cc)
-  - 
-    field: model_engine_bore_mm
-    label: Engine Bore (mm)
-  - 
-    field: model_engine_stroke_mm 
-    label: Engine Stroke (mm)
-  - 
-    field: model_engine_valves_per_cyl 
-    label: Engine Valves Per Cylinder
-  - 
-    field: model_engine_valves 
-    label: Engine Valves
-  - 
-    field: model_engine_power_hp 
-    label: Engine Max Power (HP)
-  - 
-    field: model_engine_power_rpm 
-    label: Engine Max Power RPM
-  - 
-    field: model_engine_torque_nm 
-    label: Engine Max Torque (Nm)
-  - 
-    field: model_engine_torque_lbft
-    label: Engine Max Torque (Lb-Ft)
-  - 
-    field: model_engine_torque_kgm 
-    label: Engine Max Torque (kgf-m)
-  - 
-    field: model_engine_torque_rpm 
-    label: Engine Max Torque RPM
-  - 
-    field: model_engine_compression
-    label: Engine Compression Ratio
-  - 
-    field: model_engine_fuel
-    label: Engine Fuel Type
--    
-  - 
-    field: model_weight_kg 
-    label: Weight (kg)
-  - 
-    field: model_length_mm
-    label: Length (mm)
-  - 
-    field: model_width_mm 
-    label: Width (mm)
-  - 
-    field: model_height_mm 
-    label: Height (mm)
-  - 
-    field: model_wheelbase_mm 
-    label: Wheelbase (mm)
-  - 
-    field: model_lkm_city 
-    label: Fuel Economy City (l/100km)
-  - 
-    field: model_lkm_hwy 
-    label: Fuel Economy HWY (l/100km)
-  - 
-    field: model_lkm_mixed 
-    label: Fuel Economy Mixed (l/100km)
-  - 
-    field: model_fuel_cap_l 
-    label: Fuel Capacity (l)
 ---
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
@@ -289,21 +174,205 @@ specs:
 <div class="section">
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
-    <div class="section-content row">
-      {% for specs in layout.specs %}
+<div class="section-content row">
+      
       <div class="col-sm-4">
         <table class="table table-striped">
           <tbody>
-            {% for spec in specs %}{% if page[spec.field] > 0 %}
+            
             <tr>
-              <td>{{ spec.label }}:</td>
-              <td>{{ page[spec.field] }}</td>
+              <td>Country of Origin:</td>
+              <td>{{ page.make_country }}</td>
             </tr>
-            {% endif %}{% endfor %}
+            
+            <tr>
+              <td>Make:</td>
+              <td>{{ page.make_display }}</td>
+            </tr>
+            
+            <tr>
+              <td>Body Style:</td>
+              <td>{{ page.model_body }}</td>
+            </tr>
+            
+            <tr>
+              <td>Model:</td>
+              <td>{{ page.model_name }} {{ page.model_trim }}</td>
+            </tr>
+            
+            <tr>
+              <td>Year:</td>
+              <td>{{ page.model_year }}</td>
+            </tr>
+            
+            <tr>
+              <td>Drive:</td>
+              <td>{{ page.model_drive }}</td>
+            </tr>
+            
+            <tr>
+              <td>Transmission Type:</td>
+              <td>{{ page.model_transmission_type }}</td>
+            </tr>
+            
+            <tr>
+              <td>Top Speed (MPH):</td>
+              <td>{{ page.model_top_speed_mph }}</td>
+            </tr>
+            
+            <tr>
+              <td>0-100 kph (0-62mph):</td>
+              <td>{{ page.model_0_to_100_kph }}</td>
+            </tr>
+            
+            <tr>
+              <td>Doors:</td>
+              <td>{{ page.model_doors }}</td>
+            </tr>
+            
+            <tr>
+              <td>Seats:</td>
+              <td>{{ page.model_seats }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
-      {% endfor %}
+      
+      <div class="col-sm-4">
+        <table class="table table-striped">
+          <tbody>
+            
+            <tr>
+              <td>Engine Location:</td>
+              <td>{{ page.model_engine_position }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Type:</td>
+              <td>{{ page.model_engine_type }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Cylinders:</td>
+              <td>{{ page.model_engine_cyl }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Displacement (cc):</td>
+              <td>{{ page.model_engine_cc }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Bore (mm):</td>
+              <td>{{ page.model_engine_bore_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Stroke (mm):</td>
+              <td>{{ page.model_engine_stroke_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Valves Per Cylinder:</td>
+              <td>{{ page.model_engine_valves_per_cyl }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Valves:</td>
+              <td>{{ page.model_engine_valves }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Power (HP):</td>
+              <td>{{ page.model_engine_power_hp }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Power RPM:</td>
+              <td>{{ page.model_engine_power_rpm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Torque (Nm):</td>
+              <td>{{ page.model_engine_torque_nm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Torque (Lb-Ft):</td>
+              <td>{{ page.model_engine_torque_lbft }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Torque (kgf-m):</td>
+              <td>{{ page.model_engine_torque_kgm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Max Torque RPM:</td>
+              <td>{{ page.model_engine_torque_rpm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Engine Fuel Type:</td>
+              <td>{{ page.model_engine_fuel }}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="col-sm-4">
+        <table class="table table-striped">
+          <tbody>
+            
+            <tr>
+              <td>Weight (kg):</td>
+              <td>{{ page.model_weight_kg }}</td>
+            </tr>
+            
+            <tr>
+              <td>Length (mm):</td>
+              <td>{{ page.model_length_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Width (mm):</td>
+              <td>{{ page.model_width_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Height (mm):</td>
+              <td>{{ page.model_height_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Wheelbase (mm):</td>
+              <td>{{ page.model_wheelbase_mm }}</td>
+            </tr>
+            
+            <tr>
+              <td>Fuel Economy City (l/100km):</td>
+              <td>{{ page.model_lkm_city }}</td>
+            </tr>
+            
+            <tr>
+              <td>Fuel Economy HWY (l/100km):</td>
+              <td>{{ page.model_lkm_hwy }}</td>
+            </tr>
+            
+            <tr>
+              <td>Fuel Economy Mixed (l/100km):</td>
+              <td>{{ page.model_lkm_mixed }}</td>
+            </tr>
+            
+            <tr>
+              <td>Fuel Capacity (l):</td>
+              <td>{{ page.model_fuel_cap_l }}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
