@@ -46,11 +46,15 @@ $('a[href*="#"]:not([href="#"],.carousel-control,[data-toggle])').click( functio
         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
         if (target.length) {
             $('html,body').animate({
-                scrollTop: target.offset().top
-            }, 1000);
+                scrollTop: target.offset().top - ($('.navbar-fixed-top').outerHeight() + $('.submenu').outerHeight())
+            }, 800);
             return false;
         }
     }
+});
+$('a[href="#"]:not(.carousel-control,[data-toggle])').click( function() {
+    $('html,body').animate({ scrollTop: 0 }, 800);
+    return false;
 });
 
 $('.donslide .item').on('click', function() {

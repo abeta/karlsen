@@ -80,5 +80,10 @@
   </footer>
   {% javascript app %}
   {% include system/analytics %}
+  {% if layout.script || page.script %}
+  <script type="text/javascript" charset="utf-8">
+    (function() { {{ layout.script }}{{ page.script }} })();
+  </script>
+  {% endif %}
 </body>
 </html>

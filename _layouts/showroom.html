@@ -12,8 +12,18 @@ layout: default
 <div class="section" id="content">
   <div class="container section-content">
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
-    {% for item in cars %}
-    <a href="{{ item.url }}">{% if item.image %}{{ item.image | remove_first: '_media/' | img: "magick:resize:300" }}{% endif %}</a>
-    {% endfor %}
+    <div class="row">
+      {% for item in cars %}
+      <div class="col-sm-4">
+        <a href="{{ item.url }}">
+          {% if item.image %}
+          {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
+          <img src="{{image}}" alt="" class="img-responsive" />
+          {% endif %}
+          <h3>{{ item.title }}</h3>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>

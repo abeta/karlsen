@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
+{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
   <div class="banner-content">
     <div class="banner-text">
@@ -11,19 +11,22 @@ layout: default
       </div>
     </div>
   </div>
-  <div class="banner-menu">
+  <div class="submenu">
     <div class="container">
     <div class="row">
       <div class="col-sm-8">
-        <ul class="nav nav-pills">
-          <li><a href="#"><i class="fa fa-info-circle"></i> Details</a></li>
-          <li><a href="#"><i class="fa fa-camera"></i> Photos</a></li>
-          <li><a href="#"><i class="fa fa-info-circle"></i> Specifications</a></li>
-          <li><a href="#"><i class="fa fa-money"></i> Finance</a></li>
-        </ul>
+        <div id="submenu">
+          <ul class="nav nav-pills" role="tablist">
+            <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
+            <li><a href="#content"><i class="fa fa-info-circle"></i> Details</a></li>
+            <li><a href="#photos"><i class="fa fa-camera"></i> Photos</a></li>
+            <li><a href="#specs"><i class="fa fa-info-circle"></i> Specifications</a></li>
+            <!--li><a href="#finance"><i class="fa fa-money"></i> Finance</a></li-->
+          </ul>
+        </div>
       </div>
       <div class="col-sm-4 text-right">
-        <a href="#" class="btn btn-primary btn-lg">Enquire Now</a>
+        <a href="#" class="btn btn-primary">Enquire Now</a>
       </div>
     </div>
     </div>
@@ -43,7 +46,7 @@ layout: default
           </div>
           <div class="media-body">
             <h4 class="media-heading h5">Year</h4>
-            <b class="h4">1998</b>
+            <b class="h4">{{ page.model_year }}</b>
           </div>
         </div>
       </div>
@@ -54,7 +57,7 @@ layout: default
           </div>
           <div class="media-body">
             <h4 class="media-heading h5">Mileage</h4>
-            <b class="h4">20,000</b>
+            <b class="h4">{{ page.mileage | number_format }}</b>
           </div>
         </div>
       </div>
@@ -76,7 +79,7 @@ layout: default
           </div>
           <div class="media-body">
             <h4 class="media-heading h5">Price</h4>
-            <b class="h4">{{ page.price }}</b>
+            <b class="h4">{{ page.price | number_format }}</b>
           </div>
         </div>
       </div>
@@ -124,7 +127,7 @@ layout: default
 </div>
 <br><br>
 {% if page.image %}
-<div class="section bg-dark">
+<div class="section bg-dark" id="photos">
   <div class="container">
     <h3 class="section-header">Photos</h3>
     <div class="section-content row">
@@ -172,11 +175,10 @@ layout: default
   </div>
 </div>
 {% endif %}
-<div class="section">
+<div class="section" id="specs">
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
-<div class="section-content row">
-      
+    <div class="section-content row">
       <div class="col-sm-4">
         <table class="table table-striped">
           <tbody>
@@ -363,3 +365,8 @@ layout: default
   </div>
 </div>
 </div>
+<style>
+  body {
+    position: relative;
+  }  
+</style>

@@ -25,14 +25,20 @@
         }
     }
 }
-.banner-menu {
+.submenu {
     position:absolute; 
     padding: 8px 0; 
     bottom: 0; 
     width: 100%; 
-    background: rgba(0,0,0,0.75);
-    a:link {
-        color: #fff;
+    background: rgba(255,255,255,0.85);
+    &.affix {
+        top: @navbar-height;
+        position: fixed; 
+        bottom: auto; 
+        z-index: @zindex-navbar-fixed;
+    }
+    a {
+        color: #000;
     }
 }
 .banner-text {
