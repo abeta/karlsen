@@ -4,6 +4,11 @@
         <fieldset name="name">
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
+        <fieldset name="features">
+            <field name="features" type="multiform" filter="array">
+              <field name="feature" type="text" label="Feature" filter="string" class="form-control" />
+            </field>
+        </fieldset>
         <fieldset name="details" label="Car Details">
             <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
             <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" admintable="true" />

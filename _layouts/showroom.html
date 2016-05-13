@@ -10,7 +10,7 @@ layout: default
 </div>
 {% endif %}
 <div class="section" id="content">
-  <div class="container section-content">
+  <div class="container section-content text-center">
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
     <div class="row">
       {% for item in cars %}
@@ -22,6 +22,10 @@ layout: default
           {% endif %}
           <h3>{{ item.title }}</h3>
         </a>
+        <p>
+          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }} |
+          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles |
+          <i class="fa fa-fw fa-gbp"></i> &pound;{{ item.price | number_format }}</p>
       </div>
       {% endfor %}
     </div>
