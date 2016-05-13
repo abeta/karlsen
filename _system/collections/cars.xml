@@ -5,8 +5,8 @@
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
         <fieldset name="features">
-            <field name="features" type="multiform" filter="array" label="Features">
-              <field name="feature" type="text" filter="string" class="form-control" />
+            <field name="features" type="multiform" filter="array" label="">
+              <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
             </field>
         </fieldset>
         <fieldset name="details" label="Car Details">
