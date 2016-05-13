@@ -7,7 +7,7 @@ layout: default
     <div class="banner-text">
       <div class="container rel">
         <h1>{{ page.title | markdownify | strip_html }}</h1>
-        <span>&pound;{{ page.price | money }}</span>
+        <span>&pound;{{ page.price | number_format }}</span>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ layout: default
   </a>
 </div>
  
-<div class="section well" id="content">
+<div class="section" id="content">
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
