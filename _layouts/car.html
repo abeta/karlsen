@@ -14,19 +14,21 @@ layout: default
   <div class="submenu">
     <div class="container">
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-6">
         <div id="submenu">
           <ul class="nav nav-pills" role="tablist">
             <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
             <li><a href="#content"><i class="fa fa-info-circle"></i> Details</a></li>
             <li><a href="#photos"><i class="fa fa-camera"></i> Photos</a></li>
-            <li><a href="#specs"><i class="fa fa-info-circle"></i> Specifications</a></li>
+            <li><a href="#specs"><i class="fa fa-file-text-o"></i> Specifications</a></li>
             <!--li><a href="#finance"><i class="fa fa-money"></i> Finance</a></li-->
           </ul>
         </div>
       </div>
-      <div class="col-sm-4 text-right">
-        <a href="#" class="btn btn-primary">Enquire Now</a>
+      <div class="col-sm-6 text-right">
+        <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> Share</a>
+        <a href="#" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+        <a href="#" class="btn btn-primary">Book a test drive</a>
       </div>
     </div>
     </div>
@@ -36,7 +38,7 @@ layout: default
   </a>
 </div>
  
-<div class="section" id="content">
+<!--div class="section bg-dark" id="content">
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
@@ -85,14 +87,68 @@ layout: default
       </div>
     </div>
   </div>
-</div>
+</div-->
   
-<div class="section">
+<div class="section" id="content">
   <div class="container">
-    <article class="section-content">{% include template/content.html %}</article>
+    <div class="row">
+      <div class="col-sm-7">
+        <article class="section-content">{% include template/content.html %}</article>
+      </div>
+      <div class="col-sm-push-1 col-sm-4">
+        <h3>Quick Specs</h3>
+        <table class="table table-striped">
+          <tbody>
+            
+            <tr>
+              <td>Make:</td>
+              <td>{{ page.make_display }}</td>
+            </tr>
+            
+            <tr>
+              <td>Model:</td>
+              <td>{{ page.model_name }} {{ page.model_trim }}</td>
+            </tr>
+            
+            <tr>
+              <td>Mileage:</td>
+              <td>{{ page.mileage | number_format }} miles</td>
+            </tr>
+            
+            <tr>
+              <td>Body:</td>
+              <td>{{ page.model_body }}</td>
+            </tr>
+            
+            <tr>
+              <td>Transmission:</td>
+              <td>{{ page.model_transmission_type }}</td>
+            </tr>
+            
+            <tr>
+              <td>Fuel:</td>
+              <td>{{ page.model_engine_fuel }}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <a class="btn btn-default btn-block" href="#specs">View full specifications</a>
+      </div>
+    </div>
   </div>
 </div>
-<br><br>
+
+<div class="section well">
+  <div class="container">
+    <h3>Features</h3>
+    <ul>
+      {% for feature in page.features %}
+      <li>{{ feature[1].feature }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
 {% if page.image %}
 <div class="section bg-dark" id="photos">
   <div class="container">
@@ -146,23 +202,19 @@ layout: default
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
     <div class="section-content row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
+        <h3>Overview</h3>
         <table class="table table-striped">
           <tbody>
             
             <tr>
-              <td>Country of Origin:</td>
+              <td>Country of origin:</td>
               <td>{{ page.make_country }}</td>
             </tr>
             
             <tr>
               <td>Make:</td>
               <td>{{ page.make_display }}</td>
-            </tr>
-            
-            <tr>
-              <td>Body Style:</td>
-              <td>{{ page.model_body }}</td>
             </tr>
             
             <tr>
@@ -176,23 +228,23 @@ layout: default
             </tr>
             
             <tr>
-              <td>Drive:</td>
-              <td>{{ page.model_drive }}</td>
-            </tr>
-            
-            <tr>
               <td>Transmission Type:</td>
               <td>{{ page.model_transmission_type }}</td>
             </tr>
             
             <tr>
-              <td>Top Speed:</td>
-              <td>{{ page.model_top_speed_mph }} MPH</td>
+              <td>Body Style:</td>
+              <td>{{ page.model_body }}</td>
             </tr>
             
             <tr>
-              <td>0-100 kph (0-62mph):</td>
-              <td>{{ page.model_0_to_100_kph }}</td>
+              <td>Fuel Type:</td>
+              <td>{{ page.model_engine_fuel }}</td>
+            </tr>
+            
+            <tr>
+              <td>Drive:</td>
+              <td>{{ page.model_drive }}</td>
             </tr>
             
             <tr>
@@ -204,47 +256,30 @@ layout: default
               <td>Seats:</td>
               <td>{{ page.model_seats }}</td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div class="col-sm-4">
-        <table class="table table-striped">
-          <tbody>
             
             <tr>
               <td>Engine Location:</td>
               <td>{{ page.model_engine_position }}</td>
             </tr>
             
+            {% if page.model_fuel_cap_l > 0 %}
             <tr>
-              <td>Engine Type:</td>
-              <td>{{ page.model_engine_type }}</td>
+              <td>Fuel Capacity:</td>
+              <td>{{ page.model_fuel_cap_l }} l</td>
             </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="col-sm-6">
+        <h3>Performance</h3>
+        <table class="table table-striped">
+          <tbody>
             
             <tr>
-              <td>Engine Cylinders:</td>
+              <td width="50%">Cylinders:</td>
               <td>{{ page.model_engine_cyl }}</td>
-            </tr>
-            
-            <tr>
-              <td>Engine Displacement:</td>
-              <td>{{ page.model_engine_cc }} cc</td>
-            </tr>
-            
-            <tr>
-              <td>Engine Bore:</td>
-              <td>{{ page.model_engine_bore_mm }} mm</td>
-            </tr>
-            
-            <tr>
-              <td>Engine Stroke:</td>
-              <td>{{ page.model_engine_stroke_mm }} mm</td>
-            </tr>
-            
-            <tr>
-              <td>Valves Per Cylinder:</td>
-              <td>{{ page.model_engine_valves_per_cyl }}</td>
             </tr>
             
             <tr>
@@ -252,36 +287,63 @@ layout: default
               <td>{{ page.model_engine_valves }}</td>
             </tr>
             
+            {% if page.model_0_to_100_kph > 0 %}
             <tr>
-              <td>Max Power:</td>
+              <td>0-100 kph (0-62mph):</td>
+              <td>{{ page.model_0_to_100_kph }}</td>
+            </tr>
+            {% endif %}
+            
+            {% if page.model_top_speed_mph > 0 %}
+            <tr>
+              <td>Top Speed:</td>
+              <td>{{ page.model_top_speed_mph }} MPH</td>
+            </tr>
+            {% endif %}
+            
+            <tr>
+              <td>Engine Power:</td>
               <td>{{ page.model_engine_power_hp }} HP ({{ page.model_engine_power_rpm }} RPM)</td>
             </tr>
             
+            {% if page.model_engine_torque_lbft %}
             <tr>
-              <td>Max Torque:</td>
-              <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lb-Ft</td>
+              <td>Engine Torque:</td>
+              <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lbs/ft</td>
             </tr>
+            {% endif %}
             
+            {% if page.model_lkm_city > 0 %}
             <tr>
-              <td>Max Torque RPM:</td>
-              <td>{{ page.model_engine_torque_rpm }}</td>
+              <td>Fuel Economy City:</td>
+              <td>{{ page.model_lkm_city }} l/100km</td>
             </tr>
+            {% endif %}
             
+            {% if page.model_lkm_hwy > 0 %}
             <tr>
-              <td>Fuel Type:</td>
-              <td>{{ page.model_engine_fuel }}</td>
+              <td>Fuel Economy HWY:</td>
+              <td>{{ page.model_lkm_hwy }} l/100km</td>
             </tr>
+            {% endif %}
+            
+            {% if page.model_lkm_mixed > 0 %}
+            <tr>
+              <td>Fuel Economy Mixed:</td>
+              <td>{{ page.model_lkm_mixed }} l/100km</td>
+            </tr>
+            {% endif %}
             
           </tbody>
         </table>
-      </div>
-      
-      <div class="col-sm-4">
+        
+        
+        <h3>Dimensions</h3>
         <table class="table table-striped">
           <tbody>
             
             <tr>
-              <td>Weight:</td>
+              <td width="50%">Weight:</td>
               <td>{{ page.model_weight_kg }} kg</td>
             </tr>
             
@@ -305,33 +367,29 @@ layout: default
               <td>{{ page.model_wheelbase_mm }} mm</td>
             </tr>
             
-            <tr>
-              <td>Fuel Economy City:</td>
-              <td>{{ page.model_lkm_city }} l/100km</td>
-            </tr>
-            
-            <tr>
-              <td>Fuel Economy HWY:</td>
-              <td>{{ page.model_lkm_hwy }} l/100km</td>
-            </tr>
-            
-            <tr>
-              <td>Fuel Economy Mixed:</td>
-              <td>{{ page.model_lkm_mixed }} l/100km</td>
-            </tr>
-            
-            <tr>
-              <td>Fuel Capacity:</td>
-              <td>{{ page.model_fuel_cap_l }} l</td>
-            </tr>
-            
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
+ 
+<div class="section well" id="related">
+  <div class="container">
+    <h3 class="section-header">Similar Cars</h3>
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+  </div>
 </div>
+
 <style>
   body {
     position: relative;

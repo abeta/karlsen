@@ -27,7 +27,7 @@
             <!--field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="double" class="form-control" /-->
             <field name="model_engine_stroke_mm" type="text" label="Engine Stroke (mm)" filter="int" class="form-control" />
             <!--field name="model_engine_stroke_in" type="text" label="Engine Stroke (in)" filter="double" class="form-control" /-->
-            <field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="int" class="form-control" />
+            <!--field name="model_engine_valves_per_cyl" type="text" label="Engine Valves Per Cylinder" filter="int" class="form-control" /-->
             <field name="model_engine_valves" type="text" label="Engine Valves" filter="int" class="form-control" />
             <field name="model_engine_power_hp" type="text" label="Engine Max Power (HP)" filter="int" class="form-control" />
             <!--field name="model_engine_power_ps" type="text" label="Engine Max Power (PS)" filter="string" class="form-control" /-->
