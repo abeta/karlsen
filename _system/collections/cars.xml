@@ -21,7 +21,7 @@
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
             <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="int" class="form-control" />
             <field name="model_engine_cc" type="text" label="Engine Displacement (cc)" filter="int" class="form-control" />
-            <!--field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="double" class="form-control" /-->
+            <field name="model_engine_l" type="text" label="Engine Displacement (l)" filter="double" class="form-control" />
             <!--field name="model_engine_ci" type="text" label="Engine Displacement (cubic inches)" filter="string" class="form-control" /-->
             <field name="model_engine_bore_mm" type="text" label="Engine Bore (mm)" filter="int" class="form-control" />
             <!--field name="model_engine_bore_in" type="text" label="Engine Bore (in)" filter="double" class="form-control" /-->

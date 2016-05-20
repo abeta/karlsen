@@ -15,6 +15,10 @@
 @font-family-sans-serif: Lato, Helvetica, Arial, sans-serif;
 @font-size-base:          14px;
 
+html, body {
+  height: initial;
+}
+
 div.page { 
   page-break-before: always; 
   page-break-inside: avoid;
@@ -27,17 +31,11 @@ div.page {
   margin-bottom: 0;
 }
 
-html, body {
-  height: initial;
-}
-
-#header {
-  margin: 0 .1in;
-  padding: .125in .25in;
-  background-color: #000;
-  color: #fff;
-  h2 {
-    margin-top: 0;
+.box {
+  body > & {
+    margin: 0 .1in;
   }
-  .clearfix();
+  margin: 0;
+  padding: .125in .25in;
+  color: #fff;
 }

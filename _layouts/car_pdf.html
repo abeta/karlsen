@@ -6,55 +6,44 @@ pdf:
   margin_top: 1.25in
   margin_bottom: .75in
 ---
-<div class="clearfix"></div>
 <div class="page">
-  {% if page.image %}<p><img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" %}" alt="" class="img-responsive" border="0" /></p>{% endif %}
-  <div class="row">
-    <div class="col-xs-7">
-      <h3 class="sr-only">Description</h3>
-      {{content}}
-    </div>
-    <div class="col-xs-5">
-      <h3>Quick Specs</h3>
-      <table class="table table-striped">
-        <tbody>
-          <tr>
-            <td>Make:</td>
-            <td>{{ page.make_display }}</td>
-          </tr>
-          <tr>
-            <td>Model:</td>
-            <td>{{ page.model_name }} {{ page.model_trim }}</td>
-          </tr>
-          <tr>
-            <td>Mileage:</td>
-            <td>{{ page.mileage | number_format }} miles</td>
-          </tr>
-          <tr>
-            <td>Year:</td>
-            <td>{{ page.model_year }}</td>
-          </tr>
-          <tr>
-            <td>Transmission:</td>
-            <td>{{ page.model_transmission_type }}</td>
-          </tr>
-          <tr>
-            <td>Body:</td>
-            <td>{{ page.model_body }}</td>
-          </tr>
-          <tr>
-            <td>Fuel:</td>
-            <td>{{ page.model_engine_fuel }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  {% if page.image %}
+  <img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" alt="" class="img-responsive" border="0" />
+  {% endif %}
+  
+  <div class="box bg-primary text-center">
+    <table border="0" width="100%">
+      <tr>
+        <td width="20%">
+          <span class="h2"><strong>{{ page.model_transmission_type }}</strong></span><br>
+          <strong class="text-uppercase">Transmission</strong>
+        </td>
+        <td width="20%">
+          <span class="h2"><strong>{{ page.model_engine_fuel }}</strong></span><br>
+          <strong class="text-uppercase">Fuel Type</strong>
+        </td>
+        {% if page.model_engine_power_hp > 0 %}
+        <td width="20%">
+          <span class="h2"><strong>{{ page.model_engine_power_hp }} bhp</strong></span><br>
+          <strong class="text-uppercase">Max Power</strong>
+        </td>
+        {% endif %}
+      </tr>
+    </table>
   </div>
+  
+  <br>
+  
+  <div>
+    <h3 class="sr-only">Description</h3>
+    {{content | replace_first: '<p>', '<p class="lead">'}}
+  </div>
+  
 </div>
 
 <div class="page">
   <div class="page-header">
-    <h2>Full Specifications</h2>
+    <h2>Specifications</h2>
   </div>
   <div class="row">
     <div class="col-xs-6">
