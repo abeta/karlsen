@@ -116,7 +116,6 @@ CarQuery.prototype = {
     {
         var el = $("select#"+id),
             opt = el.find("option");
-            console.log($("select#"+id+">option"));
         if(opt.length != 1) {
             el.html("<option value=''>"+message+"</option>");
         }
@@ -383,7 +382,6 @@ CarQuery.prototype = {
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
-                //console.log(data);
                 for (var key in data[0]) {
                     $("#form_"+key).val("");
                     if (data[0].hasOwnProperty(key) && data[0][key]) {
@@ -466,6 +464,7 @@ CarQuery.prototype = {
         if(typeof data.error != 'undefined' && data.error !== '')
         {
             alert(data.error);
+            console.log(data.error);
             return true;
         }
         else
