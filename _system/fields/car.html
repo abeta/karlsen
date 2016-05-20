@@ -385,8 +385,10 @@ CarQuery.prototype = {
                 for (var key in data[0]) {
                     $("#form_"+key).val("");
                     if (data[0].hasOwnProperty(key) && data[0][key]) {
-                        console.log(data[0][key]);
-                        $("#form_"+key).val(data[0][key].replace("Gasoline", "Petrol"));
+                        if key == 'model_engine_fuel' {
+                            data[0][key] = data[0][key].replace("Gasoline", "Petrol");
+                        }
+                        $("#form_"+key).val(data[0][key]);
                     }
                 }
                 $("select#"+sender.trim_select_id).trigger("carquery:updated");
