@@ -23,9 +23,9 @@ layout: default
           <h3>{{ item.title }}</h3>
         </a>
         <p>
-          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }} |
-          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles |
-          <i class="fa fa-fw fa-gbp"></i> &pound;{{ item.price | number_format }}</p>
+          <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp; 
+          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
+          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
       </div>
       {% endfor %}
     </div>

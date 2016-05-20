@@ -1,0 +1,21 @@
+---
+pdf:
+  page_size: A4
+  dpi: 900
+  margin_top: .25in
+  margin_left: .25in
+  margin_bottom: .25in
+  margin_right: .25in
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>{% asset_source pdf.css %}</style>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <title>{{ page.title | markdownify | strip_html }}</title>
+  </head>
+  <body>
+    {{ content | markdownify }}
+  </body>
+</html>

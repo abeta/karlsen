@@ -43,7 +43,9 @@ layout: nil
   {% for file in site.html_files %}
   <url>
     <loc>{{ file.path | prepend: site_url | uri_escape }}</loc>
+    {% if file.modified_time %}
     <lastmod>{{ file.modified_time | date_to_xmlschema }}</lastmod>
+    {% endif %}
   </url>
   {% endfor %}
 </urlset>

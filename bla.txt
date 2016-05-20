@@ -1,0 +1,46 @@
+
+    def render_partial(path, payload)
+      path = File.join("_includes", path)
+      return nil unless File.exist?path
+      
+      # vars to insert into partial
+      pdf = {}
+      vars = ['frompage','topage','page','webpage','section','subsection','subsubsection']
+      vars.each { |var| pdf[var] = "<span class='__#{var}'></span>"}
+      
+      # JavaScript to replace var placeholders with content
+      script = "<script>!function(){var t={},n=document.location.search.substring(1).split('&');for(var e in n){var o=n[e].split('=',2);t[o[0]]=decodeURIComponent(o[1])}var n=#{vars};for(var e in n)for(var r=document.getElementsByClassName('__'+n[e]),a=0;a<r.length;++a)r[a].textContent=t[n[e]]}();</script>\n"
+      
+      # Parse & render
+      #template = Liquid::Template.parse(File.read(path))
+      info = { "page" => self.data, "site" => @site, "pdf" => pdf }
+      partial = Liquid::Template.parse(File.read(path)).render!(info, payload)
+      
+      #partial = @site.liquid_renderer.file(path).parse(File.read(path)).render!(payload, info)
+      #print partial
+      #0exit
+      
+      if partial =~ /<\/body>/i
+        partial[/(<\/body>)/i] = script + partial[/(<\/body>)/i]
+      else
+        partial = %{<!DOCTYPE html>
+<html lang="en">
+  <body>
+  #{partial}
+  #{script}
+  </body>
+</html>
+}
+      end
+      
+      #print partial
+      
+      # Add checksum to filename
+      path = File.basename(path, File.extname(path)) + "-" + Digest::MD5.hexdigest(partial) + File.extname(path)
+      
+      path = File.join(Dir.tmpdir(), path)
+      
+      File.open(path, 'w') {|f| f.write(partial) }
+      return path
+      
+    end

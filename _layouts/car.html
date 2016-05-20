@@ -4,10 +4,19 @@ layout: default
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
   <div class="banner-content">
-    <div class="banner-text">
-      <div class="container rel">
-        <h1>{{ page.title | markdownify | strip_html }}</h1>
-        <span>&pound;{{ page.price | number_format }}</span>
+    <div class="container rel">
+      <div class="banner-text">
+        <div class="pull-left" style="line-height:87px; margin-right:20px">
+          {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:100x74 %}
+        </div>
+        <div class="pull-left">
+          <h1 class="media-heading">{{ page.title | markdownify | strip_html }}</h1>
+          <span class="h4">
+            <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp; 
+            <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
+            <i class="fa fa-clock-o"></i> {{ page.model_year }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +36,7 @@ layout: default
       </div>
       <div class="col-sm-6 text-right">
         <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> Share</a>
-        <a href="#" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+        <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
         <a href="#" class="btn btn-primary">Book a test drive</a>
       </div>
     </div>
@@ -95,7 +104,7 @@ layout: default
       <div class="col-sm-7">
         <article class="section-content">{% include template/content.html %}</article>
       </div>
-      <div class="col-sm-push-1 col-sm-4">
+      <div class="col-sm-4 col-sm-push-1">
         <h3>Quick Specs</h3>
         <table class="table table-striped">
           <tbody>
@@ -116,13 +125,18 @@ layout: default
             </tr>
             
             <tr>
-              <td>Body:</td>
-              <td>{{ page.model_body }}</td>
+              <td>Year:</td>
+              <td>{{ page.model_year }}</td>
             </tr>
             
             <tr>
               <td>Transmission:</td>
               <td>{{ page.model_transmission_type }}</td>
+            </tr>
+            
+            <tr>
+              <td>Body:</td>
+              <td>{{ page.model_body }}</td>
             </tr>
             
             <tr>
@@ -140,12 +154,6 @@ layout: default
 
 <div class="section well">
   <div class="container">
-    <h3>Features</h3>
-    <ul>
-      {% for feature in page.features %}
-      <li>{{ feature[1].feature }}</li>
-      {% endfor %}
-    </ul>
   </div>
 </div>
 
@@ -181,20 +189,6 @@ layout: default
         {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
       </div>
     </div><br>
-    <div class="row">
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-    </div>
   </div>
 </div>
 {% endif %}
@@ -202,7 +196,7 @@ layout: default
   <div class="container">
     <h3 class="section-header">Full Specifications</h3>
     <div class="section-content row">
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <h3>Overview</h3>
         <table class="table table-striped">
           <tbody>
@@ -272,7 +266,7 @@ layout: default
         </table>
       </div>
       
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <h3>Performance</h3>
         <table class="table table-striped">
           <tbody>
@@ -370,6 +364,18 @@ layout: default
           </tbody>
         </table>
       </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading"><h3 class="panel-title">Features</h3></div>
+          <div class="panel-body">
+            <ul class="list-features">
+              {% for feature in page.features %}
+              <li>{{ feature[1].feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -377,14 +383,24 @@ layout: default
 <div class="section well" id="related">
   <div class="container">
     <h3 class="section-header">Similar Cars</h3>
-    <div class="row">
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-3">
+    <div class="container section-content text-center">
+      {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
+      <div class="row">
+        {% for item in cars %}
+        <div class="col-sm-4">
+          <a href="{{ item.url }}">
+            {% if item.image %}
+            {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
+            <img src="{{image}}" alt="" class="img-responsive" />
+            {% endif %}
+            <h3>{{ item.title }}</h3>
+          </a>
+          <p>
+            <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp; 
+            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
+            <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

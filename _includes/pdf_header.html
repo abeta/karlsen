@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>{% asset_source pdf.css %}</style>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id="header">
+    <table width="100%">
+      <tr>
+        <td width="100%"> 
+          <div class="h2 media-heading">{{ page.title }}</div>
+          <span class="h5">
+            <strong class="fa-lg">&pound;{{ page.price | number_format }}</strong> &nbsp; 
+            <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
+            <i class="fa fa-clock-o"></i> {{ page.model_year }}
+          </span>
+        </td>
+        <td>
+          <img class="" src="{% img_base64 logo.png magick:resize:x50 %}" alt="" />
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

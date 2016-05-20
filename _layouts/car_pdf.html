@@ -1,0 +1,252 @@
+---
+layout: pdf
+pdf:
+  header_html: pdf_header.html
+  footer_html: pdf_footer.html
+  margin_top: 1.25in
+  margin_bottom: .75in
+---
+<div class="clearfix"></div>
+<div class="page">
+  {% if page.image %}<p><img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" %}" alt="" class="img-responsive" border="0" /></p>{% endif %}
+  <div class="row">
+    <div class="col-xs-7">
+      <h3 class="sr-only">Description</h3>
+      {{content}}
+    </div>
+    <div class="col-xs-5">
+      <h3>Quick Specs</h3>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>Make:</td>
+            <td>{{ page.make_display }}</td>
+          </tr>
+          <tr>
+            <td>Model:</td>
+            <td>{{ page.model_name }} {{ page.model_trim }}</td>
+          </tr>
+          <tr>
+            <td>Mileage:</td>
+            <td>{{ page.mileage | number_format }} miles</td>
+          </tr>
+          <tr>
+            <td>Year:</td>
+            <td>{{ page.model_year }}</td>
+          </tr>
+          <tr>
+            <td>Transmission:</td>
+            <td>{{ page.model_transmission_type }}</td>
+          </tr>
+          <tr>
+            <td>Body:</td>
+            <td>{{ page.model_body }}</td>
+          </tr>
+          <tr>
+            <td>Fuel:</td>
+            <td>{{ page.model_engine_fuel }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h2>Full Specifications</h2>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Overview</h3>
+      <table class="table table-striped">
+        <tbody>
+          
+          <tr>
+            <td>Country of origin:</td>
+            <td>{{ page.make_country }}</td>
+          </tr>
+          
+          <tr>
+            <td>Make:</td>
+            <td>{{ page.make_display }}</td>
+          </tr>
+          
+          <tr>
+            <td>Model:</td>
+            <td>{{ page.model_name }} {{ page.model_trim }}</td>
+          </tr>
+          
+          <tr>
+            <td>Year:</td>
+            <td>{{ page.model_year }}</td>
+          </tr>
+          
+          <tr>
+            <td>Transmission Type:</td>
+            <td>{{ page.model_transmission_type }}</td>
+          </tr>
+          
+          <tr>
+            <td>Body Style:</td>
+            <td>{{ page.model_body }}</td>
+          </tr>
+          
+          <tr>
+            <td>Fuel Type:</td>
+            <td>{{ page.model_engine_fuel }}</td>
+          </tr>
+          
+          <tr>
+            <td>Drive:</td>
+            <td>{{ page.model_drive }}</td>
+          </tr>
+          
+          <tr>
+            <td>Doors:</td>
+            <td>{{ page.model_doors }}</td>
+          </tr>
+          
+          <tr>
+            <td>Seats:</td>
+            <td>{{ page.model_seats }}</td>
+          </tr>
+          
+          <tr>
+            <td>Engine Location:</td>
+            <td>{{ page.model_engine_position }}</td>
+          </tr>
+          
+          {% if page.model_fuel_cap_l > 0 %}
+          <tr>
+            <td>Fuel Capacity:</td>
+            <td>{{ page.model_fuel_cap_l }} l</td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="col-xs-6">
+      <h3>Performance</h3>
+      <table class="table table-striped">
+        <tbody>
+          
+          {% if page.model_engine_cyl > 0 %}
+          <tr>
+            <td width="50%">Cylinders:</td>
+            <td>{{ page.model_engine_cyl }}</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_engine_valves > 0 %}
+          <tr>
+            <td>Valves:</td>
+            <td>{{ page.model_engine_valves }}</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_0_to_100_kph > 0 %}
+          <tr>
+            <td>0-100 kph (0-62mph):</td>
+            <td>{{ page.model_0_to_100_kph }}</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_top_speed_mph > 0 %}
+          <tr>
+            <td>Top Speed:</td>
+            <td>{{ page.model_top_speed_mph }} MPH</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_engine_power_hp > 0 %}
+          <tr>
+            <td>Engine Power:</td>
+            <td>{{ page.model_engine_power_hp }} BHP {% if page.model_engine_power_rpm > 0 %}({{ page.model_engine_power_rpm }} RPM){% endif %}</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_engine_torque_lbft %}
+          <tr>
+            <td>Engine Torque:</td>
+            <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lbs/ft</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_lkm_city > 0 %}
+          <tr>
+            <td>Fuel Economy City:</td>
+            <td>{{ page.model_lkm_city }} l/100km</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_lkm_hwy > 0 %}
+          <tr>
+            <td>Fuel Economy HWY:</td>
+            <td>{{ page.model_lkm_hwy }} l/100km</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_lkm_mixed > 0 %}
+          <tr>
+            <td>Fuel Economy Mixed:</td>
+            <td>{{ page.model_lkm_mixed }} l/100km</td>
+          </tr>
+          {% endif %}
+          
+        </tbody>
+      </table>
+      
+      
+      {% if 
+        page.model_weight_kg > 0 ||
+        page.model_length_mm > 0 ||
+        page.model_width_mm > 0 ||
+        page.model_height_mm > 0 ||
+        page.model_wheelbase_mm > 0
+      %}
+      <h3>Dimensions</h3>
+      <table class="table table-striped">
+        <tbody>
+          {% if page.model_weight_kg > 0 %}
+          <tr>
+            <td width="50%">Weight:</td>
+            <td>{{ page.model_weight_kg }} kg</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_length_mm > 0 %}
+          <tr>
+            <td>Length:</td>
+            <td>{{ page.model_length_mm }} mm</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_width_mm > 0 %}
+          <tr>
+            <td>Width:</td>
+            <td>{{ page.model_width_mm }} mm</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_height_mm > 0 %}
+          <tr>
+            <td>Height:</td>
+            <td>{{ page.model_height_mm }} mm</td>
+          </tr>
+          {% endif %}
+          
+          {% if page.model_wheelbase_mm > 0 %}
+          <tr>
+            <td>Wheelbase:</td>
+            <td>{{ page.model_wheelbase_mm }} mm</td>
+          </tr>
+          {% endif %}
+          
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>

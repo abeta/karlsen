@@ -35,6 +35,8 @@ defaults:
             type: cars
         values:
             layout: car
+            pdf: true
+permalink: '/:categories/:year/:month/:day/:title/'
 collections:
     cars:
         output: true
