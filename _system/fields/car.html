@@ -1,9 +1,6 @@
 {% if element.value %}
-  {% if element.value.year %}
-  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value.year }} {{ element.value.make }} {{ element.value.model }} {{ element.value.trim }}" />
-  {% else %}
+  {% if element.value.year %}{% set element.value = element.value.year ~ " " ~ element.value.make ~ " " ~ element.value.model ~ " " ~ element.value.trim %}{% endif %}
   <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value }}" />
-  {% endif %}
 {% else %}
 <div class="row">
   <div class="col-sm-2">
