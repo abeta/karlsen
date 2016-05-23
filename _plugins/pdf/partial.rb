@@ -1,8 +1,8 @@
+require 'tmpdir'
+require 'digest/md5'
+
 module Jekyll
-  class Partial
-    require 'tmpdir'
-    require 'digest/md5'
-    
+  class PdfPartial
     extend Forwardable
 
     attr_accessor :doc
@@ -51,12 +51,10 @@ module Jekyll
     end
     
     def cache_dir
-      return site.config["pdf"]["cache"] if site.config["pdf"] != nil
+      return site.config["pdf"]["cache"] if site.config["pdf"] != nil && site.config["pdf"].has_key?('cache')
       
       # Use jekyll-assets' cache directory if it exists
-      if site.config["assets"] != nil
-        cache_dir = site.config["assets"]["cache"] || '.asset-cache'
-      end
+      cache_dir = site.config["assets"]["cache"] || '.asset-cache' if site.config["assets"] != nil
       
       File.join(cache_dir || Dir.tmpdir(), 'pdf')
     end
@@ -81,14 +79,21 @@ module Jekyll
       @output ||= Renderer.new(doc.site, self, site.site_payload).run
     end
     
-    # generate temp file & return it's path
+    # generate temp file & set output to it's path
     def write
       tempfile = File.join(dir, filename)
       unless File.exist?(tempfile)
         FileUtils.mkdir_p(File.dirname(tempfile)) unless File.exist?(File.dirname(tempfile))
         File.open(tempfile, 'w') {|f| f.write(to_s) }
       end
-      tempfile
+      site.data[:jekyll_pdf_partials] ||= []
+      site.data[:jekyll_pdf_partials] << self
+      @output = tempfile
+    end
+    
+    # delete temp file
+    def clean
+      File.delete(@output)
     end
 
     def place_in_layout?

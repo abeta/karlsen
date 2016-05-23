@@ -1,18 +1,54 @@
 ---
 layout: default
 ---
-{% include modules/banner.html %}
-{% if content != "" %}
-<div class="section" id="content">
+<div class="section section-page" id="content">
   <div class="container">
-    <article class="section-content">{% include template/content.html %}</article>
-  </div>
-</div>
-{% endif %}
-<div class="section" id="content">
-  <div class="container section-content text-center">
+    <h1 class="text-center">{{ page.title | markdownify | strip_html }}</h1>
+    {% if content != "" %}{% include template/content.html %}{% endif %}
+  
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <form class="navbar-form navbar-left">
+          <label for="filter">Manufacturer: </label>
+          <select name="filter" id="filter" class="form-control" multiple style="width:auto;" data-placeholder="Select Manufacturers">
+            {% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
+            {% for make in makes %}
+            <option value="{{ make.name }}">{{ make.name }}</option>
+            <option value="{{ make.name }}2">{{ make.name }}1</option>
+            <option value="{{ make.name }}3">{{ make.name }}2</option>
+            {% endfor %}
+          </select>
+        </form>
+        
+        <form class="navbar-form navbar-right hidden-xs">
+          <label for="sort">View: </label>
+          <div class="btn-group" data-toggle="buttons" id="order">
+            <label class="btn btn-default active">
+              <input value="asc" type="radio" name="order" id="order_asc" autocomplete="off" checked=""><span class="fa fa-list"></span>
+              <span class="sr-only">List view</span>
+            </label>
+            <label class="btn btn-default">
+              <input value="desc" type="radio" name="order" id="order_desc" autocomplete="off"><span class="fa fa-th"></span>
+              <span class="sr-only">Gallery view</span>
+            </label>
+          </div>
+        </form>
+        
+        <form class="navbar-form navbar-right">
+          <label for="sort">Sort: </label>
+          <select name="sort" id="sort" class="form-control">
+            <option value="date">Date added</option>
+            <option value="price">Price</option>
+            <option value="mileage">Mileage</option>
+            <option value="year">Year</option>
+          </select>
+        </form>
+        
+      </div>
+    </nav>
+    
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
-    <div class="row">
+    <div class="row text-center">
       {% for item in cars %}
       <div class="col-sm-4">
         <a href="{{ item.url }}">
@@ -23,7 +59,7 @@ layout: default
           <h3>{{ item.title }}</h3>
         </a>
         <p>
-          <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp; 
+          <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp; 
           <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
           <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
       </div>

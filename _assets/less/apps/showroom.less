@@ -1,5 +1,6 @@
 .banner {
     max-height: 100%;
+    min-height: 300px;
     .rel;
     .img-bg;
     background-size: 100%;
@@ -7,49 +8,63 @@
         
     h1 {
         font-size: 48px;
+    } 
+    .banner-text > h1 {
+        margin: 0;
     }
 }
 .banner-content {
     height: 0;
-    padding-bottom: 56.25%;
-    min-height: 300px;
+    padding-bottom: 60%;
+    //padding-bottom: 56.25%;
 }
 .submenu {
     position:absolute; 
     padding: 8px 0; 
     bottom: 0; 
     width: 100%; 
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,.9);
     &.affix {
         top: @navbar-height;
         position: fixed; 
         bottom: auto; 
-        z-index: @zindex-navbar-fixed;
+        z-index: @zindex-navbar-fixed - 1;
+        box-shadow: 0 5px 5px -5px #000;
     }
     li a {
         color: #000;
     }
 }
+.banner-container {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    bottom: 0;
+    .submenu + & {
+        bottom: @navbar-height - 2;
+    }
+}
 .banner-text {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px 15px 30px; 
-    background: rgba(255,255,255,0.75);
     float: left;
-    clear: left;
     position: relative;
-    margin: @navbar-height 0 0 -1000px;
-    padding-left: 1000px;
+    background: rgba(255,255,255,0.75);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px 15px 30px 1000px; 
+    margin-left: -1000px;
 }
 .banner-text:after {
-    opacity: .75;
-    display: block;
-    content: "";
-    position: absolute;
     top: 0;
     bottom: 0;
     left: 100%;
     width: 200px;
-    background: url(/assets/corner_white.png) left bottom;
+    border-top: 200px solid transparent;
+    border-bottom: 200px solid rgba(255,255,255,0.75);
+    border-right: 200px solid transparent;
+    border-left: 200px solid rgba(255,255,255,0.75);
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 0;
 }
 .list-features {
   .list-unstyled;

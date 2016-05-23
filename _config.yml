@@ -42,10 +42,6 @@ collections:
         output: true
         permalink: '/showroom/:path.html'
 mediaurl: _media
-gems:
-    - autoprefixer-rails
-    - jekyll-assets
-    - jekyll-sitemap
 assets:
     digest: true
     js_compressor: uglifier
@@ -71,3 +67,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - bower.json
+bitly:
+  username: karlsenautodesign
+  api_key: R_3ea49b3df69e4af898f9662996e2b33c
+pdf: 
+  debug: true

@@ -22,7 +22,7 @@
     }
 }
 .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
-    padding-right: 8px;
+    padding-right: @padding-base-horizontal;
     padding-left: 20px; 
 }
 .select2-container .select2-selection--multiple {
@@ -32,11 +32,12 @@
     min-height: @input-height-base;;
     user-select: none;
     -webkit-user-select: none; 
+    min-width: 180px;
     
     .select2-selection__rendered {
         display: inline-block;
         overflow: hidden;
-        padding-left: 8px;
+        padding-left: @padding-base-horizontal;
         text-overflow: ellipsis;
         white-space: nowrap; 
     }
@@ -57,8 +58,8 @@
 
 .select2-dropdown {
     background-color: white;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    border: 1px solid @input-border;
+    border-radius: @input-border-radius;
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -184,14 +185,14 @@
   border-width: 0 4px 5px 4px; }
 .select2-container--default .select2-selection--multiple {
   background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 4px;
+  border: 1px solid @input-border;
+  border-radius: @input-border-radius;
   cursor: text; }
   .select2-container--default .select2-selection--multiple .select2-selection__rendered {
     box-sizing: border-box;
     list-style: none;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 @padding-base-horizontal;
     width: 100%; }
   .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
     color: #999;
@@ -205,8 +206,8 @@
     margin-right: 10px; }
   .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    border: 1px solid @input-border;
+    border-radius: @input-border-radius;
     cursor: default;
     float: left;
     margin-right: 5px;
@@ -243,7 +244,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0; }
 .select2-container--default .select2-search--dropdown .select2-search__field {
-  border: 1px solid #aaa; }
+  border: 1px solid @input-border; }
 .select2-container--default .select2-search--inline .select2-search__field {
   background: transparent;
   border: none;
@@ -286,8 +287,8 @@
 
 .select2-container--classic .select2-selection--single {
   background-color: #f6f6f6;
-  border: 1px solid #aaa;
-  border-radius: 4px;
+  border: 1px solid @input-border;
+  border-radius: @input-border-radius;
   outline: 0;
   background-image: -webkit-linear-gradient(top, #ffffff 50%, #eeeeee 100%);
   background-image: -o-linear-gradient(top, #ffffff 50%, #eeeeee 100%);
@@ -310,8 +311,8 @@
     background-color: #ddd;
     border: none;
     border-left: 1px solid #aaa;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-right-radius: @input-border-radius;
+    border-bottom-right-radius: @input-border-radius;
     height: 26px;
     position: absolute;
     top: 1px;
@@ -339,8 +340,8 @@
   border: none;
   border-right: 1px solid #aaa;
   border-radius: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: @input-border-radius;
+  border-bottom-left-radius: @input-border-radius;
   left: 1px;
   right: auto; }
 .select2-container--classic.select2-container--open .select2-selection--single {
@@ -371,8 +372,8 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0); }
 .select2-container--classic .select2-selection--multiple {
   background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 4px;
+  border: 1px solid @input-border;
+  border-radius: @input-border-radius;
   cursor: text;
   outline: 0; }
   .select2-container--classic .select2-selection--multiple:focus {
@@ -385,7 +386,7 @@
     display: none; }
   .select2-container--classic .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
-    border: 1px solid #aaa;
+    border: 1px solid @input-border;
     border-radius: 4px;
     cursor: default;
     float: left;
@@ -419,7 +420,7 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0; }
 .select2-container--classic .select2-search--dropdown .select2-search__field {
-  border: 1px solid #aaa;
+  border: 1px solid @input-border;
   outline: 0; }
 .select2-container--classic .select2-search--inline .select2-search__field {
   outline: 0; }

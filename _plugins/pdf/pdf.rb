@@ -1,16 +1,15 @@
-module Jekyll
-  
-  class PdfPage < Page
-    require 'pdfkit'
-    require 'active_support/core_ext/hash/deep_merge'
+require 'pdfkit'
+require 'active_support/core_ext/hash/deep_merge'
     
+module Jekyll
+  class PdfPage < Page
     def initialize(site, base, page)
       @site = site
       @base = base
       @dir = File.dirname(page.url)
       @name = File.basename(page.url, File.extname(page.url)) + ".pdf"
       @settings = site.config['pdf'] || {}
-      
+      @partials = ['header_html','footer_html']
     
       self.process(@name)
       self.data = page.data.clone
@@ -28,9 +27,13 @@ module Jekyll
       # Set html_url variable in the source page (for linking to the HTML version)
       self.data['html_url'] = page.url
       
-      # generate the header & footer html
-      @settings['header_html'] = Jekyll::Partial.new(self, @settings['header_html']) if @settings['header_html'] != nil
-      @settings['footer_html'] = Jekyll::Partial.new(self, @settings['footer_html']) if @settings['footer_html'] != nil
+      # create the partial objects
+      @partials.each do |partial|
+        @settings[partial] = Jekyll::PdfPartial.new(self, @settings[partial]) if @settings[partial] != nil
+      end
+      
+      #@settings['header_html'] = Jekyll::PdfPartial.new(self, @settings['header_html']) if @settings['header_html'] != nil
+      #@settings['footer_html'] = Jekyll::PdfPartial.new(self, @settings['footer_html']) if @settings['footer_html'] != nil
     end
     
     
@@ -47,33 +50,28 @@ module Jekyll
     end
     
     def write(dest_prefix, dest_suffix = nil)
-      
       self.render(@site.layouts, @site.site_payload) if self.output == nil
       
       path = File.join(dest_prefix, CGI.unescape(self.url))
+      dest = File.dirname(path)
       
       # Create directory
-      FileUtils.mkdir_p(File.dirname(path)) unless File.exist?(File.dirname(path))
+      FileUtils.mkdir_p(dest) unless File.exist?(dest)
       
-      # write header & footer partials
-      ['header_html','footer_html'].each do |partial|
-        if @settings[partial] != nil
-          @settings[partial] = @settings[partial].write
-        end
+      # write partials
+      @partials.each do |partial|
+        @settings[partial].write if @settings[partial] != nil
       end
+      
+      # Debugging - create html version of PDF
+      File.open("#{path}.html", 'w') {|f| f.write(self.output) } if @settings["debug"]
+      @settings.delete("debug")
       
       # Build PDF file
       kit = PDFKit.new(self.output, @settings)
       file = kit.to_file(path)
       
-      # delete temp files
-      #File.delete(@settings['header_html']) if @settings['header_html'] != nil
-      #File.delete(@settings['footer_html']) if @settings['footer_html'] != nil
-      
       #self.output = kit.to_pdf
-      
-      # Debugging - create html version of PDF
-      File.open(path + ".html",'w') {|f| f.write(self.output) }
     end
     
     # Recursively merge settings from the page, layout, site config & jekyll-pdf defaults

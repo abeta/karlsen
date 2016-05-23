@@ -6,17 +6,12 @@ $(document).on('click', function (e) {
 });
 
 // select2 dropdowns
-$("select").select2();
-
-// bigtext
-$(".section h1, .bigtext").each(function() {
-    $el = $(this);
-    if(!$el.children().length) {
-        $el.html('<span>' + $el.html() + '</span>').bigtext();
-    }
-    else {
-        $el.bigtext();
-    }
+$("select").select2({
+    minimumResultsForSearch: 5
+});
+$("select[multiple]").select2({
+    dropdownAutoWidth : true,
+    width: 'auto'
 });
 
 // tooltips
@@ -46,7 +41,7 @@ $('a[href*="#"]:not([href="#"],.carousel-control,[data-toggle])').click( functio
         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
         if (target.length) {
             $('html,body').animate({
-                scrollTop: target.offset().top - ($('.navbar-fixed-top').outerHeight() + $('.submenu').outerHeight())
+                scrollTop: target.offset().top - ($('.navbar-fixed-top').outerHeight() + $('.submenu').outerHeight() - 2)
             }, 800);
             return false;
         }

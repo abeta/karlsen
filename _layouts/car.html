@@ -1,108 +1,75 @@
 ---
 layout: default
 ---
-{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
+{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
   <div class="banner-content">
-    <div class="container rel">
-      <div class="banner-text">
-        <div class="pull-left" style="line-height:87px; margin-right:20px">
-          {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:100x74 %}
+    
+    {% if page.image %}
+    <div class="container text-right" style="padding-top:75px">
+      
+      {% for i in (1..3) %}
+      <a href="#">{{ page.image | remove_first: '_media/' | img: "magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 class:'img-circle img-thumbnail'" }}</a>&nbsp;
+      {% endfor %}
+      
+    </div>
+    {% endif %}
+    
+    <div class="submenu">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div id="submenu">
+              <ul class="nav nav-pills" role="tablist">
+                <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
+                <li><a href="#content"><i class="fa fa-info-circle"></i> Details</a></li>
+                <li><a href="#photos"><i class="fa fa-camera"></i> Photos</a></li>
+                <li><a href="#specs"><i class="fa fa-file-text-o"></i> Specifications</a></li>
+                <li class="hidden"><a href="#test_drive"></a></li>
+                <!--li><a href="#finance"><i class="fa fa-money"></i> Finance</a></li-->
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> Share</a>
+            <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+            <a href="#test_drive" class="btn btn-danger">Book a test drive</a>
+          </div>
         </div>
-        <div class="pull-left">
-          <h1 class="media-heading">{{ page.title | markdownify | strip_html }}</h1>
-          <span class="h4">
-            <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp; 
-            <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
-            <i class="fa fa-clock-o"></i> {{ page.model_year }}
-          </span>
+      </div>
+    </div>
+    
+    <div class="banner-container">
+      <div class="container">
+        <div class="banner-text">
+          <div class="pull-left" style="line-height:87px; margin-right:20px">
+            {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:100x74 %}
+          </div>
+          <div class="pull-left">
+            <h1 class="media-heading">{{ page.title | markdownify | strip_html }}</h1>
+            <span class="h4">
+              <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp; 
+              <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
+              <i class="fa fa-clock-o"></i> {{ page.model_year }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="submenu">
-    <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <div id="submenu">
-          <ul class="nav nav-pills" role="tablist">
-            <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
-            <li><a href="#content"><i class="fa fa-info-circle"></i> Details</a></li>
-            <li><a href="#photos"><i class="fa fa-camera"></i> Photos</a></li>
-            <li><a href="#specs"><i class="fa fa-file-text-o"></i> Specifications</a></li>
-            <!--li><a href="#finance"><i class="fa fa-money"></i> Finance</a></li-->
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-6 text-right">
-        <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> Share</a>
-        <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-        <a href="#" class="btn btn-primary">Book a test drive</a>
-      </div>
-    </div>
-    </div>
-  </div>
-  <a class="arrow-down" href="#content">
+  <!--a class="arrow-down" href="#content">
     <span class="fa fa-chevron-down"></span>
-  </a>
+  </a-->
 </div>
  
 <!--div class="section bg-dark" id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="media">
-          <div class="media-left">
-            <i class="fa fa-fw fa-clock-o fa-3x"></i>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading h5">Year</h4>
-            <b class="h4">{{ page.model_year }}</b>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="media">
-          <div class="media-left">
-            <i class="fa fa-fw fa-tachometer fa-3x"></i>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading h5">Mileage</h4>
-            <b class="h4">{{ page.mileage | number_format }}</b>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="media">
-          <div class="media-left">
-            <i class="fa fa-fw fa-paint-brush fa-3x"></i>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading h5">Colour</h4>
-            <b class="h4">{{ page.colour | capitalize }}</b>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="media">
-          <div class="media-left">
-            <i class="fa fa-fw fa-gbp fa-3x"></i>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading h5">Price</h4>
-            <b class="h4">{{ page.price | number_format }}</b>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div-->
   
 <div class="section" id="content">
   <div class="container">
     <div class="row">
       <div class="col-sm-7">
-        <article class="section-content">{% include template/content.html %}</article>
+        <article class="section-content">{{ content | replace_first: '<p>', '<p class="lead">' }}</article>
       </div>
       <div class="col-sm-4 col-sm-push-1">
         <h3>Quick Specs</h3>
@@ -154,6 +121,52 @@ layout: default
 
 <div class="section well">
   <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-fw fa-clock-o fa-3x"></i>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading h5">Year</h4>
+            <b class="h4">{{ page.model_year }}</b>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-fw fa-tachometer fa-3x"></i>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading h5">Mileage</h4>
+            <b class="h4">{{ page.mileage | number_format }}</b>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-fw fa-paint-brush fa-3x"></i>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading h5">Colour</h4>
+            <b class="h4">{{ page.colour | capitalize }}</b>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="media">
+          <div class="media-left">
+            <i class="fa fa-fw fa-gbp fa-3x"></i>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading h5">Price</h4>
+            <b class="h4">{{ page.price | number_format }}</b>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -377,6 +390,48 @@ layout: default
         </div>
       </div>
     </div>
+  </div>
+</div>
+ 
+<div class="section bg-primary" id="test_drive">
+  <div class="container">
+    <h3 class="section-header">Book a test drive</h3>
+    <p class="lead">Complete this form and we'll get back to you as soon as possible to arrange a test drive.</p>
+    
+    <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="title">Title *</label>
+          <input type="text" class="form-control" name="title" placeholder="Enter your title" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="name">Name *</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter your first and last name" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="email">Email *</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="phone">Phone *</label>
+          <input type="tel" class="form-control" name="phone" placeholder="Enter your phone number" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="checkbox">
+            <label>
+              <input name="terms" value="true" type="checkbox" required=""> I have read and agree to the Terms &amp; Conditions of use.
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-6 text-right">
+          <br>
+          <button type="submit" class="btn btn-danger btn-lg">Enquire now</button>
+        </div>
+      </div>
+    </form>
+    <br>
   </div>
 </div>
  

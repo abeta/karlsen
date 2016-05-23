@@ -8,35 +8,76 @@ pdf:
 ---
 <div class="page">
   {% if page.image %}
-  <img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" alt="" class="img-responsive" border="0" />
+  <div class="rel">
+    <img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" alt="" class="img-responsive" border="0" />
+    <img src="{% image_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 %}" style="position: absolute; right: 15px; top: 15px;" />
+    
+  </div>
   {% endif %}
   
-  <div class="box bg-primary text-center">
+  <div class="box bg-primary text-left">
     <table border="0" width="100%">
       <tr>
+        
+        {% if page.model_engine_l > 0 %}
         <td width="20%">
-          <span class="h2"><strong>{{ page.model_transmission_type }}</strong></span><br>
-          <strong class="text-uppercase">Transmission</strong>
+          <span class="h2"><strong>{{ page.model_engine_l | number_format: 1 }} l</strong></span><br>
+          <strong class="text-uppercase">Displacement</strong>
         </td>
-        <td width="20%">
-          <span class="h2"><strong>{{ page.model_engine_fuel }}</strong></span><br>
-          <strong class="text-uppercase">Fuel Type</strong>
-        </td>
+        {% endif %}
+        
         {% if page.model_engine_power_hp > 0 %}
         <td width="20%">
           <span class="h2"><strong>{{ page.model_engine_power_hp }} bhp</strong></span><br>
           <strong class="text-uppercase">Max Power</strong>
         </td>
         {% endif %}
+        
+        {% if page.model_transmission_type %}
+        <td width="20%">
+          <span class="h2"><strong>{{ page.model_transmission_type }}</strong></span><br>
+          <strong class="text-uppercase">Transmission</strong>
+        </td>
+        {% endif %}
+        
+        {% if page.model_engine_fuel %}
+        <td width="20%">
+          <span class="h2"><strong>{{ page.model_engine_fuel }}</strong></span><br>
+          <strong class="text-uppercase">Fuel Type</strong>
+        </td>
+        {% endif %}
+        
       </tr>
     </table>
   </div>
   
   <br>
   
-  <div>
-    <h3 class="sr-only">Description</h3>
-    {{content | replace_first: '<p>', '<p class="lead">'}}
+  <div class="row">
+    <div class="col-xs-9">
+      <h3 class="sr-only">Description</h3>
+      <div class="text-justify">
+        {{content | replace_first: '<p>', '<p class="lead">'}}
+      </div>
+    </div>
+    <div class="col-xs-3 text-center">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <i class="fa fa-mobile fa-lg"></i> <strong>Scan for more info</strong>
+        </div>
+        <div class="panel-body">
+          <div style="overflow:hidden;">
+            <div style="margin: 0 -19px 10px;">
+              {% capture qrcode_url %}{{ site.url }}{{ page.html_url }}?utm_source=pdf&utm_medium=qrcode{% endcapture %}
+              <img src="http://chart.apis.google.com/chart?cht=qr&amp;chs=165x165&amp;chl={{ qrcode_url | bitly }}" style="margin: -19px 0;" class="img-responsive">
+            </div>
+          </div>
+          <p class="small">Scan the above code with any smartphone to view this car on our website.</p>
+          <img src="{% image_base64 phone-os.jpg magick:resize:135 %}" class="img-responsive" />
+        </div>
+      </div>
+    </div>
+    
   </div>
   
 </div>
@@ -201,35 +242,35 @@ pdf:
           {% if page.model_weight_kg > 0 %}
           <tr>
             <td width="50%">Weight:</td>
-            <td>{{ page.model_weight_kg }} kg</td>
+            <td>{{ page.model_weight_kg | number_format }} kg</td>
           </tr>
           {% endif %}
           
           {% if page.model_length_mm > 0 %}
           <tr>
             <td>Length:</td>
-            <td>{{ page.model_length_mm }} mm</td>
+            <td>{{ page.model_length_mm | number_format }} mm</td>
           </tr>
           {% endif %}
           
           {% if page.model_width_mm > 0 %}
           <tr>
             <td>Width:</td>
-            <td>{{ page.model_width_mm }} mm</td>
+            <td>{{ page.model_width_mm | number_format }} mm</td>
           </tr>
           {% endif %}
           
           {% if page.model_height_mm > 0 %}
           <tr>
             <td>Height:</td>
-            <td>{{ page.model_height_mm }} mm</td>
+            <td>{{ page.model_height_mm | number_format }} mm</td>
           </tr>
           {% endif %}
           
           {% if page.model_wheelbase_mm > 0 %}
           <tr>
             <td>Wheelbase:</td>
-            <td>{{ page.model_wheelbase_mm }} mm</td>
+            <td>{{ page.model_wheelbase_mm | number_format }} mm</td>
           </tr>
           {% endif %}
           
