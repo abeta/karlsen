@@ -1,3 +1,10 @@
+{% if element.value %}
+  {% if element.value.year %}
+  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value.year }} {{ element.value.make }} {{ element.value.model }} {{ element.value.trim }}" />
+  {% else %}
+  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value }}" />
+  {% endif %}
+{% else %}
 <div class="row">
   <div class="col-sm-2">
     <label for="{{ element.id }}_year" class="sr-only">Year</label>
@@ -26,7 +33,6 @@
 </div>
 <input type="hidden" name="{{ element.name }}[make]" id="{{ element.id }}_make" value="{{ element.value.make }}" />
 <input type="hidden" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" value="{{ element.value.trim }}" />
-{% if element.value < 1 %}
 <script type="text/javascript">
 (function() {
 /*******************************************************************/
