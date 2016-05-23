@@ -9,7 +9,7 @@
               <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
             </field>
         </fieldset>
-        <fieldset name="details" label="Car Details">
+        <fieldset name="specifications">
             <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
             <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" admintable="true" />
             <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" readonly="true" />

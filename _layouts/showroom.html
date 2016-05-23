@@ -14,8 +14,6 @@ layout: default
             {% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
             {% for make in makes %}
             <option value="{{ make.name }}">{{ make.name }}</option>
-            <option value="{{ make.name }}2">{{ make.name }}1</option>
-            <option value="{{ make.name }}3">{{ make.name }}2</option>
             {% endfor %}
           </select>
         </form>
@@ -63,6 +61,10 @@ layout: default
           <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
           <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
       </div>
+      
+      {% assign index = forloop.index | modulo: 3 %}
+      {% if index == 0 %}<div class="col-sm-12 hidden-xs">&nbsp;</div>{% endif %}
+      
       {% endfor %}
     </div>
   </div>
