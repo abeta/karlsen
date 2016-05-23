@@ -26,7 +26,7 @@
 </div>
 <input type="hidden" name="{{ element.name }}[make]" id="{{ element.id }}_make" value="{{ element.value.make }}" />
 <input type="hidden" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" value="{{ element.value.trim }}" />
-{% if !element.value %}
+{% if element.value != "" %}
 <script type="text/javascript">
 (function() {
 /*******************************************************************/
