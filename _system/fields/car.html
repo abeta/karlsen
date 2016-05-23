@@ -4,7 +4,7 @@
   {% else %}
     {% set value = element.value %}
   {% endif %}
-  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ value }}" class="form-control input-lg" />
+  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ value }}" class="form-control input-lg" readonly />
 {% else %}
 <div class="row">
   <div class="col-sm-2">
