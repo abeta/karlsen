@@ -4,7 +4,7 @@
         <fieldset name="name">
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
-        <fieldset name="features">
+        <fieldset name="general">
             <field name="features" type="multiform" filter="array" label="">
               <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
             </field>
