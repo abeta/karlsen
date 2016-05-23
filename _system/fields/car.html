@@ -26,7 +26,7 @@
 </div>
 <input type="hidden" name="{{ element.name }}[make]" id="{{ element.id }}_make" value="{{ element.value.make }}" />
 <input type="hidden" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" value="{{ element.value.trim }}" />
-{% unless element.value %}
+{% if !element.value %}
 <script type="text/javascript">
 (function() {
 /*******************************************************************/
@@ -558,4 +558,4 @@ $("select#{{ element.id }}_trim_id").bind('carquery:updated', function() {
             <field name="model_fuel_cap_g" type="text" label="Fuel Capacity (g)" filter="string" class="form-control" />
         </fieldset>
 -->        
-{% endunless %}
+{% endif %}
