@@ -516,6 +516,7 @@ $('#select_model').on('click', function() {
         $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
         
         $('#{{ element.id }}_modal').modal('close');
+        return false;
     }
 });
 
