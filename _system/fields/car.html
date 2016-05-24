@@ -401,6 +401,8 @@ CarQuery.prototype = {
         
         var sender = this;
         
+        $("select#"+sender.trim_select_id).trigger("carquery:change");
+        
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
@@ -517,11 +519,12 @@ $("select#{{ element.id }}_make").bind('change', function(){
     $("#{{ element.id }}_make").val($("select#{{ element.id }}_make>option:selected").html());
 });
 */
+$(".carquery").bind('carquery:change', function(){
+    $('#select_model').removeClass('disabled');
+});
 $(".carquery").bind('change', function(){
     var $el = $("select#{{ element.id }}_trim>option:selected");
-    if($el.length && !$el.hasClass('loading')) {
-        $('#select_model').removeClass('disabled');
-    } else {
+    if(!$el.length || $el.hasClass('loading')) {
         $('#select_model').addClass('disabled');
     }
 });
