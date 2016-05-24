@@ -63,7 +63,8 @@ layout: default
       </div>
       
       {% assign index = forloop.index | modulo: 3 %}
-      {% if index == 0 %}<div class="col-sm-12 hidden-xs">&nbsp;</div>{% endif %}
+      {% if index == 0 %}<div class="col-md-12 hidden-xs hidden-sm">&nbsp;</div>{% endif %}
+      {% if index == 2 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
       
       {% endfor %}
     </div>
