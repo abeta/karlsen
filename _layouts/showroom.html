@@ -48,7 +48,7 @@ layout: default
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
     <div class="row text-center">
       {% for item in cars %}
-      <div class="col-sm-4">
+      <div class="col-md-4 col-sm-6">
         <a href="{{ item.url }}">
           {% if item.image %}
           {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
