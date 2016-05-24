@@ -7,6 +7,7 @@
     "toastr": "~2.1.2",
     "select2": "~4.0.2",
     "quicksand": "https://github.com/razorjack/quicksand.git#master",
-    "packery": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js"
+    "packery": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js",
+    "owl.carousel": "^2.1.4"
   }
 }
