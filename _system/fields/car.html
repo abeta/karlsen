@@ -141,7 +141,15 @@ CarQuery.prototype = {
         if(opt.length != 1) {
             el.html("<option value='' class='loading'>"+message+"</option>");
         }
-        el.trigger("chosen:updated");
+        this.updateChosen();
+    },
+    
+    updateChosen: function(id, message)
+    {
+        $("select#"+year_select_id).trigger("chosen:updated");
+        $("select#"+make_select_id).trigger("chosen:updated");
+        $("select#"+model_select_id).trigger("chosen:updated");
+        $("select#"+trim_select_id).trigger("chosen:updated");
     },
     
     populateYearSelect: function(refresh)
@@ -183,7 +191,7 @@ CarQuery.prototype = {
                     sender.yearSelectChange();
                 }
                 
-                $("select#"+sender.year_select_id).trigger("chosen:updated");
+                sender.updateChosen();
             }
         
         });
@@ -207,7 +215,7 @@ CarQuery.prototype = {
             
             $("select#"+this.make_select_id).html(options);
             
-            $("select#"+this.make_select_id).trigger("chosen:updated");
+            this.updateChosen();
         }
     },
     
@@ -226,7 +234,7 @@ CarQuery.prototype = {
         
         $("select#"+this.model_select_id).html(options);
         
-        $("select#"+this.model_select_id).trigger("chosen:updated");
+        this.updateChosen();
     },
     
     populateTrimSelect: function(data)
@@ -250,7 +258,7 @@ CarQuery.prototype = {
         
         this.cur_trim = $("select#"+this.trim_select_id).val();
         
-        $("select#"+this.trim_select_id).trigger("chosen:updated");
+        this.updateChosen();
     },
     
     
