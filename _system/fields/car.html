@@ -146,10 +146,10 @@ CarQuery.prototype = {
     
     updateChosen: function(id, message)
     {
-        $("select#"+year_select_id).trigger("chosen:updated");
-        $("select#"+make_select_id).trigger("chosen:updated");
-        $("select#"+model_select_id).trigger("chosen:updated");
-        $("select#"+trim_select_id).trigger("chosen:updated");
+        $("select#"+this.year_select_id).trigger("chosen:updated");
+        $("select#"+this.make_select_id).trigger("chosen:updated");
+        $("select#"+this.model_select_id).trigger("chosen:updated");
+        $("select#"+this.trim_select_id).trigger("chosen:updated");
     },
     
     populateYearSelect: function(refresh)
