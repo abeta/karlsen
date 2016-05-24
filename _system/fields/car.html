@@ -35,8 +35,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript">
-
-// chosen
+// modal
 APP.widgets.car = {
     selector: '#{{ element.id }}_modal',
     execute: function (inline) {
@@ -498,6 +497,17 @@ CarQuery.prototype = {
     }
 };
 
+$('#select_model').on('click', function() {
+    if(!this.hasClass('disabled')){
+        var make = $("select#{{ element.id }}_make>option:selected").html(),
+            model = $("select#{{ element.id }}_model>option:selected").html(),
+            trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
+        
+        $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
+        
+        $('#{{ element.id }}_modal').modal('close');
+    }
+});
 
 var carquery = new CarQuery();
 carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
@@ -516,13 +526,6 @@ $(".carquery").bind('change', function(){
 });
 
 $("select#{{ element.id }}_trim").bind('carquery:updated', function() {
-    var make = $("select#{{ element.id }}_make>option:selected").html(),
-        model = $("select#{{ element.id }}_model>option:selected").html(),
-        trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
-    
-    //$("#{{ element.id }}_trim").val(trim);
-    $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
-    $("#form_slug").val("");
 });
 
 }());
