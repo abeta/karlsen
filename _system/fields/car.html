@@ -22,8 +22,8 @@
             <select class="carquery" id="{{ element.id }}_model" required></select>
           </div>
           <div class="form-group">
-            <label for="{{ element.id }}_trim_id">Trim</label>
-            <select class="carquery" id="{{ element.id }}_trim_id" required></select>
+            <label for="{{ element.id }}_trim">Trim</label>
+            <select class="carquery" id="{{ element.id }}_trim" required></select>
           </div>
         </div>
       </div>
@@ -35,8 +35,6 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <div class="modal-backdrop" style="opacity: .5;"></div>
-<input type="hidden" name="{{ element.name }}[make]" id="{{ element.id }}_make" value="{{ element.value.make }}" />
-<input type="hidden" name="{{ element.name }}[trim]" id="{{ element.id }}_trim" value="{{ element.value.trim }}" />
 <script type="text/javascript">
 (function() {
 /*******************************************************************/
@@ -488,7 +486,7 @@ CarQuery.prototype = {
 
 
 var carquery = new CarQuery();
-carquery.init('{{ element.id }}_year', '{{ element.id }}_make_id', '{{ element.id }}_model', '{{ element.id }}_trim_id');
+carquery.init('{{ element.id }}_year', '{{ element.id }}_make_id', '{{ element.id }}_model', '{{ element.id }}_trim');
 
 /*
 $("select#{{ element.id }}_make_id").bind('change', function(){
@@ -499,10 +497,10 @@ $("select#{{ element.id }}_trim").bind('carquery:updated', function(){
     $('#select_model').removeClass('disabled');
 });
 
-$("select#{{ element.id }}_trim_id").bind('carquery:updated', function() {
+$("select#{{ element.id }}_trim").bind('carquery:updated', function() {
     var make = $("select#{{ element.id }}_make_id>option:selected").html(),
         model = $("select#{{ element.id }}_model>option:selected").html(),
-        trim = ($("select#{{ element.id }}_trim_id>option:selected").val() ? $("select#{{ element.id }}_trim_id>option:selected").html() : "");
+        trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
     
     //$("#{{ element.id }}_trim").val(trim);
     $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
