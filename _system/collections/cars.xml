@@ -2,7 +2,7 @@
 <form>
     <fields>
         <fieldset name="name">
-            <field name="title" type="text" filter="string" admintable="true" readonly="true" />
+            <field name="title" type="text" filter="string" admintable="true" readonly="true" class="form-control" />
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
         <fieldset name="general">
