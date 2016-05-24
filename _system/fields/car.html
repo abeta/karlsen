@@ -507,7 +507,7 @@ CarQuery.prototype = {
     }
 };
 
-$('#select_model').on('click', function() {
+$('#select_model').bind('click', function() {
     if(!$(this).hasClass('disabled')){
         var make = $("select#{{ element.id }}_make>option:selected").html(),
             model = $("select#{{ element.id }}_model>option:selected").html(),
