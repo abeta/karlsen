@@ -2,7 +2,7 @@
 <form>
     <fields>
         <fieldset name="name">
-            <field name="car" type="custom" template="car.html" filter="array" raw="true" />
+            <field name="car" type="custom" template="car.html" filter="string" />
         </fieldset>
         <fieldset name="general">
             <field name="features" type="multiform" filter="array" label="">

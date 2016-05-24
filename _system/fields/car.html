@@ -509,11 +509,13 @@ CarQuery.prototype = {
 
 $('#select_model').bind('click', function() {
     if(!$(this).hasClass('disabled')){
-        var make = $("select#{{ element.id }}_make>option:selected").html(),
+        var year = $("select#{{ element.id }}_year>option:selected").val(),
+            make = $("select#{{ element.id }}_make>option:selected").html(),
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
         
         $("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
+        $("#{{ element.id }}").val(year + " " + make + " " + model + (trim ? " " + trim : ""));
         
         $('#{{ element.id }}_modal').modal('hide');
     }
