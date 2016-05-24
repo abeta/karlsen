@@ -1,6 +1,6 @@
 <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value }}" class="form-control input-lg" readonly />
 {% if element.value < 1 %}
-<div class="modal fade" tabindex="-1" role="dialog" data-show="true">
+<div class="modal fade in" tabindex="-1" role="dialog" id="{{ element.id }}_modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -35,6 +35,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript">
+$('#{{ element.id }}_modal').modal();
 (function() {
 /*******************************************************************/
 /* carquery.0.3.4.js                            */
