@@ -35,7 +35,18 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript">
-$('#{{ element.id }}_modal').modal();
+
+// chosen
+APP.widgets.chosen = {
+    selector: '#{{ element.id }}_modal',
+    execute: function (inline) {
+        $('#{{ element.id }}_modal').modal();
+    }, 
+    destroy: function() {
+        $('#{{ element.id }}_modal').modal('destroy');
+    }
+};
+
 (function() {
 /*******************************************************************/
 /* carquery.0.3.4.js                            */
