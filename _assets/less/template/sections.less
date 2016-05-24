@@ -30,13 +30,15 @@
         font-size: floor((@font-size-base * 1.5));
     }
     
-    &.section-page {
-        padding-top: 100px;
-    }
     &.well {
         margin-bottom: 0;
         border-radius: 0;
         border-left: 0;
         border-right: 0;
+    }
+    
+    .container > p:last-of-type, 
+    .container > div > p:last-of-type {
+        margin-bottom: 0;
     }
 }
