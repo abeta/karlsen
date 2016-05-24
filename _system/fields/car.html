@@ -1,11 +1,5 @@
-{% if element.value %}
-  {% if element.value.year %}
-    {% set value = element.value.year ~ " " ~ element.value.make ~ " " ~ element.value.model ~ " " ~ element.value.trim %}
-  {% else %}
-    {% set value = element.value %}
-  {% endif %}
-  <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ value }}" class="form-control input-lg" readonly />
-{% else %}
+<input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value }}" class="form-control input-lg" readonly />
+{% if element.value < 1 %}
 <div class="modal" tabindex="-1" role="dialog" style="display: block;">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -16,34 +10,26 @@
       <div class="modal-body">
         <div class="form-vertical">
           <div class="form-group">
-            <label for="{{ element.id }}_year" class="sr-only">Year</label>
-            <select class="carquery" name="{{ element.name }}[year]" id="{{ element.id }}_year" required>
-              {% if element.value.year %}<option selected value="{{ element.value.year }}">{{ element.value.year }}</option>{% endif %}
-            </select>
+            <label for="{{ element.id }}_year">Year</label>
+            <select class="carquery" id="{{ element.id }}_year" required></select>
           </div>
           <div class="form-group">
-            <label for="{{ element.id }}_make_id" class="sr-only">Make</label>
-            <select class="carquery" name="{{ element.name }}[make_id]" id="{{ element.id }}_make_id" required>
-              {% if element.value.make_id %}<option selected value="{{ element.value.make_id }}">{{ element.value.make }}</option>{% endif %}
-            </select>
+            <label for="{{ element.id }}_make_id">Make</label>
+            <select class="carquery" id="{{ element.id }}_make_id" required></select>
           </div>
           <div class="form-group">
-            <label for="{{ element.id }}_model" class="sr-only">Model</label>
-            <select class="carquery" name="{{ element.name }}[model]" id="{{ element.id }}_model" required>
-              {% if element.value.model %}<option selected value="{{ element.value.model }}">{{ element.value.model }}</option>{% endif %}
-            </select>
+            <label for="{{ element.id }}_model">Model</label>
+            <select class="carquery" id="{{ element.id }}_model" required></select>
           </div>
           <div class="form-group">
-            <label for="{{ element.id }}_trim_id" class="sr-only">Trim</label>
-            <select class="carquery" name="{{ element.name }}[trim_id]" id="{{ element.id }}_trim_id" required>
-              {% if element.value.trim_id %}<option selected value="{{ element.value.trim_id }}">{{ element.value.trim }}</option>{% endif %}
-            </select>
+            <label for="{{ element.id }}_trim_id">Trim</label>
+            <select class="carquery" id="{{ element.id }}_trim_id" required></select>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" onclick="$('.cancel').click();">Cancel</button>
+        <button type="button" class="btn btn-primary">Select Model</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
