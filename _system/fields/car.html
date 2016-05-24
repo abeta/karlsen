@@ -513,7 +513,7 @@ $('#select_model').on('click', function() {
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
         
-        $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
+        $("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         
         $('#{{ element.id }}_modal').modal('close');
         return false;
