@@ -139,7 +139,7 @@ CarQuery.prototype = {
         var el = $("select#"+id),
             opt = el.find("option");
         if(opt.length != 1) {
-            el.html("<option value=''>"+message+"</option>");
+            el.html("<option value='' class='loading'>"+message+"</option>");
         }
         el.trigger("chosen:updated");
     },
@@ -518,7 +518,8 @@ $("select#{{ element.id }}_make").bind('change', function(){
 });
 */
 $(".carquery").bind('change', function(){
-    if($("select#{{ element.id }}_trim>option:selected").length) {
+    var $el = $("select#{{ element.id }}_trim>option:selected");
+    if($el.length && !$el.hasClass('loading')) {
         $('#select_model').removeClass('disabled');
     } else {
         $('#select_model').addClass('disabled');
