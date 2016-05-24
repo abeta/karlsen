@@ -498,7 +498,7 @@ CarQuery.prototype = {
 };
 
 $('#select_model').on('click', function() {
-    if(!this.hasClass('disabled')){
+    if(!$(this).hasClass('disabled')){
         var make = $("select#{{ element.id }}_make>option:selected").html(),
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
