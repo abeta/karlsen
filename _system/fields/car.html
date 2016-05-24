@@ -494,13 +494,13 @@ $("select#{{ element.id }}_make").bind('change', function(){
 });
 */
 $("select#{{ element.id }}_trim").bind('carquery:updated', function(){
-    $('#select_model').removeClass('disabled');
 });
 
 $("select#{{ element.id }}_trim").bind('carquery:updated', function() {
     var make = $("select#{{ element.id }}_make>option:selected").html(),
         model = $("select#{{ element.id }}_model>option:selected").html(),
         trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
+    $('#select_model').removeClass('disabled');
     
     //$("#{{ element.id }}_trim").val(trim);
     $("#form_title").val(make + " " + model + (trim !== 'Standard' ? " " + trim : ""));
