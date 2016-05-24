@@ -1,6 +1,6 @@
 <input type="text" name="{{ element.name }}" id="{{ element.id }}" value="{{ element.value }}" class="form-control input-lg" readonly />
 {% if element.value < 1 %}
-<div class="modal fade" tabindex="-1" role="dialog" id="{{ element.id }}_modal">
+<div class="modal" tabindex="-1" role="dialog" id="{{ element.id }}_modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,7 +40,9 @@
 APP.widgets.chosen = {
     selector: '#{{ element.id }}_modal',
     execute: function (inline) {
-        $('#{{ element.id }}_modal').modal();
+        $('#{{ element.id }}_modal').modal({
+          backdrop: 'static',
+        });
     }, 
     destroy: function() {
         $('#{{ element.id }}_modal').modal('destroy');
