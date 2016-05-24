@@ -2,7 +2,6 @@
 <form>
     <fields>
         <fieldset name="name">
-            <field name="title" type="text" filter="string" admintable="true" readonly="true" class="form-control" />
             <field name="car" type="custom" template="car.html" filter="array" raw="true" />
         </fieldset>
         <fieldset name="general">
@@ -103,6 +102,7 @@
                 <option value="unlisted">Unlisted</option>
             </field>
             <field name="image" type="media" label="Image" filter="string" class="form-control" directory="_media/cars" required="true" />
+            <field name="title" type="hidden" filter="string" admintable="true" />
             <field name="slug" type="hidden" filter="CMD" />
         </fieldset>
     </fields>
