@@ -515,7 +515,7 @@ $('#select_model').bind('click', function() {
         
         $("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         
-        $('#{{ element.id }}_modal').modal('close');
+        $('#{{ element.id }}_modal').modal('hide');
     }
     return false;
 });
@@ -536,10 +536,7 @@ $(".carquery").bind('change', function(){
     if(!$el.length || $el.hasClass('loading')) {
         $('#select_model').addClass('disabled');
     }
-});
-
-$("select#{{ element.id }}_trim").bind('carquery:updated', function() {
-});
+}); 
 
 }());
 </script>
