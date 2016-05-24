@@ -516,8 +516,8 @@ $('#select_model').bind('click', function() {
         $("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         
         $('#{{ element.id }}_modal').modal('close');
-        return false;
     }
+    return false;
 });
 
 var carquery = new CarQuery();
