@@ -495,7 +495,7 @@ $("select#{{ element.id }}_make_id").bind('change', function(){
     $("#{{ element.id }}_make").val($("select#{{ element.id }}_make_id>option:selected").html());
 });
 */
-$("select#{{ element.id }}_trim").bind('change', function(){
+$("select#{{ element.id }}_trim").bind('carquery:updated', function(){
     $('#select_model').removeClass('disabled');
 });
 
