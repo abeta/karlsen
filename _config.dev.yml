@@ -14,3 +14,6 @@ exclude:
     - bower.json
     - Gemfile
     - Gemfile.lock
+
+pdf:
+  debug: true

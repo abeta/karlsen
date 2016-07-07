@@ -72,10 +72,19 @@
     </div>
   </div>
   {{content}}
-  <footer class="footer" style="background: #000">
-    <div class="container">
-      <div class="small">
-        <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }} | <a href="{{ site.url }}/privacy-policy.html">Privacy Policy</a> | <a href="{{ site.url }}/returns-policy.html">Returns Policy</a> | <a href="{{ site.url }}/terms-and-conditions.html">Terms &amp; Conditions</a></p>
+  <footer class="footer">
+    <div class="container small">
+      <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}" class="center-block"><br>
+      <div class="row">
+        <div class="col-sm-8">
+          <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }} &nbsp;|&nbsp; 
+            <a href="{{ site.url }}/privacy-policy.html">Privacy</a> &nbsp;|&nbsp; 
+            <a href="{{ site.url }}/terms-and-conditions.html">Terms</a>
+          </p>
+        </div>
+        <div class="col-sm-4 text-right">
+          Website by <a onclick="document.getElementById('credit').click(); return false;" href="#">ABE Media</a> <a href="http://www.abemedia.co.uk/" title="Web Design Brighton" target="_blank" id="credit" class="sr-only">Web Design Brighton</a>
+        </div>
       </div>
     </div>
   </footer>

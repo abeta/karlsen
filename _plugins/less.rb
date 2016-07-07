@@ -1,3 +1,5 @@
+require 'less'
+
 module Sprockets
   class LESS
 

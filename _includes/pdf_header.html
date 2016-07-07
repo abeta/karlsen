@@ -2,22 +2,22 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <style>{% asset_source pdf.css %}</style>
+  {% css pdf.css %}
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div class="box bg-dark">
-    <div class="row" style="margin-bottom: -2em;">
+  <div class="box bg-dark" style="margin-bottom:-100px">
+    <div class="row">
       <div class="col-xs-9">
-        <div class="h2 media-heading text-ellipsis">{{ page.title }}</div>
-        <span class="h5">
-          <strong class="fa-lg">&pound;{{ page.price | number_format }}</strong> &nbsp; 
-          <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
+        <div class="h3 media-heading text-ellipsis">{{ page.title }}</div>
+        <span class="h4 nomargin"><strong>&pound;{{ page.price | number_format }}</strong></span> &nbsp;
+        <span class="lead nomargin">
+          <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp;
           <i class="fa fa-clock-o"></i> {{ page.model_year }}
         </span>
       </div>
       <div class="col-xs-3 text-right">
-        <img class="" src="{% img_base64 logo.png magick:resize:x50 %}" alt="" />
+        <img src="{% img_base64 logo.png magick:resize:x50 %}" alt="" />
       </div>
     </div>
   </div>

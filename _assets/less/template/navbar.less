@@ -5,20 +5,6 @@
     &:hover {
         background-color: rgba(0,0,0,0.9);
     }
-    
-    /* hidden nav on scroll down */
-    &.nav-up {
-        margin-top: -@navbar-height;
-        .nav > li > .nav {
-            max-height: 0;
-        }
-        &:hover, &.nav-down {
-            margin-top: 0;
-            .nav > li > .nav {
-                max-height: 1000px;
-            }
-        }
-    }
 }
 .navbar-brand {
     padding: 5px 15px;
@@ -76,83 +62,14 @@
     .navbar-inverse .navbar-nav > li {
         position:relative;
         &>a, &>a:hover, &>a:focus {
-            margin: 0 6px;
-            padding-left: 0;
-            padding-right: 0;
             text-transform: uppercase;
-        }
-        &>a:hover, &>a:focus {
-            border-bottom: 3px solid #666;
-        }
-        &.active > a {
-            border-bottom: 3px solid #e50000;
-        }
-        &>ul{
-        	.opacity(0);
-        	.transition(all 1s ease);
-        	top: 100%;
-        	left: 50%;
-        	margin-left: -125px;
-        	width: 250px;
-        	position: absolute;
-        	z-index: 98;
-        	max-height: 0;
-        	overflow: hidden;
-        }
-        &:hover ul{
-        	.opacity(1);
-        	max-height: 1000px;
-        	transition-delay: 0.5s;
-        }
-        &>ul>li {
-            padding: 2px 0 0;
-            a, a:hover, a:focus {
-            	color:#fff;
-            }
-            a {
-            	background-color: rgba(102, 102, 102, 0.8);
-            }
-            a:hover, a:focus {
-            	background-color: rgba(229, 0, 0, 0.9);
-            }
-            &.active a {
-            	color: @brand-primary;
-            	background-color: rgba(255, 255, 255, 0.9);
-            }
         }
     }
 }
 @media (min-width:992px) {
     .navbar-inverse .navbar-nav > li {
         &>a, &>a:hover, &>a:focus {
-            margin: 0 10px;
             font-size: 18px;
         }
     }
-}
-.navbar-extra {
-    margin: 18px 0px;
-    padding: 0;
-    float: right;
-    &>a {
-        float: left;
-    }
-    @media (min-width:480px) {
-        margin: 18px -6px;
-        &>a {
-            margin: 0 6px;
-        }
-    }
-    @media (min-width:992px) {
-        margin: 18px -10px;
-        &>a {
-            margin: 0 10px;
-        }
-    }
-}
-.navbar-search {
-    margin: 18px 0px;
-    float: right;
-    width: 70%;
-    display: none;
 }

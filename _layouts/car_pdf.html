@@ -3,46 +3,46 @@ layout: pdf
 pdf:
   header_html: pdf_header.html
   footer_html: pdf_footer.html
-  margin_top: 1.25in
+  margin_top: 1.20in
   margin_bottom: .75in
 ---
 <div class="page">
   {% if page.image %}
   <div class="rel">
-    <img src="{% image_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" alt="" class="img-responsive" border="0" />
-    <img src="{% image_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 %}" style="position: absolute; right: 15px; top: 15px;" />
+    {% img "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 class:'img-responsive' %}
+    {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 style:'position\: absolute; right\: 15px; top\: 15px;' %}
     
   </div>
   {% endif %}
   
-  <div class="box bg-primary text-left">
-    <table border="0" width="100%">
+  <div class="bg-primary">
+    <table class="displaytable">
       <tr>
         
         {% if page.model_engine_l > 0 %}
-        <td width="20%">
-          <span class="h2"><strong>{{ page.model_engine_l | number_format: 1 }} l</strong></span><br>
+        <td>
+          <span class="h3"><strong>{{ page.model_engine_l | number_format: 1 }} l</strong></span><br>
           <strong class="text-uppercase">Displacement</strong>
         </td>
         {% endif %}
         
         {% if page.model_engine_power_hp > 0 %}
-        <td width="20%">
-          <span class="h2"><strong>{{ page.model_engine_power_hp }} bhp</strong></span><br>
+        <td>
+          <span class="h3"><strong>{{ page.model_engine_power_hp }} bhp</strong></span><br>
           <strong class="text-uppercase">Max Power</strong>
         </td>
         {% endif %}
         
         {% if page.model_transmission_type %}
-        <td width="20%">
-          <span class="h2"><strong>{{ page.model_transmission_type }}</strong></span><br>
+        <td>
+          <span class="h3"><strong>{{ page.model_transmission_type }}</strong></span><br>
           <strong class="text-uppercase">Transmission</strong>
         </td>
         {% endif %}
         
         {% if page.model_engine_fuel %}
-        <td width="20%">
-          <span class="h2"><strong>{{ page.model_engine_fuel }}</strong></span><br>
+        <td>
+          <span class="h3"><strong>{{ page.model_engine_fuel }}</strong></span><br>
           <strong class="text-uppercase">Fuel Type</strong>
         </td>
         {% endif %}
@@ -56,11 +56,11 @@ pdf:
   <div class="row">
     <div class="col-xs-9">
       <h3 class="sr-only">Description</h3>
-      <div class="text-justify">
-        {{content | replace_first: '<p>', '<p class="lead">'}}
+      <div class="nobreak">
+        {{ content }}
       </div>
     </div>
-    <div class="col-xs-3 text-center">
+    <div class="col-xs-3 text-center" style="padding-left:30px">
       <div class="panel panel-danger">
         <div class="panel-heading">
           <i class="fa fa-mobile fa-lg"></i> <strong>Scan for more info</strong>
@@ -72,7 +72,7 @@ pdf:
               <img src="http://chart.apis.google.com/chart?cht=qr&amp;chs=165x165&amp;chl={{ qrcode_url | bitly }}" style="margin: -19px 0;" class="img-responsive">
             </div>
           </div>
-          <p class="small">Scan the above code with any smartphone to view this car on our website.</p>
+          <p class="small">Scan the above code with any smartphone to view this car on the web.</p>
           <img src="{% image_base64 phone-os.jpg magick:resize:135 %}" class="img-responsive" />
         </div>
       </div>

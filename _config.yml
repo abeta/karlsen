@@ -6,7 +6,7 @@ locale: en_GB
 timezone: Europe/London
 analytics:
     provider: google_analytics
-    tracking_id: 
+    tracking_id:
 sharing:
     provider:
         - facebook
@@ -35,8 +35,6 @@ defaults:
             type: cars
         values:
             layout: car
-            pdf: true
-permalink: '/:categories/:year/:month/:day/:title/'
 collections:
     cars:
         output: true
@@ -70,5 +68,3 @@ exclude:
 bitly:
   username: karlsenautodesign
   api_key: R_3ea49b3df69e4af898f9662996e2b33c
-pdf: 
-  debug: true

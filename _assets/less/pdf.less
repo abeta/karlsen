@@ -3,28 +3,16 @@
 @fa-font-path: "https://netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts";
 
 @import "widgets/backgrounds.less";
-@import "widgets/header.less";
-
-@import "template/template.less";
-@import "template/sections.less";
-@import "template/fixes.less";
+@import "template/extra.less";
 @import "template/variables.less";
 
-@import "apps/showroom.less";
-
-@font-family-sans-serif: Lato, Helvetica, Arial, sans-serif;
-@font-size-base:          14px;
-
-html, body {
-  height: initial;
-  font-weight: 300;
-}
+@font-size-base: 14px;
 
 div.page { 
-  page-break-before: always; 
-  page-break-inside: avoid;
+  page-break-before: always;
   .clearfix();
-  padding: 0 .1in;
+  margin: 0 .1in;
+  position: relative;
 }
 
 .page-header {
@@ -39,4 +27,23 @@ div.page {
   margin: 0;
   padding: .125in .2in;
   color: #fff;
+}
+
+.nomargin {
+  margin: 0 !important;
+}
+
+.displaytable {
+  width: 100%;
+  max-width: 100%;
+  td {
+    padding: .125in .1in;
+    .text-ellipsis;
+  }
+  td:first-of-type {
+    padding-left: .2in;
+  }
+  td:last-of-type {
+    padding-right: .2in;
+  }
 }

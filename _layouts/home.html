@@ -1,25 +1,11 @@
 ---
 layout: default
 ---
-<div id="carousel" class="carousel slide fh" data-ride="carousel" pause="false">
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner fh">
-    {% capture i %}0{% endcapture %}
-    {% for item in page.slides %}
-    {% capture image %}{% assign img = item[1].photo | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
-    <div class="item img-cover img-fixed fh {% if {{i}} == '0' %}active{% endif %}" style="background-image:url({{ image }})">
-    </div>
-    {% capture i %}{{ i | plus:1 }}{% endcapture %}
-    {% endfor %}
+{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
+<div class="banner" style="background-image:url({{ image }})">
+  <div class="banner-content">
+    
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
   <a class="arrow-down" href="#content">
     <span class="glyphicon glyphicon-chevron-down"></span>
   </a>

@@ -3,16 +3,13 @@ html, body, .fh {
 }
 .slide {
     margin-top: -@navbar-height;
+    .img-cover;
+    .img-fixed;
+    .fh;
 }
 body {
     font-weight: 300;
     margin-top: @navbar-height;
-}
-.text-ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
 }
 @media(min-width:768px) {
     .fh-sm {
@@ -100,10 +97,6 @@ h1, .section-header {
     background-size: 100%;
     transition: 0s linear;
     transition-property: background-position;
-}
-.text-justify-center {
-    text-align: justify;
-    text-align-last: center;
 }
 .icon-feature {
     .bg-dark;
