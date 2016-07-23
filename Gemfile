@@ -5,7 +5,7 @@ gem 'jekyll', ">= 3.0"
 # for jekyll-assets
 gem 'uglifier'
 gem 'yui-compressor'
-gem 'less'
+
 gem 'therubyracer' # required for LESS
 gem 'mini_magick'
 
@@ -19,5 +19,6 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-assets'
   gem 'autoprefixer-rails'
-  #gem 'jekyll-pdf'
+  gem 'less'
+  gem 'jekyll-pdf'
 end

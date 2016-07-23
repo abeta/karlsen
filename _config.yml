@@ -62,10 +62,10 @@ profiles:
     facebook: 'https://www.facebook.com/karlsenauto'
     twitter: 'https://twitter.com/karlsenauto'
 exclude:
-  - vendor
   - Gemfile
   - Gemfile.lock
   - bower.json
+  - README.md
 bitly:
   username: karlsenautodesign
   api_key: R_3ea49b3df69e4af898f9662996e2b33c

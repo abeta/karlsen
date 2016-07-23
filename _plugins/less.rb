@@ -22,7 +22,15 @@ module Sprockets
     end
   end
 
-  register_mime_type 'text/less', extensions: ['.less'], charset: :unicode
-  register_transformer 'text/less', 'text/css', LESS
-  register_engine '.less', LESS
+  if self.respond_to?(:register_transformer)
+    register_mime_type 'text/less', extensions: ['.less'], charset: :unicode
+    register_transformer 'text/less', 'text/css', LESS
+  end
+
+  if self.respond_to?(:register_engine)
+    args = ['.less', LESS]
+    args << { mime_type: 'text/less', silence_deprecation: true } if Sprockets::VERSION.start_with?("3")
+    register_engine(*args)
+  end
+
 end
