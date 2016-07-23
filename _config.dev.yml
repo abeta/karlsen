@@ -1,4 +1,4 @@
-url: http://karlsen.abemedia.co.uk
+url: http://dev.abemedia.co.uk:4000
 assets:
   digest: true
   js_compressor: false
