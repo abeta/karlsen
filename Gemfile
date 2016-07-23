@@ -16,5 +16,5 @@ group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-assets'
   gem 'autoprefixer-rails'
-  gem 'jekyll-pdf'
+  #gem 'jekyll-pdf'
 end

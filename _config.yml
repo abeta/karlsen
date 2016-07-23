@@ -35,6 +35,7 @@ defaults:
             type: cars
         values:
             layout: car
+            pdf: true
 collections:
     cars:
         output: true

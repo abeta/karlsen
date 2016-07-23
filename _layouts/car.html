@@ -1,20 +1,20 @@
 ---
 layout: default
 ---
-{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
+{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
   <div class="banner-content">
-    
+
     {% if page.image %}
     <div class="container text-right" style="padding-top:75px">
-      
+
       {% for i in (1..3) %}
       <a href="#">{{ page.image | remove_first: '_media/' | img: "magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 class:'img-circle img-thumbnail'" }}</a>&nbsp;
       {% endfor %}
-      
+
     </div>
     {% endif %}
-    
+
     <div class="submenu">
       <div class="container">
         <div class="row">
@@ -38,7 +38,7 @@ layout: default
         </div>
       </div>
     </div>
-    
+
     <div class="banner-container">
       <div class="container">
         <div class="banner-text">
@@ -48,8 +48,8 @@ layout: default
           <div class="pull-left">
             <h1 class="media-heading">{{ page.title | markdownify | strip_html }}</h1>
             <span class="h4">
-              <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp; 
-              <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp; 
+              <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp;
+              <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp;
               <i class="fa fa-clock-o"></i> {{ page.model_year }}
             </span>
           </div>
@@ -61,10 +61,10 @@ layout: default
     <span class="fa fa-chevron-down"></span>
   </a-->
 </div>
- 
+
 <!--div class="section bg-dark" id="content">
 </div-->
-  
+
 <div class="section" id="content">
   <div class="container">
     <div class="row">
@@ -75,42 +75,42 @@ layout: default
         <h3>Quick Specs</h3>
         <table class="table table-striped">
           <tbody>
-            
+
             <tr>
               <td>Make:</td>
               <td>{{ page.make_display }}</td>
             </tr>
-            
+
             <tr>
               <td>Model:</td>
               <td>{{ page.model_name }} {{ page.model_trim }}</td>
             </tr>
-            
+
             <tr>
               <td>Mileage:</td>
               <td>{{ page.mileage | number_format }} miles</td>
             </tr>
-            
+
             <tr>
               <td>Year:</td>
               <td>{{ page.model_year }}</td>
             </tr>
-            
+
             <tr>
               <td>Transmission:</td>
               <td>{{ page.model_transmission_type }}</td>
             </tr>
-            
+
             <tr>
               <td>Body:</td>
               <td>{{ page.model_body }}</td>
             </tr>
-            
+
             <tr>
               <td>Fuel:</td>
               <td>{{ page.model_engine_fuel }}</td>
             </tr>
-            
+
           </tbody>
         </table>
         <a class="btn btn-default btn-block" href="#specs">View full specifications</a>
@@ -213,62 +213,62 @@ layout: default
         <h3>Overview</h3>
         <table class="table table-striped">
           <tbody>
-            
+
             <tr>
               <td>Country of origin:</td>
               <td>{{ page.make_country }}</td>
             </tr>
-            
+
             <tr>
               <td>Make:</td>
               <td>{{ page.make_display }}</td>
             </tr>
-            
+
             <tr>
               <td>Model:</td>
               <td>{{ page.model_name }} {{ page.model_trim }}</td>
             </tr>
-            
+
             <tr>
               <td>Year:</td>
               <td>{{ page.model_year }}</td>
             </tr>
-            
+
             <tr>
               <td>Transmission Type:</td>
               <td>{{ page.model_transmission_type }}</td>
             </tr>
-            
+
             <tr>
               <td>Body Style:</td>
               <td>{{ page.model_body }}</td>
             </tr>
-            
+
             <tr>
               <td>Fuel Type:</td>
               <td>{{ page.model_engine_fuel }}</td>
             </tr>
-            
+
             <tr>
               <td>Drive:</td>
               <td>{{ page.model_drive }}</td>
             </tr>
-            
+
             <tr>
               <td>Doors:</td>
               <td>{{ page.model_doors }}</td>
             </tr>
-            
+
             <tr>
               <td>Seats:</td>
               <td>{{ page.model_seats }}</td>
             </tr>
-            
+
             <tr>
               <td>Engine Location:</td>
               <td>{{ page.model_engine_position }}</td>
             </tr>
-            
+
             {% if page.model_fuel_cap_l > 0 %}
             <tr>
               <td>Fuel Capacity:</td>
@@ -278,102 +278,102 @@ layout: default
           </tbody>
         </table>
       </div>
-      
+
       <div class="col-sm-4">
         <h3>Performance</h3>
         <table class="table table-striped">
           <tbody>
-            
+
             <tr>
               <td width="50%">Cylinders:</td>
               <td>{{ page.model_engine_cyl }}</td>
             </tr>
-            
+
             <tr>
               <td>Valves:</td>
               <td>{{ page.model_engine_valves }}</td>
             </tr>
-            
+
             {% if page.model_0_to_100_kph > 0 %}
             <tr>
               <td>0-100 kph (0-62mph):</td>
               <td>{{ page.model_0_to_100_kph }}</td>
             </tr>
             {% endif %}
-            
+
             {% if page.model_top_speed_mph > 0 %}
             <tr>
               <td>Top Speed:</td>
               <td>{{ page.model_top_speed_mph }} MPH</td>
             </tr>
             {% endif %}
-            
+
             <tr>
               <td>Engine Power:</td>
               <td>{{ page.model_engine_power_hp }} HP ({{ page.model_engine_power_rpm }} RPM)</td>
             </tr>
-            
+
             {% if page.model_engine_torque_lbft %}
             <tr>
               <td>Engine Torque:</td>
               <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lbs/ft</td>
             </tr>
             {% endif %}
-            
+
             {% if page.model_lkm_city > 0 %}
             <tr>
               <td>Fuel Economy City:</td>
               <td>{{ page.model_lkm_city }} l/100km</td>
             </tr>
             {% endif %}
-            
+
             {% if page.model_lkm_hwy > 0 %}
             <tr>
               <td>Fuel Economy HWY:</td>
               <td>{{ page.model_lkm_hwy }} l/100km</td>
             </tr>
             {% endif %}
-            
+
             {% if page.model_lkm_mixed > 0 %}
             <tr>
               <td>Fuel Economy Mixed:</td>
               <td>{{ page.model_lkm_mixed }} l/100km</td>
             </tr>
             {% endif %}
-            
+
           </tbody>
         </table>
-        
-        
+
+
         <h3>Dimensions</h3>
         <table class="table table-striped">
           <tbody>
-            
+
             <tr>
               <td width="50%">Weight:</td>
               <td>{{ page.model_weight_kg }} kg</td>
             </tr>
-            
+
             <tr>
               <td>Length:</td>
               <td>{{ page.model_length_mm }} mm</td>
             </tr>
-            
+
             <tr>
               <td>Width:</td>
               <td>{{ page.model_width_mm }} mm</td>
             </tr>
-            
+
             <tr>
               <td>Height:</td>
               <td>{{ page.model_height_mm }} mm</td>
             </tr>
-            
+
             <tr>
               <td>Wheelbase:</td>
               <td>{{ page.model_wheelbase_mm }} mm</td>
             </tr>
-            
+
           </tbody>
         </table>
       </div>
@@ -392,12 +392,12 @@ layout: default
     </div>
   </div>
 </div>
- 
+
 <div class="section bg-primary" id="test_drive">
   <div class="container">
     <h3 class="section-header">Book a test drive</h3>
     <p class="lead">Complete this form and we'll get back to you as soon as possible to arrange a test drive.</p>
-    
+
     <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
       <div class="row">
         <div class="form-group col-sm-6">
@@ -434,7 +434,7 @@ layout: default
     <br>
   </div>
 </div>
- 
+
 <div class="section well" id="related">
   <div class="container">
     <h3 class="section-header">Similar Cars</h3>
@@ -451,8 +451,8 @@ layout: default
             <h3>{{ item.title }}</h3>
           </a>
           <p>
-            <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp; 
-            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
+            <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp;
+            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
             <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
         </div>
         {% endfor %}
@@ -464,5 +464,5 @@ layout: default
 <style>
   body {
     position: relative;
-  }  
+  }
 </style>

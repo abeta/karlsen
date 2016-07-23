@@ -10,7 +10,7 @@ assets:
     - _assets/js
     - _media
 exclude:
-    - .asset-cache
+    - .bundle
     - bower.json
     - Gemfile
     - Gemfile.lock
