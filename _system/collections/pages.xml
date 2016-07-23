@@ -4,7 +4,7 @@
         <fieldset name="extra">
             <field name="icon" type="faicon" label="Icon" filter="string" class="form-control" />
             <field name="description" type="textarea" label="Description" filter="string" class="form-control" />
-            <field name="menu" type="list" label="Menu" class="form-control">
+            <field name="menu" type="list" label="Menu" class="form-control" admintable="true">
                 <option value=""></option>
                 <option value="main">Main Menu</option>
                 <option value="footer">Footer Menu</option>
