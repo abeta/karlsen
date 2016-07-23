@@ -47,7 +47,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-        {% assign pages = (site.pages | where: 'published', 1 | where: 'parent', nil | sort: 'order') %}
+        {% assign pages = (site.pages | where: 'published', 1 | where: 'menu', 'main' | where: 'parent', nil | sort: 'order') %}
         {% for item in pages %}
           {% assign submenu = (site.pages | where: 'published', 1 | where: 'parent', item.slug | sort: 'order') %}
           <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
@@ -77,9 +77,11 @@
       <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}" class="center-block"><br>
       <div class="row">
         <div class="col-sm-8">
-          <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }} &nbsp;|&nbsp; 
-            <a href="{{ site.url }}/privacy-policy.html">Privacy</a> &nbsp;|&nbsp; 
-            <a href="{{ site.url }}/terms-and-conditions.html">Terms</a>
+          <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }}
+          {% assign pages = (site.pages | where: 'published', 1 | where: 'menu', 'footer' | where: 'parent', nil | sort: 'order') %}
+          {% for item in pages %}
+          &nbsp;|&nbsp; <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">{{ item.title }}</a>
+          {% endfor %}
           </p>
         </div>
         <div class="col-sm-4 text-right">

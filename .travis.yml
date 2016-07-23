@@ -1,12 +1,12 @@
 language: ruby
 rvm:
-- 2.2
+- 2.3
 
-cache: 
+cache:
 - bundler
 - directories:
   - .asset-cache
-  
+
 script:
 - bundle exec jekyll build
 - bundle exec htmlproofer ./_site --allow-hash-href --check-html --http-status-ignore 0
@@ -14,17 +14,17 @@ script:
 - touch .nojekyll
 - git init
 - git config user.name "Travis-CI"
-- git config user.email "travis@fishlove.co.uk"
+- git config user.email "travis@karlsenautodesign.com"
 - git add .
 - git commit -m "Deployed to Github Pages"
-- git push --force --quiet "https://${GH_TOKEN}@github.com/fishlove/fishlove.github.io" master > /dev/null 2>&1
+- git push --force --quiet "https://${GH_TOKEN}@github.com/karlsenauto/karlsenauto.github.io" master > /dev/null 2>&1
 
 git:
   depth: 10
-  
+
 notifications:
   email: false
-  
+
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
