@@ -67,7 +67,7 @@ GEM
       rack (>= 1.2, < 3)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
-    rack (2.0.1)
+    rack (1.6.4)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -96,6 +96,7 @@ DEPENDENCIES
   jekyll-sitemap
   less
   mini_magick
+  rack (< 2)
   therubyracer
   uglifier
   yui-compressor
