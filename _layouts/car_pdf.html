@@ -9,8 +9,8 @@ pdf:
 <div class="page">
   {% if page.image %}
   <div class="rel">
-    {% image_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 class:'img-responsive' %}
-    {% image_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 style:'position\: absolute; right\: 15px; top\: 15px;' %}
+    {% img_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 class:'img-responsive' %}
+    {% img_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 style:'position\: absolute; right\: 15px; top\: 15px;' %}
 
   </div>
   {% endif %}
@@ -73,7 +73,7 @@ pdf:
             </div>
           </div>
           <p class="small">Scan the above code with any smartphone to view this car on the web.</p>
-          <img src="{% image_base64 phone-os.jpg magick:resize:135 %}" class="img-responsive" />
+          <img src="{% img_base64 phone-os.jpg magick:resize:135 %}" class="img-responsive" />
         </div>
       </div>
     </div>
