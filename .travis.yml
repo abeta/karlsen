@@ -8,7 +8,7 @@ cache:
   - .asset-cache
 
 script:
-- bundle exec jekyll build
+- bundle exec jekyll build --verbose --trace
 - #bundle exec htmlproofer ./_site --allow-hash-href --check-html --http-status-ignore 0
 - cd _site
 - touch .nojekyll
