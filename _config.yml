@@ -66,6 +66,7 @@ exclude:
   - Gemfile.lock
   - bower.json
   - README.md
+  - vendor
 bitly:
   username: karlsenautodesign
   api_key: R_3ea49b3df69e4af898f9662996e2b33c
