@@ -12,9 +12,6 @@ gem 'mini_magick'
 # for jekyll-pdf
 gem 'bitly'
 
-# fixes for travis
-gem 'rack', '< 2'
-
 group :jekyll_plugins do
   gem 'jekyll-sitemap'
   gem 'jekyll-assets'
