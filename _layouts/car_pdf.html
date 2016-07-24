@@ -9,50 +9,50 @@ pdf:
 <div class="page">
   {% if page.image %}
   <div class="rel">
-    {% img "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 class:'img-responsive' %}
-    {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 style:'position\: absolute; right\: 15px; top\: 15px;' %}
-    
+    {% img_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 class:'img-responsive' %}
+    {% img_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 style:'position\: absolute; right\: 15px; top\: 15px;' %}
+
   </div>
   {% endif %}
-  
+
   <div class="bg-primary">
     <table class="displaytable">
       <tr>
-        
+
         {% if page.model_engine_l > 0 %}
         <td>
           <span class="h3"><strong>{{ page.model_engine_l | number_format: 1 }} l</strong></span><br>
           <strong class="text-uppercase">Displacement</strong>
         </td>
         {% endif %}
-        
+
         {% if page.model_engine_power_hp > 0 %}
         <td>
           <span class="h3"><strong>{{ page.model_engine_power_hp }} bhp</strong></span><br>
           <strong class="text-uppercase">Max Power</strong>
         </td>
         {% endif %}
-        
+
         {% if page.model_transmission_type %}
         <td>
           <span class="h3"><strong>{{ page.model_transmission_type }}</strong></span><br>
           <strong class="text-uppercase">Transmission</strong>
         </td>
         {% endif %}
-        
+
         {% if page.model_engine_fuel %}
         <td>
           <span class="h3"><strong>{{ page.model_engine_fuel }}</strong></span><br>
           <strong class="text-uppercase">Fuel Type</strong>
         </td>
         {% endif %}
-        
+
       </tr>
     </table>
   </div>
-  
+
   <br>
-  
+
   <div class="row">
     <div class="col-xs-9">
       <h3 class="sr-only">Description</h3>
@@ -77,9 +77,9 @@ pdf:
         </div>
       </div>
     </div>
-    
+
   </div>
-  
+
 </div>
 
 <div class="page">
@@ -91,62 +91,62 @@ pdf:
       <h3>Overview</h3>
       <table class="table table-striped">
         <tbody>
-          
+
           <tr>
             <td>Country of origin:</td>
             <td>{{ page.make_country }}</td>
           </tr>
-          
+
           <tr>
             <td>Make:</td>
             <td>{{ page.make_display }}</td>
           </tr>
-          
+
           <tr>
             <td>Model:</td>
             <td>{{ page.model_name }} {{ page.model_trim }}</td>
           </tr>
-          
+
           <tr>
             <td>Year:</td>
             <td>{{ page.model_year }}</td>
           </tr>
-          
+
           <tr>
             <td>Transmission Type:</td>
             <td>{{ page.model_transmission_type }}</td>
           </tr>
-          
+
           <tr>
             <td>Body Style:</td>
             <td>{{ page.model_body }}</td>
           </tr>
-          
+
           <tr>
             <td>Fuel Type:</td>
             <td>{{ page.model_engine_fuel }}</td>
           </tr>
-          
+
           <tr>
             <td>Drive:</td>
             <td>{{ page.model_drive }}</td>
           </tr>
-          
+
           <tr>
             <td>Doors:</td>
             <td>{{ page.model_doors }}</td>
           </tr>
-          
+
           <tr>
             <td>Seats:</td>
             <td>{{ page.model_seats }}</td>
           </tr>
-          
+
           <tr>
             <td>Engine Location:</td>
             <td>{{ page.model_engine_position }}</td>
           </tr>
-          
+
           {% if page.model_fuel_cap_l > 0 %}
           <tr>
             <td>Fuel Capacity:</td>
@@ -156,80 +156,80 @@ pdf:
         </tbody>
       </table>
     </div>
-    
+
     <div class="col-xs-6">
       <h3>Performance</h3>
       <table class="table table-striped">
         <tbody>
-          
+
           {% if page.model_engine_cyl > 0 %}
           <tr>
             <td width="50%">Cylinders:</td>
             <td>{{ page.model_engine_cyl }}</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_engine_valves > 0 %}
           <tr>
             <td>Valves:</td>
             <td>{{ page.model_engine_valves }}</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_0_to_100_kph > 0 %}
           <tr>
             <td>0-100 kph (0-62mph):</td>
             <td>{{ page.model_0_to_100_kph }}</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_top_speed_mph > 0 %}
           <tr>
             <td>Top Speed:</td>
             <td>{{ page.model_top_speed_mph }} MPH</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_engine_power_hp > 0 %}
           <tr>
             <td>Engine Power:</td>
             <td>{{ page.model_engine_power_hp }} BHP {% if page.model_engine_power_rpm > 0 %}({{ page.model_engine_power_rpm }} RPM){% endif %}</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_engine_torque_lbft %}
           <tr>
             <td>Engine Torque:</td>
             <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lbs/ft</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_lkm_city > 0 %}
           <tr>
             <td>Fuel Economy City:</td>
             <td>{{ page.model_lkm_city }} l/100km</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_lkm_hwy > 0 %}
           <tr>
             <td>Fuel Economy HWY:</td>
             <td>{{ page.model_lkm_hwy }} l/100km</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_lkm_mixed > 0 %}
           <tr>
             <td>Fuel Economy Mixed:</td>
             <td>{{ page.model_lkm_mixed }} l/100km</td>
           </tr>
           {% endif %}
-          
+
         </tbody>
       </table>
-      
-      
-      {% if 
+
+
+      {% if
         page.model_weight_kg > 0 ||
         page.model_length_mm > 0 ||
         page.model_width_mm > 0 ||
@@ -245,35 +245,35 @@ pdf:
             <td>{{ page.model_weight_kg | number_format }} kg</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_length_mm > 0 %}
           <tr>
             <td>Length:</td>
             <td>{{ page.model_length_mm | number_format }} mm</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_width_mm > 0 %}
           <tr>
             <td>Width:</td>
             <td>{{ page.model_width_mm | number_format }} mm</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_height_mm > 0 %}
           <tr>
             <td>Height:</td>
             <td>{{ page.model_height_mm | number_format }} mm</td>
           </tr>
           {% endif %}
-          
+
           {% if page.model_wheelbase_mm > 0 %}
           <tr>
             <td>Wheelbase:</td>
             <td>{{ page.model_wheelbase_mm | number_format }} mm</td>
           </tr>
           {% endif %}
-          
+
         </tbody>
       </table>
       {% endif %}
