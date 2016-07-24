@@ -39,6 +39,8 @@ module Jekyll
       "file://" + asset.filename
     end
 
+  end
+
 end
 
 
