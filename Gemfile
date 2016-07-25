@@ -18,3 +18,7 @@ group :jekyll_plugins do
   gem 'autoprefixer-rails'
   gem 'jekyll-pdf'
 end
+
+
+# for travis (as ruby 2.3.0 needs to download binary on each build)
+gem 'rack', "< 2.0"
