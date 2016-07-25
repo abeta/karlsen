@@ -4,3 +4,4 @@ pages:
 cars:
     title: Cars
     icon: car
+    onduplicate: increment
