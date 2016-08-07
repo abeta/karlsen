@@ -1,12 +1,11 @@
-title: Karlsen Auto Design
-description: 'Karlsen'
+title: 'Karlsen Auto Design'
+description: Karlsen
 url: 'http://karlsen.abemedia.co.uk'
 permalink: none
 locale: en_GB
 timezone: Europe/London
 analytics:
     provider: google_analytics
-    tracking_id:
 sharing:
     provider:
         - facebook
@@ -19,7 +18,6 @@ sharing:
         - reddit
         - tumblr
         - buffer
-        - vk
     limit: 'false'
     style: icons
 defaults:
@@ -58,17 +56,19 @@ profiles:
     provider:
         - facebook
         - twitter
-        - youtube
-    facebook: 'https://www.facebook.com/karlsenauto'
-    twitter: 'https://twitter.com/karlsenauto'
+        - instagram
+    facebook: 'https://www.facebook.com/kad911/'
+    twitter: 'https://twitter.com/karlsenautodes'
+    instagram: 'https://www.instagram.com/karlsenautodesign/'
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - bower.json
-  - README.md
-  - vendor
+    - Gemfile
+    - Gemfile.lock
+    - bower.json
+    - README.md
+    - vendor
 bitly:
-  username: karlsenautodesign
-  api_key: R_3ea49b3df69e4af898f9662996e2b33c
+    username: karlsenautodesign
+    api_key: R_3ea49b3df69e4af898f9662996e2b33c
 pdf:
-  debug: true
+    debug: true
+relative_permalinks: 'false'
