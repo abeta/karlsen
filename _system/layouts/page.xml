@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields>
+        <fieldset name="general">
+            <field name="slides" type="multiform" label="Slideshow" filter="array">
+                <field name="photo" type="media" label="Image" filter="string" class="form-control" />
+            </field>
+        </fieldset>
+    </fields>
+</form>
