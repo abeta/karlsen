@@ -9,6 +9,9 @@
               <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
             </field>
         </fieldset>
+        <fieldset name="gallery">
+            <field name="gallery" type="gallery" filter="array" label="Gallery" />
+        </fieldset>
         <fieldset name="specifications">
             <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
             <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" admintable="true" />
