@@ -8,6 +8,7 @@ cache:
   - .asset-cache
 
 script:
+- apt-get update
 - apt-get install -yq imagemagick
 - bundle exec jekyll build --verbose --trace
 - #bundle exec htmlproofer ./_site --allow-hash-href --check-html --http-status-ignore 0
