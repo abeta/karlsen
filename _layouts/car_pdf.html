@@ -229,10 +229,10 @@ pdf:
 
 
       {% if
-        page.model_weight_kg > 0 ||
-        page.model_length_mm > 0 ||
-        page.model_width_mm > 0 ||
-        page.model_height_mm > 0 ||
+        page.model_weight_kg > 0 or
+        page.model_length_mm > 0 or
+        page.model_width_mm > 0 or
+        page.model_height_mm > 0 or
         page.model_wheelbase_mm > 0
       %}
       <h3>Dimensions</h3>

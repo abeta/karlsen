@@ -54,7 +54,7 @@
             <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">
               {% if item.slug == 'index' %}Home{% else %}{{ item.title }}{% endif %}
             </a>
-            {% if (submenu | size) > 0 %}
+            {% if submenu %}
             <ul class="nav">
               {% for item in submenu %}
               <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
@@ -92,7 +92,7 @@
   </footer>
   {% javascript app %}
   {% include system/analytics %}
-  {% if layout.script || page.script %}
+  {% if layout.script or page.script %}
   <script type="text/javascript" charset="utf-8">
     (function() { {{ layout.script }}{{ page.script }} })();
   </script>
