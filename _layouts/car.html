@@ -43,7 +43,9 @@ layout: default
       <div class="container">
         <div class="banner-text">
           <div class="pull-left" style="line-height:87px; margin-right:20px">
+            {% if assets['car-brands/{{ page.make_display | downcase }}.png'] %}
             {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:100x74 %}
+            {% endif %}
           </div>
           <div class="pull-left">
             <h1 class="media-heading">{{ page.title | markdownify | strip_html }}</h1>
@@ -239,35 +241,47 @@ layout: default
               <td>{{ page.model_transmission_type }}</td>
             </tr>
 
+            {% if page.model_body %}
             <tr>
               <td>Body Style:</td>
               <td>{{ page.model_body }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_engine_fuel %}
             <tr>
               <td>Fuel Type:</td>
               <td>{{ page.model_engine_fuel }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_drive %}
             <tr>
               <td>Drive:</td>
               <td>{{ page.model_drive }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_doors > 0 %}
             <tr>
               <td>Doors:</td>
               <td>{{ page.model_doors }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_seats > 0 %}
             <tr>
               <td>Seats:</td>
               <td>{{ page.model_seats }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_engine_position %}
             <tr>
               <td>Engine Location:</td>
               <td>{{ page.model_engine_position }}</td>
             </tr>
+            {% endif %}
 
             {% if page.model_fuel_cap_l > 0 %}
             <tr>
@@ -308,10 +322,15 @@ layout: default
             </tr>
             {% endif %}
 
+            {% if page.model_engine_power_hp > 0 %}
             <tr>
               <td>Engine Power:</td>
-              <td>{{ page.model_engine_power_hp }} HP ({{ page.model_engine_power_rpm }} RPM)</td>
+              <td>
+                {{ page.model_engine_power_hp }} HP
+                {% if page.model_engine_power_rpm > 0 %}({{ page.model_engine_power_rpm }} RPM){% endif %}
+              </td>
             </tr>
+            {% endif %}
 
             {% if page.model_engine_torque_lbft %}
             <tr>
@@ -349,31 +368,40 @@ layout: default
         <table class="table table-striped">
           <tbody>
 
+            {% if page.model_weight_kg > 0 %}
             <tr>
               <td width="50%">Weight:</td>
               <td>{{ page.model_weight_kg }} kg</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_length_mm > 0 %}
             <tr>
               <td>Length:</td>
               <td>{{ page.model_length_mm }} mm</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_width_mm > 0 %}
             <tr>
               <td>Width:</td>
               <td>{{ page.model_width_mm }} mm</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_height_mm > 0 %}
             <tr>
               <td>Height:</td>
               <td>{{ page.model_height_mm }} mm</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_wheelbase_mm > 0 %}
             <tr>
               <td>Wheelbase:</td>
               <td>{{ page.model_wheelbase_mm }} mm</td>
             </tr>
-
+            {% endif %}
           </tbody>
         </table>
       </div>
