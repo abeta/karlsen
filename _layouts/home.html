@@ -4,16 +4,49 @@ layout: default
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" style="background-image:url({{ image }})">
   <div class="banner-content">
-    
+
   </div>
   <a class="arrow-down" href="#content">
     <span class="glyphicon glyphicon-chevron-down"></span>
   </a>
 </div>
 
-<div class="section section-lg">
+<div class="section" id="content">
   <div class="container">
-    <h3 class="section-header">Hello World</h3>
-    <div class="section-content">{{ content }}</div>
+    <h2 class="section-header text-center">Welcome to Karlsen Auto Design</h2>
+    <div class="section-content text-justify-center">{{ content | replace_first: '<p>', '<p class="lead">' }}</div>
   </div>
 </div>
+
+<div class="section section-lg bg-dark">
+  <div class="container">
+    <div class="section-content text-center">
+      Thinking of starting an investment portfolio? <a href="#" class="btn btn-primary btn-lg">Enquire now</a>
+    </div>
+  </div>
+</div>
+
+{% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
+<div class="section well">
+  <div class="container">
+    <h2 class="section-header text-center">Featured Vehicles</h2>
+    <div class="section-content owl-carousel owl-theme text-center" data-autoplay="false" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
+      {% for item in cars limit:12 %}
+      <div>
+        <a href="{{ item.url }}" title="{{ item.title }}">
+          {% if item.image %}
+          {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
+          <img src="{{image}}" alt="" class="img-responsive" />
+          {% endif %}
+          <h4 class="text-ellipsis">{{ item.title }}</h4>
+        </a>
+        <p>
+          <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp;
+          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
+          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+

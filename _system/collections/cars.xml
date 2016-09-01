@@ -14,12 +14,12 @@
         </fieldset>
         <fieldset name="specifications">
             <field name="make_country" type="text" label="Country of Origin" filter="string" class="form-control" readonly="true" />
-            <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" admintable="true" />
+            <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" />
             <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" readonly="true" />
-            <field name="model_name" type="text" label="Model" filter="string" class="form-control" readonly="true" admintable="true" />
-            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" readonly="true" admintable="true" />
+            <field name="model_name" type="text" label="Model" filter="string" class="form-control" readonly="true" />
+            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" readonly="true" />
             <field name="model_year" type="text" label="Year" filter="int" class="form-control" readonly="true" admintable="true" />
-                        
+
             <field name="model_engine_position" type="text" label="Engine Location" filter="string" class="form-control" />
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
             <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="int" class="form-control" />
@@ -42,13 +42,13 @@
             <field name="model_engine_torque_rpm" type="text" label="Engine Max Torque RPM" filter="string" class="form-control" />
             <field name="model_engine_compression" type="text" label="Engine Compression Ratio" filter="string" class="form-control" />
             <field name="model_engine_fuel" type="text" label="Engine Fuel Type" filter="string" class="form-control" />
-                        
+
             <field name="model_drive" type="text" label="Drive" filter="string" class="form-control" />
             <field name="model_transmission_type" type="text" label="Transmission Type" filter="string" class="form-control" />
             <!--field name="model_top_speed_kph" type="text" label="Top Speed (KPH)" filter="string" class="form-control" /-->
             <field name="model_top_speed_mph" type="text" label="Top Speed (MPH)" filter="int" class="form-control" />
             <field name="model_0_to_100_kph" type="text" label="0-100 kph (0-62mph)" filter="double" class="form-control" />
-                        
+
             <field name="model_doors" type="text" label="Doors" filter="int" class="form-control" />
             <field name="model_seats" type="text" label="Seats" filter="int" class="form-control" />
             <field name="model_weight_kg" type="text" label="Weight (kg)" filter="double" class="form-control" />
@@ -76,7 +76,7 @@
                 <option value="under-offer">Under Offer</option>
                 <option value="sold">Sold</option>
             </field>
-            <field name="price" type="text" label="Price" filter="integer" class="form-control" />
+            <field name="price" type="text" label="Price" filter="integer" class="form-control" admintable="true" />
             <field name="mileage" type="text" label="Mileage" filter="integer" class="form-control" />
             <field name="colour" type="list" label="Colour" class="form-control">
                 <option value=""></option>

@@ -1,4 +1,5 @@
 .asset-cache/
 .bundle/
 _site/
+bower_components/
 .jekyll-metadata

@@ -11,13 +11,14 @@
 //= require bootstrap/js/scrollspy.js
 //= require bootstrap/js/tab.js
 //= require bootstrap/js/affix.js
-//= require toastr.js
 //= require select2.js
 //= require quicksand/jquery-animate-css-rotate-scale.js
 //= require quicksand/jquery-css-transform.js
 //= require quicksand/jquery.easing.1.3.js
 //= require quicksand/jquery.quicksand.js
 //= require packery/index.js
+//= require owl.carousel/dist/owl.carousel.js
+//= require jquery-gcse/dist/js/jquery.gcse.js
 
 //= require_tree ./plugins
 //= require_directory ./widgets

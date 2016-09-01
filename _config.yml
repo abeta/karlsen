@@ -44,7 +44,7 @@ assets:
     js_compressor: uglifier
     css_compressor: yui
     sources:
-        - _assets/bower
+        - bower_components
         - _assets/less
         - _assets/images
         - _assets/js
@@ -61,9 +61,8 @@ profiles:
     twitter: 'https://twitter.com/karlsenautodes'
     instagram: 'https://www.instagram.com/karlsenautodesign/'
 exclude:
-    - Gemfile
-    - Gemfile.lock
-    - bower.json
+    - Gemfile*
+    - bower*
     - README.md
     - vendor
 bitly:

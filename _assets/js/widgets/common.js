@@ -5,6 +5,13 @@ $(document).on('click', function (e) {
     }
 });
 
+// owl-carousel
+$(".owl-carousel").each(function (index) {
+    var el = $(this),
+        options = el.data();
+    el.owlCarousel(options);
+});
+
 // select2 dropdowns
 $("select").select2({
     minimumResultsForSearch: 5
@@ -75,7 +82,3 @@ $('.donslide .item').on('click', function() {
         activate();
     }
 });
-
-toastr.options = {
-  "positionClass": "toast-bottom-left"
-}
