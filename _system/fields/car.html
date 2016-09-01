@@ -43,7 +43,7 @@ APP.widgets.car = {
           backdrop: 'static',
           keyboard: false,
         });
-    }, 
+    },
     destroy: function() {
         $('#{{ element.id }}_modal').modal('destroy');
     }
@@ -83,7 +83,7 @@ CarQuery.prototype = {
     settings:           null,
     trim_select_id:     "",
     year_select_id:     "",
-    
+
     init : function(year_select_id, make_select_id, model_select_id, trim_select_id)
     {
         $.ajaxSetup({
@@ -92,19 +92,19 @@ CarQuery.prototype = {
                 alert('Bad Response from CarQuery API.\nThe service may not be avilable at this time.');
             }
         });
-            
-            
+
+
         //Set the ids for the select elements
         this.year_select_id =  year_select_id;
         this.make_select_id =  make_select_id;
         this.model_select_id = model_select_id;
         this.trim_select_id = trim_select_id;
-        
+
         var year = $("select#"+year_select_id).val(),
             make_id = $("select#"+make_select_id).val(),
             model = $("select#"+model_select_id).val(),
             trim = $("select#"+trim_select_id).val();
-        
+
         //Check if initial values were set
         this.settings = {};
         if(year)
@@ -115,25 +115,25 @@ CarQuery.prototype = {
             this.saveSetting('model', model);
         if(trim)
             this.saveSetting('trim', trim);
-        
+
         //Populate the car-years select element
         this.populateYearSelect();
-        
+
         var sender = this;
-        
+
         //Set the change event for the years dropdown to populate the makes select
         $("select#"+year_select_id).bind('change', function(){sender.yearSelectChange();});
-        
+
         //Set the change event for the makes dropdown to populate the models select
         $("select#"+make_select_id).bind('change', function(){sender.makeSelectChange();});
-        
+
         //Set the change event for the models dropdown to populate the trims select
         $("select#"+model_select_id).bind('change', function(){sender.modelSelectChange();});
-        
+
         //Set the change event for the trim dropdown to save the selected trim
         $("select#"+trim_select_id).bind('change', function(){sender.trimSelectChange();});
     },
-    
+
     setMessage: function(id, message)
     {
         var el = $("select#"+id),
@@ -143,7 +143,7 @@ CarQuery.prototype = {
         }
         this.updateChosen();
     },
-    
+
     updateChosen: function(id, message)
     {
         $("select#"+this.year_select_id).trigger("chosen:updated");
@@ -151,52 +151,52 @@ CarQuery.prototype = {
         $("select#"+this.model_select_id).trigger("chosen:updated");
         $("select#"+this.trim_select_id).trigger("chosen:updated");
     },
-    
+
     populateYearSelect: function(refresh)
-    {  
+    {
         //Set a loading message while we retrieve the data
         this.setMessage(this.year_select_id, "Loading Years...");
-        
+
         var sender = this;
-           
+
         $.getJSON(this.base_url+"?callback=?", {cmd:"getYears"}, function(data) {
-    
+
             if(!sender.responseError(data))
             {
                 var options = '<option value="">Please choose a year</option>';
-                
+
                 //Set min and max year range
                 var minYear = data.Years.min_year;
                 var maxYear = data.Years.max_year;
-                
+
                 if(sender.year_select_min !== null && minYear < sender.year_select_min )
                     minYear = sender.year_select_min;
                 if(sender.year_select_max !== null && maxYear > sender.year_select_max )
                     maxYear = sender.year_select_max;
-                
+
                 for (var i = maxYear; i >= minYear; i--)
                 {
                     options += '<option value="' + i + '">' + i + '</option>';
                 }
-            
+
                 $("select#"+sender.year_select_id).html(options);
-                
+
                 $("select#"+sender.make_select_id).html(sender.empty_option_html);
                 $("select#"+sender.model_select_id).html(sender.empty_option_html);
-            
-            
+
+
                 if(sender.settings.year !== null)
                 {
                     $('select#'+sender.year_select_id).val(sender.settings.year);
                     sender.yearSelectChange();
                 }
-                
+
                 sender.updateChosen();
             }
-        
+
         });
     },
-    
+
     populateMakeSelect: function(data)
     {
         if(!this.responseError(data))
@@ -212,61 +212,61 @@ CarQuery.prototype = {
                     options += '<option value="' + makes[key].make_id + '" '+s+'>' + makes[key].make_display + '</option>';
                 }
             }
-            
+
             $("select#"+this.make_select_id).html(options);
-            
+
             this.updateChosen();
         }
     },
-    
+
     populateModelSelect: function(data)
-    {    
+    {
         var models = data.Models;
-    
+
         var options = '<option value="">Please choose a model</option>';
         for (var i = 0; i < models.length; i++)
         {
             var s = '';
             if(this.settings.model !== null && this.settings.model == models[i].model_name) s = 'selected="selected"';
-            
+
             options += '<option value="' + models[i].model_name + '" '+s+'>' + models[i].model_name + '</option>';
         }
-        
+
         $("select#"+this.model_select_id).html(options);
-        
+
         this.updateChosen();
     },
-    
+
     populateTrimSelect: function(data)
-    {    
+    {
         var trims = data.Trims;
         var display;
-        
+
         var options = '';
         for (var i = 0; i < trims.length; i++)
         {
             var s = '';
             if(this.settings.trim !== null && this.settings.trim == trims[i].model_id) s = 'selected="selected"';
-        
+
             trim_display = trims[i].model_trim;
             if(trim_display === "") trim_display = this.default_trim_name;
-            
+
             options += '<option value="' + trims[i].model_id + '" '+s+'>' +  trim_display + '</option>';
         }
-        
+
         $("select#"+this.trim_select_id).html(options);
-        
+
         this.cur_trim = $("select#"+this.trim_select_id).val();
-        
+
         this.updateChosen();
     },
-    
-    
+
+
     populateCarData : function(model_data_id)
     {
         this.model_data_id = model_data_id;
         this.cur_trim = $("select#"+this.trim_select_id).val();
-    
+
         //Make sure there is a trim selected
         if(this.cur_trim === null || this.cur_trim === "")
         {
@@ -274,12 +274,12 @@ CarQuery.prototype = {
             alert('Please select a year, make, and model.');
             return;
         }
-        
+
         //Set a loading message while we retrieve the data
         $("#"+this.model_data_id).html("Loading Model Data...");
 
         var sender = this;
-        
+
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data))
@@ -291,20 +291,20 @@ CarQuery.prototype = {
     },
 
     saveSetting : function(setting, value)
-    {   
+    {
         //JSON library is required to manage settings
         if(typeof JSON == 'undefined') return;
-    
+
         this.settings[setting] = value;
     },
-    
+
     yearSelectChange: function ()
     {
         this.cur_year = $("select#"+this.year_select_id).val();
-        
+
         //Set Cookie to save year selection
         this.saveSetting('year', this.cur_year);
-        
+
          //if no year supplied, clear makes, models, return;
         if(this.cur_year === "")
         {
@@ -313,12 +313,12 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
             return;
         }
-        
+
          //Set a loading message while we retrieve the data
         this.setMessage(this.make_select_id, "Loading Makes...");
-        
+
         var sender = this;
-        
+
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getMakes", year:this.cur_year}, function(data) {
             if(!sender.responseError(data))
@@ -328,15 +328,15 @@ CarQuery.prototype = {
             }
         });
     },
-    
+
     makeSelectChange: function ()
     {
         this.cur_make = $("select#"+this.make_select_id).val();
-        
+
         //If value has been selected, save make selection
         if(this.cur_make !== "" && this.cur_make !== null)
             this.saveSetting('make', this.cur_make);
-        
+
         //if no make supplied, clear models, return;
         if(this.cur_make === "")
         {
@@ -344,73 +344,73 @@ CarQuery.prototype = {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
-        
+
         //Set a loading message while we retrieve the data
         this.setMessage(this.model_select_id, "Loading Models...");
-    
+
         var sender = this;
-    
+
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModels", make:this.cur_make, year:this.cur_year}, function(data) {
-        
+
             if(!sender.responseError(data))
             {
                 sender.populateModelSelect(data);
-            
+
                 sender.cur_model = $('select#'+sender.model_select_id).val();
-                
+
                 //Re-populate the trim select
                 sender.modelSelectChange();
             }
         });
     },
-    
+
     modelSelectChange: function ()
     {
         this.cur_model = $("select#"+this.model_select_id).val();
-        
+
         //If value has been selected, save model selection
         if(this.cur_model !== "" && this.cur_model !== null)
             this.saveSetting('model', this.cur_model);
 
         //If there is no trim select, we don't need to do anything else here
         if(this.trim_select_id === '' || this.trim_select_id === null) return;
-            
+
         //if no model supplied, clear trim, return;
         if(this.cur_model === "")
         {
             $("select#"+this.trim_select_id).html(this.empty_option_html);
             return;
         }
-        
+
         //Set a loading message while we retrieve the data
         this.setMessage(this.trim_select_id, "Loading Trims...");
-        
+
         var sender = this;
-        
+
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getTrims", make:this.cur_make, year:this.cur_year, model:this.cur_model, full_results:0 }, function(data) {
-        
+
             if(!sender.responseError(data))
                 sender.populateTrimSelect(data);
-            
+
             sender.cur_trim = $('select#'+sender.trim_select_id).val();
             sender.trimSelectChange();
         });
     },
-    
+
     trimSelectChange: function ()
     {
         this.cur_trim = $("select#"+this.trim_select_id).val();
-    
+
         //If value has been selected, save trim selection
         if(this.cur_trim !== "" && this.cur_trim !== null)
             this.saveSetting('trim', this.cur_trim);
-        
+
         var sender = this;
-        
+
         $("select#"+sender.trim_select_id).trigger("carquery:change");
-        
+
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
@@ -425,12 +425,12 @@ CarQuery.prototype = {
                 }
                 $("select#"+sender.trim_select_id).trigger("carquery:updated");
             }
-            
+
             //sender.cur_trim = $('select#'+sender.trim_select_id).val();
         });
     },
-    
-    
+
+
     getLabel: function (key)
     {
         var labels = {
@@ -440,7 +440,7 @@ CarQuery.prototype = {
             model_name: "Model",
             model_trim: "Trim",
             model_year: "Year",
-            
+
             model_engine_position: "Engine Location",
             model_engine_type: "Engine Type",
             model_engine_cyl: "Engine Cylinders",
@@ -463,13 +463,13 @@ CarQuery.prototype = {
             model_engine_torque_rpm: "Engine Max Torque RPM",
             model_engine_compression: "Engine Compression Ratio",
             model_engine_fuel: "Engine Fuel Type",
-            
+
             model_drive: "Drive",
             model_transmission_type: "Transmission Type",
             model_top_speed_kph: "Top Speed (KPH)",
             model_top_speed_mph: "Top Speed (MPH)",
             model_0_to_100_kph: "0-100 kph (0-62mph)",
-            
+
             model_doors: "Doors",
             model_seats: "Seats",
             model_weight_kg: "Weight (kg)",
@@ -493,7 +493,7 @@ CarQuery.prototype = {
         };
         return labels[key];
     },
-    
+
     responseError: function (data)
     {
         if(typeof data.error != 'undefined' && data.error !== '')
@@ -513,11 +513,11 @@ $('#select_model').bind('click', function() {
             make = $("select#{{ element.id }}_make>option:selected").html(),
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
-        
+
         $("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         $("#{{ element.id }}").val(year + " " + make + " " + model + (trim ? " " + trim : ""));
-        
         $('#{{ element.id }}_modal').modal('hide');
+        $('#adminForm').change();
     }
     return false;
 });
@@ -538,7 +538,7 @@ $(".carquery").bind('change', function(){
     if(!$el.length || $el.hasClass('loading')) {
         $('#select_model').addClass('disabled');
     }
-}); 
+});
 
 }());
 </script>
@@ -552,7 +552,7 @@ $(".carquery").bind('change', function(){
             <field name="model_name" type="text" label="Model" filter="string" class="form-control" />
             <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" />
             <field name="model_year" type="text" label="Year" filter="int" class="form-control" />
-                        
+
             <field name="model_engine_position" type="text" label="Engine Location" filter="string" class="form-control" />
             <field name="model_engine_type" type="text" label="Engine Type" filter="string" class="form-control" />
             <field name="model_engine_cyl" type="text" label="Engine Cylinders" filter="int" class="form-control" />
@@ -575,13 +575,13 @@ $(".carquery").bind('change', function(){
             <field name="model_engine_torque_rpm" type="text" label="Engine Max Torque RPM" filter="string" class="form-control" />
             <field name="model_engine_compression" type="text" label="Engine Compression Ratio" filter="string" class="form-control" />
             <field name="model_engine_fuel" type="text" label="Engine Fuel Type" filter="string" class="form-control" />
-                        
+
             <field name="model_drive" type="text" label="Drive" filter="string" class="form-control" />
             <field name="model_transmission_type" type="text" label="Transmission Type" filter="string" class="form-control" />
             <field name="model_top_speed_kph" type="text" label="Top Speed (KPH)" filter="string" class="form-control" />
             <field name="model_top_speed_mph" type="text" label="Top Speed (MPH)" filter="string" class="form-control" />
             <field name="model_0_to_100_kph" type="text" label="0-100 kph (0-62mph)" filter="string" class="form-control" />
-                        
+
             <field name="model_doors" type="text" label="Doors" filter="int" class="form-control" />
             <field name="model_seats" type="text" label="Seats" filter="int" class="form-control" />
             <field name="model_weight_kg" type="text" label="Weight (kg)" filter="string" class="form-control" />
@@ -603,5 +603,5 @@ $(".carquery").bind('change', function(){
             <field name="model_fuel_cap_l" type="text" label="Fuel Capacity (l)" filter="string" class="form-control" />
             <field name="model_fuel_cap_g" type="text" label="Fuel Capacity (g)" filter="string" class="form-control" />
         </fieldset>
--->        
+-->
 {% endif %}
