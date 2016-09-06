@@ -4,7 +4,12 @@ layout: default
 {% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
 <div class="banner" style="background-image:url({{ image }})">
   <div class="banner-content">
-
+    <div class="slogan">
+      <div class="container text-center text-uppercase">
+        <h1>Luxury, sports &amp; prestige vehicles</h1>
+        <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
+      </div>
+    </div>
   </div>
   <a class="arrow-down" href="#content">
     <span class="glyphicon glyphicon-chevron-down"></span>
@@ -50,3 +55,21 @@ layout: default
   </div>
 </div>
 
+<div class="section bg-primary text-center">
+  <div class="container">
+    <h3 class="section-header">Signup to our Newsletter</h3>
+    <p class="lead">Get privy information on our upcoming vehicles delivered right to your inbox.</p>
+    <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
+      <div class="form-group">
+        <label for="email" class="sr-only">Email *</label>
+        <div class="input-group input-group-lg">
+          <input type="email" class="form-control" name="email" placeholder="Enter your email address" required>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-danger">Get it now!</button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <br>
+  </div>
+</div>

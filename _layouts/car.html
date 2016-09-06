@@ -411,7 +411,7 @@ layout: default
           <div class="panel-body">
             <ul class="list-features">
               {% for feature in page.features %}
-              <li>{{ feature[1].feature }}</li>
+              <li>{{ feature.feature }}</li>
               {% endfor %}
             </ul>
           </div>
@@ -425,7 +425,6 @@ layout: default
   <div class="container">
     <h3 class="section-header">Book a test drive</h3>
     <p class="lead">Complete this form and we'll get back to you as soon as possible to arrange a test drive.</p>
-
     <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
       <div class="row">
         <div class="form-group col-sm-6">

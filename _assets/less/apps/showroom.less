@@ -6,12 +6,23 @@
     .img-bg;
     background-size: 100%;
     .img-fixed;
-        
-    h1 {
-        font-size: 48px;
-    } 
-    .banner-text > h1 {
+
+    .banner-text h1 {
         margin: 0;
+        font-size: 48px;
+    }
+    .slogan {
+        position: absolute;
+        width: 100%;
+        bottom: 120px;
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px #000, 1px 1px 0 #000;
+            font-size: 56px;
+        }
+        h1, a {
+            font-weight: 700;
+        }
     }
 }
 .banner-content {
@@ -20,15 +31,15 @@
     //padding-bottom: 56.25%;
 }
 .submenu {
-    position:absolute; 
-    padding: 8px 0; 
-    bottom: 0; 
-    width: 100%; 
+    position:absolute;
+    padding: 8px 0;
+    bottom: 0;
+    width: 100%;
     background: rgba(255,255,255,.9);
     &.affix {
         top: @navbar-height;
-        position: fixed; 
-        bottom: auto; 
+        position: fixed;
+        bottom: auto;
         z-index: @zindex-navbar-fixed - 1;
         box-shadow: 0 5px 5px -5px #000;
     }
@@ -50,7 +61,7 @@
     position: relative;
     background: rgba(255,255,255,0.75);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px 15px 30px 1000px; 
+    padding: 30px 15px 30px 1000px;
     margin-left: -1000px;
 }
 .banner-text:after {

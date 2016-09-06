@@ -5,68 +5,69 @@ permalink: none
 locale: en_GB
 timezone: Europe/London
 analytics:
-    provider: google_analytics
+  provider: google_analytics
 sharing:
-    provider:
-        - facebook
-        - twitter
-        - google
-        - linkedin
-        - pinterest
-        - stumbleupon
-        - delicious
-        - reddit
-        - tumblr
-        - buffer
-    limit: 'false'
-    style: icons
+  provider:
+    - facebook
+    - twitter
+    - google
+    - linkedin
+    - pinterest
+    - stumbleupon
+    - delicious
+    - reddit
+    - tumblr
+    - buffer
+  limit: 'false'
+  style: icons
 defaults:
-    -
-        scope:
-            path: ''
-            type: pages
-        values:
-            layout: page
-    -
-        scope:
-            path: ''
-            type: cars
-        values:
-            layout: car
-            pdf: true
+  -
+    scope:
+      path: ''
+      type: pages
+    values:
+      layout: page
+  -
+    scope:
+      path: ''
+      type: cars
+    values:
+      layout: car
+      pdf: true
 collections:
-    cars:
-        output: true
-        permalink: '/showroom/:path.html'
+  cars:
+    output: true
+    permalink: '/showroom/:path.html'
 mediaurl: _media
 assets:
-    digest: true
-    js_compressor: uglifier
-    css_compressor: yui
-    sources:
-        - bower_components
-        - _assets/less
-        - _assets/images
-        - _assets/js
-        - _media
+  compress:
+    css: false
+    js: true
+  digest: true
+  sources:
+    - bower_components
+    - _assets/less
+    - _assets/images
+    - _assets/js
+    - _media
 baseurl: /
 comments:
-    provider: '1'
+  provider: '1'
 profiles:
-    provider:
-        - facebook
-        - twitter
-        - instagram
-    facebook: 'https://www.facebook.com/kad911/'
-    twitter: 'https://twitter.com/karlsenautodes'
-    instagram: 'https://www.instagram.com/karlsenautodesign/'
+  provider:
+    - facebook
+    - twitter
+    - instagram
+  facebook: 'https://www.facebook.com/kad911/'
+  twitter: 'https://twitter.com/karlsenautodes'
+  instagram: 'https://www.instagram.com/karlsenautodesign/'
 exclude:
-    - Gemfile*
-    - bower*
-    - README.md
-    - vendor
+  - Gemfile*
+  - bower*
+  - README.md
+  - vendor
 bitly:
-    username: karlsenautodesign
-    api_key: R_3ea49b3df69e4af898f9662996e2b33c
+  username: karlsenautodesign
+  api_key: R_3ea49b3df69e4af898f9662996e2b33c
 pdf:
-    debug: true
+  debug: true
