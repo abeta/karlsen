@@ -1,19 +1,28 @@
 ---
 layout: default
 ---
-{% if page.image %}{% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:resize:1920^x1152 magick:crop:1920x1152+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}{% endif %}
-<div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>
-  <div class="banner-content">
+<div id="carousel" class="carousel banner slide" data-ride="carousel" pause="false">
+  <div class="container rel">
+    <ol class="carousel-indicators">
+        {% for photo in page.gallery limit:3 %}
+        {% assign img = photo.src | remove_first: '_media/' %}
+        {% if assets[img] %}
+        <li{% if forloop.first == true %} class="active"{% endif %} data-target="#carousel" data-slide-to="{{ forloop.index0 }}">{% img '{{ img }}' magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 %}</li>
+        {% endif %}
+        {% endfor %}
+    </ol>
+  </div>
 
-    {% if page.image %}
-    <div class="container text-right" style="padding-top:75px">
-
-      {% for i in (1..3) %}
-      <a href="#">{{ page.image | remove_first: '_media/' | img: "magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 class:'img-circle img-thumbnail'" }}</a>&nbsp;
-      {% endfor %}
-
-    </div>
+  <div class="carousel-inner fh" role="listbox">
+    {% for photo in page.gallery limit:3 %}
+    {% assign img = photo.src | remove_first: '_media/' %}
+    {% if assets[img] %}
+    <div class="item img-cover img-fixed fh {% if forloop.first == true %}active{% endif %}" style="background-image:url({% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 %});"></div>
     {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="banner-content">
 
     <div class="submenu">
       <div class="container">
@@ -58,10 +67,15 @@ layout: default
         </div>
       </div>
     </div>
+
   </div>
-  <!--a class="arrow-down" href="#content">
-    <span class="fa fa-chevron-down"></span>
-  </a-->
+
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
 </div>
 
 <!--div class="section bg-dark" id="content">
@@ -172,37 +186,19 @@ layout: default
   </div>
 </div>
 
-{% if page.image %}
+{% if page.gallery %}
 <div class="section bg-dark" id="photos">
   <div class="container">
     <h3 class="section-header">Photos</h3>
     <div class="section-content row">
+      {% for photo in page.gallery %}
+      {% assign img = photo.src | remove_first: '_media/' %}
+      {% if assets[img] %}
       <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
+        {{ img | img: "magick:resize:300 class:'img-responsive'" }}
       </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
-      <div class="col-sm-3">
-        {{ page.image | remove_first: '_media/' | img: "magick:resize:300 class:'img-responsive'" }}
-      </div>
+      {% endif %}
+      {% endfor %}
     </div><br>
   </div>
 </div>

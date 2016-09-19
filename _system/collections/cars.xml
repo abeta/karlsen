@@ -10,7 +10,7 @@
             </field>
         </fieldset>
         <fieldset name="gallery">
-            <field name="gallery" type="gallery" filter="array" label="Gallery" id="id" path="_media/showroom" />
+            <field name="gallery" type="gallery" filter="array" label="Gallery" idfield="id" path="_media/showroom" />
         </fieldset>
         <fieldset name="specifications">
             <field name="make_country" type="hidden" label="Country of Origin" filter="string" class="form-control" readonly="true" />
