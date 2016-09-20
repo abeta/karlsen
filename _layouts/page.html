@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-{% if page.image %}
+{% assign img_path = page.image | remove_first: '_media/' %}
+{% if assets[img_path] %}
 {% include modules/banner.html %}
 {% else %}
 {% assign class = 'section-page' %}

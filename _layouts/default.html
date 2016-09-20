@@ -19,7 +19,8 @@
     <![endif]-->
     <meta property="og:title" content="{{ page.title | markdownify | strip_html }}" />
     <meta property="og:description" content="{{ description | xml_escape }}" />
-    {% if page.image %}<meta property="og:image" content="{{ page.image | remove_first: '_media/' | asset_path | prepend: site.url }}" />{% endif %}
+    {% assign img_path = page.image | remove_first: '_media/' %}
+    {% if assets[img_path] %}<meta property="og:image" content="{{ img_path | asset_path | prepend: site.url }}" />{% endif %}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.title }}"/>
     <meta property="og:locale" content="{{ site.locale }}"/>
