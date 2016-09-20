@@ -104,9 +104,9 @@
                 <option value="yellow">Yellow</option>
                 <option value="unlisted">Unlisted</option>
             </field>
-            <field name="image" type="media" label="Image" filter="string" class="form-control" directory="_media/cars" />
             <field name="title" type="hidden" filter="string" admintable="true" />
             <field name="slug" type="hidden" default="{{id}}-{{title | slugify}}" />
+            <field name="image" type="hidden" default="{{gallery[0].src}}" />
             <field name="id" type="uuid" uuid="ai" filter="integer" />
         </fieldset>
     </fields>

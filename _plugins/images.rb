@@ -11,7 +11,9 @@ module Jekyll
 
     private
     def build_html(args, sprockets, asset)
-      "data:" + asset.content_type + ";base64, " + Base64.encode64(asset.source).delete("\n")
+      unless asset.content_type.nil?
+        "data:" + asset.content_type + ";base64, " + Base64.encode64(asset.source).delete("\n")
+      end
     end
 
   end
@@ -36,7 +38,9 @@ module Jekyll
 
     private
     def build_html(args, sprockets, asset)
-      "file://" + asset.filename
+      unless asset.filename.nil?
+        "file://" + asset.filename
+      end
     end
 
   end

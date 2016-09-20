@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
-    autoprefixer-rails (6.4.0.1)
+    autoprefixer-rails (6.4.1.1)
       execjs
     bitly (0.10.4)
       httparty (>= 0.7.6)
@@ -40,7 +40,7 @@ GEM
       pathutil (>= 0.8)
       rack (> 1, < 2)
       sprockets (~> 3.3, < 3.7)
-    jekyll-pdf (0.1.5)
+    jekyll-pdf (0.1.6)
       digest (~> 0)
       jekyll (~> 3.1, >= 2.0)
       pdfkit (~> 0.8)
@@ -51,8 +51,8 @@ GEM
       addressable (~> 2.4.0)
     jekyll-watch (1.5.0)
       listen (~> 3.0, < 3.1)
-    jwt (1.5.4)
-    kramdown (1.11.1)
+    jwt (1.5.6)
+    kramdown (1.12.0)
     less (2.6.0)
       commonjs (~> 0.2.7)
     libv8 (3.16.14.15)
@@ -88,7 +88,7 @@ GEM
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     wkhtmltopdf-installer (0.12.3.3)
     yui-compressor (0.12.0)
@@ -111,4 +111,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.12.5
+   1.13.0

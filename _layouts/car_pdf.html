@@ -7,9 +7,10 @@ pdf:
   margin_bottom: .75in
 ---
 <div class="page">
-  {% if page.image %}
+  {% assign img = page.gallery[0].src | remove_first: '_media/' %}
+  {% if assets[img] %}
   <div class="rel">
-    <img class="img-responsive" src="{% img_base64 "{{page.image | remove_first: '_media/'}}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" />
+    <img class="img-responsive" src="{% img_base64 "{{ img }}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" />
     <img style="position: absolute; right: 15px; top: 15px;" src="{% img_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 %}" />
   </div>
   {% endif %}
@@ -80,6 +81,33 @@ pdf:
   </div>
 
 </div>
+
+{% if page.gallery %}
+<div class="page">
+  <div class="page-header">
+    <h2>Photos</h2>
+  </div>
+  <table class="table">
+    <tr>
+      {% for photo in page.gallery %}
+      {% assign img = photo.src | remove_first: '_media/' %}
+      {% assign count = forloop.index | modulo: 3 %}
+      {% if assets[img] %}
+      <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}">
+        <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:x500 %}" />
+      </td>
+      {% endif %}
+      {% if count == 0 and page.gallery[forloop.index] %}
+    </tr>
+  </table>
+  <table class="table">
+    <tr>
+    {% endif %}
+    {% endfor %}
+    </tr>
+  </table>
+</div>
+{% endif %}
 
 <div class="page">
   <div class="page-header">

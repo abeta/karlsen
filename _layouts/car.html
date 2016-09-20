@@ -190,12 +190,17 @@ layout: default
 <div class="section bg-dark" id="photos">
   <div class="container">
     <h3 class="section-header">Photos</h3>
-    <div class="section-content row">
+    <div class="section-content row gallery">
       {% for photo in page.gallery %}
       {% assign img = photo.src | remove_first: '_media/' %}
       {% if assets[img] %}
       <div class="col-sm-3">
-        {{ img | img: "magick:resize:300 class:'img-responsive'" }}
+        <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:868 %}">
+          <figure>
+            {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 class:img-responsive alt:'{{ photo.title }}' %}
+            {% if photo.title %}<figcaption>{{ photo.title }}</figcaption>{% endif %}
+          </figure>
+        </a>
       </div>
       {% endif %}
       {% endfor %}
@@ -489,3 +494,22 @@ layout: default
     position: relative;
   }
 </style>
+
+
+<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalLabel">
+  <div class="modal-dialog modal-lightbox" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="galleryModalLabel"></h4>
+      </div>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+  <a class="left carousel-control previous" href="#galleryModal" role="button">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control next" href="#galleryModal" role="button">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>

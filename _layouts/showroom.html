@@ -5,19 +5,19 @@ layout: default
   <div class="container">
     <h1 class="text-center">{{ page.title | markdownify | strip_html }}</h1>
     {% if content != "" %}{% include template/content.html %}{% endif %}
-  
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <form class="navbar-form navbar-left">
           <label for="filter">Manufacturer: </label>
-          <select name="filter" id="filter" class="form-control" multiple style="width:auto;" data-placeholder="Select Manufacturers">
+          <select name="filter" id="filter" class="sr-only" multiple data-placeholder="Select Manufacturers">
             {% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
             {% for make in makes %}
             <option value="{{ make.name }}">{{ make.name }}</option>
             {% endfor %}
           </select>
         </form>
-        
+
         <form class="navbar-form navbar-right hidden-xs">
           <label for="sort">View: </label>
           <div class="btn-group" data-toggle="buttons" id="order">
@@ -31,7 +31,7 @@ layout: default
             </label>
           </div>
         </form>
-        
+
         <form class="navbar-form navbar-right">
           <label for="sort">Sort: </label>
           <select name="sort" id="sort" class="form-control">
@@ -41,31 +41,31 @@ layout: default
             <option value="year">Year</option>
           </select>
         </form>
-        
+
       </div>
     </nav>
-    
+
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
     <div class="row text-center">
       {% for item in cars %}
       <div class="col-md-4 col-sm-6">
         <a href="{{ item.url }}">
-          {% if item.image %}
-          {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
-          <img src="{{image}}" alt="" class="img-responsive" />
+          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+          {% if assets[img] %}
+          {% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 class:img-responsive alt:'{{ item.title }}' %}
           {% endif %}
           <h3>{{ item.title }}</h3>
         </a>
         <p>
-          <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp; 
-          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp; 
+          <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp;
+          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
           <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
       </div>
-      
+
       {% assign index = forloop.index | modulo: 3 %}
       {% if index == 0 %}<div class="col-md-12 hidden-xs hidden-sm">&nbsp;</div>{% endif %}
       {% if index == 2 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
-      
+
       {% endfor %}
     </div>
   </div>

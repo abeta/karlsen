@@ -10,6 +10,7 @@
     "packery": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js",
     "owl.carousel": "^2.1.4",
     "select2-bootstrap-theme": "^0.1.0-beta.9",
-    "jquery-gcse": "*"
+    "jquery-gcse": "*",
+    "ekko-lightbox": "^4.0.2"
   }
 }

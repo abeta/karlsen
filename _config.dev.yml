@@ -1,3 +1,7 @@
 url: http://dev.abemedia.co.uk:4000
+assets:
+  compress:
+    css: false
+    js: false
 pdf:
   debug: true

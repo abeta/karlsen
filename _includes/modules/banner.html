@@ -1,4 +1,4 @@
-{% if page.image %}
+{% if assets[page.image] %}
 {% capture image %}{% assign img = page.image | remove_first: '_media/' | img: "magick:crop:1920x1080+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
 {% endif %}
 <div class="banner" {% if page.image %}style="background-image:url({{ image }});"{% endif %}>

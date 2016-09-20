@@ -39,9 +39,9 @@ layout: default
       {% for item in cars limit:12 %}
       <div>
         <a href="{{ item.url }}" title="{{ item.title }}">
-          {% if item.image %}
-          {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
-          <img src="{{image}}" alt="" class="img-responsive" />
+          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+          {% if assets[img] %}
+          {% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 class:img-responsive alt:'{{ item.title }}' %}
           {% endif %}
           <h4 class="text-ellipsis">{{ item.title }}</h4>
         </a>
