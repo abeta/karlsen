@@ -18,7 +18,7 @@ layout: default
 
 <div class="section" id="content">
   <div class="container">
-    <h2 class="section-header text-center">Welcome to Karlsen Auto Design</h2>
+    <h2 class="h1 section-header text-center">Welcome to Karlsen Auto Design</h2>
     <div class="section-content text-justify-center">{{ content | replace_first: '<p>', '<p class="lead">' }}</div>
   </div>
 </div>
@@ -34,7 +34,7 @@ layout: default
 {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
 <div class="section well">
   <div class="container">
-    <h2 class="section-header text-center">Featured Vehicles</h2>
+    <h2 class="section-header text-center text-uppercase">Featured Vehicles</h2>
     <div class="section-content owl-carousel owl-theme text-center" data-autoplay="false" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
       {% for item in cars limit:12 %}
       <div>
@@ -57,7 +57,7 @@ layout: default
 
 <div class="section bg-primary text-center">
   <div class="container">
-    <h3 class="section-header">Signup to our Newsletter</h3>
+    <h2 class="section-header text-uppercase">Signup to our Newsletter</h2>
     <p class="lead">Get privy information on our upcoming vehicles delivered right to your inbox.</p>
     <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
       <div class="form-group">

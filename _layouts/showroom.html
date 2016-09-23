@@ -54,7 +54,7 @@ layout: default
           {% if assets[img] %}
           {% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 class:img-responsive alt:'{{ item.title }}' %}
           {% endif %}
-          <h3>{{ item.title }}</h3>
+          <h4>{{ item.title }}</h4>
         </a>
         <p>
           <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp;

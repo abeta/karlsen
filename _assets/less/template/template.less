@@ -1,111 +1,27 @@
 html, body, .fh {
     height: 100%;
 }
-.slide {
-    margin-top: -@navbar-height;
-    .img-cover;
-    .img-fixed;
-    .fh;
-}
 body {
     font-weight: 300;
     margin-top: @navbar-height;
+}
+.container-sm {
+    max-width: 849px + @grid-gutter-width;
 }
 @media(min-width:768px) {
     .fh-sm {
         height: 100%;
     }
 }
-@media (min-width: 768px) {
-    ul.row {
-        .list-unstyled();
-        &>li {
-            display: inline-block;
-            float: none !important;
-            vertical-align: top;
-        }
-    }
-}
 .rel {
     position: relative;
-}
-@media (max-width:768px) {
-    .row>* {
-        margin-bottom: 30px;
-    }
-    .equal>div>* {
-        min-height: 100%;
-    }
-}
-h1, .section-header {
-    font-size: 40px;
-    @media (min-width:768px) {
-        font-size: 72px;
-    }
 }
 .footer {
     background-color: #111;
     color: #fff;
     padding: 30px 0;
-    
+
     h4 {
         margin-top: 0 !important;
-    }
-}
-.bg-darken, .bg-lighten {
-    position: relative;
-    &>* {
-        position: relative;
-    }
-}
-.bg-darken::before, .bg-lighten::before {
-    display: block !important;
-    content: ' ';
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-}
-.bg-darken::before, .bg-lighten::before {
-    background-color: rgba(0, 0, 0, .5);
-}
-.bg-lighten::before {
-    background-color: rgba(255,255,255,.5);
-}
-.img-bg {
-    background-repeat: no-repeat;
-    background-position: center;
-    transform: none !important;
-    backface-visibility: visible !important;
-}
-.img-cover {
-    .img-bg;
-    background-size: cover;
-}
-.img-fixed {
-    background-position: center top;
-    background-attachment: fixed;
-}
-.img-contain {
-    .img-bg;
-    background-size: contain;
-}
-.img-parallax {
-    background-repeat: repeat-y;
-    background-position: 50% 0;
-    background-size: 100%;
-    transition: 0s linear;
-    transition-property: background-position;
-}
-.icon-feature {
-    .bg-dark;
-    .img-circle;
-    padding: 40px 30px;
-    display: inline-block;
-    
-    .fa {
-        font-size: 6em;
-        .fa-fw;
     }
 }

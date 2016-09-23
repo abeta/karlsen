@@ -1,7 +1,16 @@
 pages:
-    title: Pages
-    icon: sitemap
+  title: Pages
+  icon: sitemap
 cars:
-    title: Cars
-    icon: car
-    onduplicate: increment
+  title: Cars
+  icon: car
+blog:
+  title: Blog
+  icon: copy
+  items:
+    blog:
+      title: Posts
+      icon: file
+    authors:
+      title: Authors
+      icon: user

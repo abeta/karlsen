@@ -1,0 +1,97 @@
+/* Background Colors */
+.bg-dark,
+.bg-primary,
+.bg-info,
+.bg-success,
+.bg-warning,
+.bg-danger {
+    color: #fff;
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    h6, .h6 {
+        small, .small {
+            color: rgba(255,255,255,0.8);
+        }
+    }
+    a {
+        color: rgba(255,255,255,1);
+        text-decoration: underline;
+        &:hover {
+          color: rgba(255,255,255,0.8);
+        }
+    }
+    .btn {
+        text-decoration: none;
+        &:extend(.btn);
+    }
+}
+.bg-dark {
+    background-color: @gray-darker;
+}
+.bg-primary {
+    background-color: @brand-primary;
+}
+.bg-info {
+    background-color: @brand-info;
+}
+.bg-success {
+    background-color: @brand-success;
+}
+.bg-warning {
+    background-color: @brand-warning;
+}
+.bg-danger {
+    background-color: @brand-danger;
+}
+
+/* Background Images */
+.img-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: none !important;
+    backface-visibility: visible !important;
+}
+.img-cover {
+    .img-bg;
+    background-size: cover;
+}
+.img-fixed {
+    background-position: center top;
+    background-attachment: fixed;
+}
+.img-contain {
+    .img-bg;
+    background-size: contain;
+}
+.img-parallax {
+    background-repeat: repeat-y;
+    background-position: 50% 0;
+    background-size: 100%;
+    transition: 0s linear;
+    transition-property: background-position;
+}
+
+/* Lighten or darken the background image or color */
+.bg-darken, .bg-lighten {
+    &, &>* {
+        position: relative;
+    }
+}
+.bg-darken::before, .bg-lighten::before {
+    display: block !important;
+    content: ' ';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+.bg-darken::before, .bg-lighten::before {
+    background-color: rgba(0, 0, 0, .5);
+}
+.bg-lighten::before {
+    background-color: rgba(255,255,255,.5);
+}

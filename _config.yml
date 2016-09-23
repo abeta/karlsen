@@ -34,6 +34,12 @@ defaults:
     values:
       layout: car
       pdf: true
+  -
+    scope:
+      path: ''
+      type: posts
+    values:
+      layout: blog_post
 collections:
   cars:
     output: true

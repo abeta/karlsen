@@ -189,7 +189,7 @@ layout: default
 {% if page.gallery %}
 <div class="section bg-dark" id="photos">
   <div class="container">
-    <h3 class="section-header">Photos</h3>
+    <h2 class="section-header">Photos</h2>
     <div class="section-content row gallery">
       {% for photo in page.gallery %}
       {% assign img = photo.src | remove_first: '_media/' %}
@@ -208,9 +208,10 @@ layout: default
   </div>
 </div>
 {% endif %}
+
 <div class="section" id="specs">
   <div class="container">
-    <h3 class="section-header">Full Specifications</h3>
+    <h2 class="section-header">Full Specifications</h2>
     <div class="section-content row">
       <div class="col-sm-4">
         <h3>Overview</h3>
@@ -424,7 +425,7 @@ layout: default
 
 <div class="section bg-primary" id="test_drive">
   <div class="container">
-    <h3 class="section-header">Book a test drive</h3>
+    <h2 class="section-header">Book a test drive</h2>
     <p class="lead">Complete this form and we'll get back to you as soon as possible to arrange a test drive.</p>
     <form role="form" action="https://send.abemedia.co.uk/5B" method="post" class="donforms">
       <div class="row">
@@ -465,18 +466,18 @@ layout: default
 
 <div class="section well" id="related">
   <div class="container">
-    <h3 class="section-header">Similar Cars</h3>
+    <h2 class="section-header">Related Vehicles</h2>
     <div class="container section-content text-center">
-      {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
+      {% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | sort: 'order') %}
       <div class="row">
-        {% for item in cars %}
+        {% for item in cars limit:3 %}
         <div class="col-sm-4">
           <a href="{{ item.url }}">
             {% if item.image %}
             {% capture image %}{% assign img = item.image | remove_first: '_media/' | img: "magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0" | split: '"' %}{{ img[1] }}{% endcapture %}
             <img src="{{image}}" alt="" class="img-responsive" />
             {% endif %}
-            <h3>{{ item.title }}</h3>
+            <h4>{{ item.title }}</h4>
           </a>
           <p>
             <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp;
