@@ -4,13 +4,16 @@ pages:
 cars:
   title: Cars
   icon: car
-blog:
+posts:
   title: Blog
   icon: copy
   items:
-    blog:
+    posts:
       title: Posts
       icon: file
+    categories:
+      title: Categories
+      icon: folder
     authors:
       title: Authors
       icon: user
