@@ -8,6 +8,8 @@ gem 'therubyracer' # required for LESS
 gem 'uglifier'
 gem 'yui-compressor'
 gem 'mini_magick'
+gem 'image_optim'
+gem 'image_optim_pack'
 
 # for jekyll-pdf
 gem 'bitly'

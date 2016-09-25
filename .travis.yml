@@ -10,8 +10,10 @@ cache:
 
 before_install:
 - nvm install 4
-- npm install -g bower
+- npm install -g bower svgo
 - bower install
+- wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux vendor
+- export PNGOUT_BIN=vendor/pngout-20150319-linux/x86_64/pngout
 
 script:
 - set -e
