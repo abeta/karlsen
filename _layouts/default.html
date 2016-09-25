@@ -71,6 +71,15 @@
         {% endunless %}
         {% endfor %}
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+        {% for provider in site.profiles.provider %}
+          <li>
+            <a href="{{ site.profiles[provider] }}" target="_blank">
+              <i class="fa fa-lg fa-{{ provider }}"></i> <span class="sr-only">Follow us on {{ provider | capitalize }}</span>
+            </a>
+          </li>
+        {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
