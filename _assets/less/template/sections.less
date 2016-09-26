@@ -1,39 +1,63 @@
+@section-padding: 32px;
+@section-lg-padding: ceil(@section-padding*2);
 
 .section {
-    .clearfix();
-    padding-top: 32px;
-    padding-bottom: 32px;
+  .clearfix();
+  padding-top: @section-padding;
+  padding-bottom: @section-padding;
 
-    h1, .section-header {
-        .page-header;
-        margin: 16px 0;
+  .section-header {
+    .page-header;
+    margin-top: floor(@section-padding/2);
+    margin-bottom: floor(@section-padding/2);
+  }
+  .section-lead {
+    padding-bottom: @section-padding;
+    .section-header + & {
+      padding-top: 0;
     }
-    .section-content {
-        padding: 16px 0;
+    & > * {
+      .lead();
     }
-    .section-lead {
-        padding-bottom: 32px;
-        .section-header + & {
-            padding-top: 0;
-        }
-        & > * {
-            .lead();
-            &:last-child {
-                padding-bottom: 0;
-            }
-        }
-    }
+  }
+  .section-content {
+    padding-top: floor(@section-padding/2);
+    padding-bottom: floor(@section-padding/2);
+  }
 
-    &.section-lg {
-        padding-top: 64px;
-        padding-bottom: 64px;
-        font-size: floor((@font-size-base * 1.5));
-    }
+  &.well {
+    margin-bottom: 0;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
 
-    &.well {
+  // remove bottom margin for last element
+  &, & > div {
+    > div,
+    > ul,
+    > ul > li,
+    > p {
+      &:last-child {
         margin-bottom: 0;
-        border-radius: 0;
-        border-left: 0;
-        border-right: 0;
+      }
     }
+  }
+}
+
+.section-lg {
+  padding-top: @section-lg-padding;
+  padding-bottom: @section-lg-padding;
+
+  .section-header {
+    margin-top: ceil(@section-lg-padding/2);
+    margin-bottom: ceil(@section-lg-padding/2);
+  }
+  .section-content {
+    padding-top: ceil(@section-lg-padding/2);
+    padding-bottom: ceil(@section-lg-padding/2);
+  }
+  .section-lead {
+    padding-bottom: @section-lg-padding;
+  }
 }

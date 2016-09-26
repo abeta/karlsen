@@ -10,8 +10,8 @@ pdf:
   {% assign img = page.gallery[0].src | remove_first: '_media/' %}
   {% if assets[img] %}
   <div class="rel">
-    <img class="img-responsive" src="{% img_base64 "{{ img }}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}" />
-    <img style="position: absolute; right: 15px; top: 15px;" src="{% img_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 %}" />
+    <img class="img-responsive" src="{% img_base64 "{{ img }}" magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 image_optim:optimize:1 %}" />
+    <img style="position: absolute; right: 15px; top: 15px;" src="{% img_base64 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:125x125 image_optim:optimize:1 %}" />
   </div>
   {% endif %}
 
@@ -73,7 +73,7 @@ pdf:
             </div>
           </div>
           <p class="small">Scan the above code with any smartphone to view this car on the web.</p>
-          <img src="{% img_base64 phone-os.jpg magick:resize:135 %}" class="img-responsive" />
+          <img src="{% img_base64 phone-os.jpg magick:resize:135 image_optim:optimize:1 %}" class="img-responsive" />
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ pdf:
       {% assign count = forloop.index | modulo: 3 %}
       {% if assets[img] %}
       <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}">
-        <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:x500 %}" />
+        <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:x500 image_optim:optimize:1 %}" />
       </td>
       {% endif %}
       {% if count == 0 and page.gallery[forloop.index] %}

@@ -15,8 +15,8 @@
         <fieldset name="specifications">
             <field name="make_country" type="hidden" label="Country of Origin" filter="string" class="form-control" readonly="true" />
             <field name="make_display" type="text" label="Make" filter="string" class="form-control" readonly="true" />
-            <field name="model_name" type="text" label="Model" filter="string" class="form-control" readonly="true" />
-            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" readonly="true" />
+            <field name="model_name" type="text" label="Model" filter="string" class="form-control" />
+            <field name="model_trim" type="text" label="Trim" filter="string" class="form-control" />
             <field name="model_year" type="text" label="Year" filter="int" class="form-control" readonly="true" admintable="true" />
 
             <field name="model_body" type="text" label="Body Style" filter="string" class="form-control" />
@@ -104,7 +104,7 @@
                 <option value="yellow">Yellow</option>
                 <option value="unlisted">Unlisted</option>
             </field>
-            <field name="title" type="hidden" filter="string" admintable="true" />
+            <field name="title" type="hidden" filter="string" admintable="true" parse="{{make_display}} {{model_name}}{% if model_trim %} {{model_trim}}{% endif %}" />
             <field name="slug" type="hidden" parse="{{id}}-{{title | slugify}}" />
             <field name="image" type="hidden" parse="{{gallery[0].src}}" />
             <field name="id" type="uuid" uuid="ai" filter="integer" />
