@@ -2,124 +2,127 @@
 @thumnail-padding: 4px;
 
 .banner {
-    margin-top: -@navbar-height;
-    max-height: 100%;
-    min-height: 300px;
-    .rel;
-    .img-bg;
-    background-size: 100%;
-    .img-fixed;
+  margin-top: -@navbar-height;
+  max-height: 100%;
+  min-height: 300px;
+  .rel;
+  .img-bg;
+  background-size: 100%;
+  .img-fixed;
 
-    .carousel-inner {
-        position: absolute;
-        z-index: -1;
-    }
+  .carousel-inner {
+    position: absolute;
+    z-index: -1;
+  }
 
-    .carousel-indicators {
-        width: auto;
-        margin: 0 -5px;
-        top: @navbar-height + @line-height-computed;
-        right: ceil((@grid-gutter-width/2));
-        bottom: auto;
-        left: auto;
-        li {
-            border: none;
-            background-color: #fff;
-            text-indent: initial;
-            padding: @thumnail-padding;
-            &, &.active {
-                margin: 0 5px;
-                height: @thumnail-size + @thumnail-padding*2;
-                width: @thumnail-size + @thumnail-padding*2;
-            }
-            &.active {
-                background-color: @brand-primary;
-            }
-            &, img {
-                .img-circle;
-            }
-        }
+  .carousel-indicators {
+    width: auto;
+    margin: 0 -5px;
+    top: @navbar-height + @line-height-computed;
+    right: ceil((@grid-gutter-width/2));
+    bottom: auto;
+    left: auto;
+    li {
+      border: none;
+      background-color: #fff;
+      text-indent: initial;
+      padding: @thumnail-padding;
+      &, &.active {
+        margin: 0 5px;
+        height: @thumnail-size + @thumnail-padding*2;
+        width: @thumnail-size + @thumnail-padding*2;
+      }
+      &.active {
+        background-color: @brand-primary;
+      }
+      &, img {
+        .img-circle;
+      }
     }
+  }
 
-    .banner-text h1 {
-        margin: 0;
+  .banner-text h1 {
+    margin: 0;
+  }
+  .slogan {
+    position: absolute;
+    width: 100%;
+    bottom: 120px;
+    h1 {
+      color: #fff;
+      text-shadow: 0 0 10px #000, 1px 1px 0 #000;
+      font-size: 56px;
     }
-    .slogan {
-        position: absolute;
-        width: 100%;
-        bottom: 120px;
-        h1 {
-            color: #fff;
-            text-shadow: 0 0 10px #000, 1px 1px 0 #000;
-            font-size: 56px;
-        }
-        h1, a {
-            font-weight: 700;
-        }
+    h1, a {
+      font-weight: 700;
     }
+  }
 }
 .banner-content {
-    height: 0;
-    padding-bottom: 60%;
-    //padding-bottom: 56.25%;
+  height: 0;
+  padding-bottom: 60%;
+  &>.container {
+    margin-top: @navbar-height;
+  }
+  //padding-bottom: 56.25%;
 }
 .submenu {
-    position: absolute;
-    padding: 8px 0;
-    bottom: 0;
-    width: 100%;
-    background: rgba(255,255,255,.9);
-    &.affix {
-        top: @navbar-height;
-        position: fixed;
-        bottom: auto;
-        z-index: @zindex-navbar-fixed - 1;
-        box-shadow: 0 5px 5px -5px #000;
-    }
-    li a {
-        color: #000;
-    }
+  position: absolute;
+  padding: 8px 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255,255,255,.9);
+  &.affix {
+    top: @navbar-height;
+    position: fixed;
+    bottom: auto;
+    z-index: @zindex-navbar-fixed - 1;
+    box-shadow: 0 5px 5px -5px #000;
+  }
+  li a {
+    color: #000;
+  }
 }
 .banner-container {
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    bottom: 0;
-    .submenu + & {
-        bottom: @navbar-height - 2;
-    }
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  bottom: 0;
+  .submenu + & {
+    bottom: @navbar-height - 2;
+  }
 }
 .banner-text {
-    float: left;
-    position: relative;
-    background: rgba(255,255,255,0.75);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 30px 15px 30px 1000px;
-    margin-left: -1000px;
+  float: left;
+  position: relative;
+  background: rgba(255,255,255,0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px 15px 30px 1000px;
+  margin-left: -1000px;
 }
 .banner-text:after {
-    top: 0;
-    bottom: 0;
-    left: 100%;
-    width: 200px;
-    border-top: 200px solid transparent;
-    border-bottom: 200px solid rgba(255,255,255,0.75);
-    border-right: 200px solid transparent;
-    border-left: 200px solid rgba(255,255,255,0.75);
-    content: '';
-    position: absolute;
-    left: 100%;
-    top: 0;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 200px;
+  border-top: 200px solid transparent;
+  border-bottom: 200px solid rgba(255,255,255,0.75);
+  border-right: 200px solid transparent;
+  border-left: 200px solid rgba(255,255,255,0.75);
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 0;
 }
 .list-features {
   .list-unstyled;
   padding-left: 1.5em;
   position: relative;
   li:before {
-    .fa;
-    content: "\f00c";
-    position: absolute;
-    left: 0;
-    margin-top: 3px;
+  .fa;
+  content: "\f00c";
+  position: absolute;
+  left: 0;
+  margin-top: 3px;
   }
 }

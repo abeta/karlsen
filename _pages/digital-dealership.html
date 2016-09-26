@@ -3,9 +3,26 @@ title: 'Digital Dealership'
 slug: digital-dealership
 published: 1
 order: 6
-layout: page
+layout: landing_page
+image: _media/headers/white-mercedes-benz-cars.jpeg
 modified: '2016-09-26T07:06:40+00:00'
 ---
+{% assign img = page.image | remove_first: '_media/' %}
+{% if assets[img] %}{% capture image %}{% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %}{% endcapture %}{% endif %}
+<div class="banner bg-dark" style="background-image:url({{ image }})">
+  <div class="banner-content">
+    <div class="slogan">
+      <div class="container text-center text-uppercase">
+        <h1>Luxury, sports &amp; prestige vehicles</h1>
+        <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
+      </div>
+    </div>
+  </div>
+  <a class="arrow-down" href="#content">
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  </a>
+</div>
+<div class="container">
 <p>Karlsen Auto Design are Marketing Specialists for Sports/Prestige vehicles in the UK.</p>
 <p>We act as a Virtual Dealer, unlocking door for Part Exchange and Finance.</p>
 <p>Active Marketing strategy utilising our strengths: Sales.</p>
@@ -24,3 +41,5 @@ modified: '2016-09-26T07:06:40+00:00'
 <li>A Sale.</li>
 <li>A Part- Exchange/Finance commission.</li>
 </ol>
+
+</div>

@@ -1,0 +1,61 @@
+---
+layout: default
+---
+{% assign img = page.image | remove_first: '_media/' %}
+{% if assets[img] %}{% capture image %}{% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %}{% endcapture %}{% endif %}
+<div class="banner bg-dark" style="background-image:url({{ image }})">
+  <div class="banner-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+
+        </div>
+        <div class="col-sm-5">
+          <form role="form" action="" method="post" class="donforms form-horizontal">
+            <legend>Contact details</legend>
+            <div class="form-group">
+              <label for="name" class="col-sm-4 control-label">Name *</label>
+              <div class="col-sm-8"><input type="text" class="form-control" name="name" placeholder="Enter your first and last name" required></div>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-sm-4 control-label">Email *</label>
+              <div class="col-sm-8"><input type="email" class="form-control" name="email" placeholder="Enter your email address" required></div>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-sm-4 control-label">Phone *</label>
+              <div class="col-sm-8"><input type="tel" class="form-control" name="phone" placeholder="Enter your phone number" required></div>
+            </div>
+            <legend>Vehicle details</legend>
+            <div class="form-group">
+              <label for="phone" class="col-sm-4 control-label">Make *</label>
+              <div class="col-sm-8"><input type="tel" class="form-control" name="phone" placeholder="" required></div>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-sm-4 control-label">Model *</label>
+              <div class="col-sm-8"><input type="tel" class="form-control" name="phone" placeholder="" required></div>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-sm-4 control-label">Mileage *</label>
+              <div class="col-sm-8"><input type="text" pattern="[0-9]+" class="form-control" name="phone" placeholder="Enter your vehicle's mileage" title="Mileage (numbers only)" required></div>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-sm-4 control-label">Registration *</label>
+              <div class="col-sm-8"><input type="text" class="form-control" name="phone" placeholder="Enter your vehicle registration" required></div>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input name="terms" value="true" type="checkbox" required> I have read and agree to the Terms &amp; Conditions of use.
+              </label>
+            </div>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-danger btn-lg">Enquire now</button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
