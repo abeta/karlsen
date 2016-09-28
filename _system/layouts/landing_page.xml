@@ -2,11 +2,6 @@
 <form>
     <fields>
         <fieldset name="general">
-            <field name="product" type="text" label="Product" filter="string" class="form-control" />
-            <field name="price" type="text" label="Price" filter="int" class="form-control" />
-            <field name="features" type="multiform" filter="array" label="Features">
-              <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
-            </field>
             <field name="subheading" type="text" label="Heading" filter="string" class="form-control" />
             <field name="walkthrough" type="multiform" filter="array" label="Columns">
               <field name="ico" type="faicon" label="Icon" filter="string" class="form-control" />
@@ -20,7 +15,15 @@
               <field name="testimonial" type="text" label="Testimonial" filter="string" class="form-control" />
             </field>
         </fieldset>
+        <fieldset name="payments">
+            <field name="product" type="text" label="Product" filter="string" class="form-control" />
+            <field name="price" type="text" label="Price" filter="int" class="form-control" />
+            <field name="paypal" type="email" label="PayPal Email" filter="email" class="form-control" />
+        </fieldset>
         <fieldset name="options">
+            <field name="features" type="multiform" filter="array" label="Features">
+              <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
+            </field>
             <field name="content" type="hidden" />
         </fieldset>
     </fields>
