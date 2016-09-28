@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields>
-        <fieldset name="extra">
-            <field name="icon" type="faicon" label="Icon" filter="string" class="form-control" />
-            <field name="description" type="textarea" label="Description" filter="string" class="form-control" />
+        <fieldset name="advanced">
             <field name="menu" type="list" label="Menu" class="form-control" admintable="true">
                 <option value=""></option>
                 <option value="main">Main Menu</option>

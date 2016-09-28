@@ -7,12 +7,17 @@
   min-height: 500px;
   .rel;
   .img-bg;
-  background-size: 100%;
+  .img-cover;
   .img-fixed;
 
   .carousel-inner {
     position: absolute;
     z-index: -1;
+  }
+
+  .well {
+    background-color: rgba(255,255,255,.65);
+    margin: 0;
   }
 
   .carousel-indicators {
@@ -61,14 +66,16 @@
       font-weight: 700;
     }
   }
+
+  .section {
+    padding-top: @navbar-height + @section-lg-padding;
+    padding-bottom: @section-lg-padding;
+  }
 }
 
 .banner-content {
   height: 0;
   padding-bottom: 60%;
-  &>.container {
-    padding-top: @navbar-height + @jumbotron-padding;
-  }
   //padding-bottom: 56.25%;
 }
 .submenu {

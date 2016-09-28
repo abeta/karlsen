@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields>
+        <fieldset name="general">
+            <field name="product" type="text" label="Product" filter="string" class="form-control" />
+            <field name="price" type="text" label="Price" filter="int" class="form-control" />
+            <field name="features" type="multiform" filter="array" label="Features">
+              <field name="feature" label="Feature" type="text" filter="string" class="form-control" />
+            </field>
+            <field name="subheading" type="text" label="Heading" filter="string" class="form-control" />
+            <field name="walkthrough" type="multiform" filter="array" label="Columns">
+              <field name="ico" type="faicon" label="Icon" filter="string" class="form-control" />
+              <field name="heading" type="text" label="Heading" filter="string" class="form-control" />
+              <field name="text" type="textarea" label="Text" filter="string" class="form-control" />
+            </field>
+
+            <field name="testimonials" type="multiform" filter="array" label="Testimonials">
+              <field name="person" type="text" label="Name" filter="string" class="form-control" />
+              <field name="position" type="text" label="Position/Location" filter="string" class="form-control" />
+              <field name="testimonial" type="text" label="Testimonial" filter="string" class="form-control" />
+            </field>
+        </fieldset>
+        <fieldset name="options">
+            <field name="content" type="hidden" />
+        </fieldset>
+    </fields>
+</form>

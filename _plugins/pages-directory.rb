@@ -3,7 +3,7 @@ module Jekyll
 
     def generate(site)
       pages_dir = site.config['pages'] || './_pages'
-      all_raw_paths = Dir["#{pages_dir}/**/*"]      
+      all_raw_paths = Dir["#{pages_dir}/**/*"]
       all_raw_paths.each do |f|
 
         if File.file?(File.join(site.source, '/', f))
@@ -38,5 +38,5 @@ module Jekyll
       read_yaml(File.join(base, pagesdir, dir), name)
     end
   end
-  
+
 end
