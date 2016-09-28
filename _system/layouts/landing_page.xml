@@ -2,6 +2,7 @@
 <form>
     <fields>
         <fieldset name="general">
+            <field name="logosheading" type="text" label="Logos Heading" filter="string" class="form-control" />
             <field name="subheading" type="text" label="Heading" filter="string" class="form-control" />
             <field name="walkthrough" type="multiform" filter="array" label="Columns">
               <field name="ico" type="faicon" label="Icon" filter="string" class="form-control" />
