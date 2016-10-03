@@ -392,6 +392,7 @@ CarQuery.prototype = {
         if(this.cur_model === this.other_option)
         {
             $("#"+this.model_select_id + '_other').show();
+            console.log($("#"+this.model_select_id + '_other'));
             $("#"+this.trim_select_id + '_chosen').hide();
             $("#"+this.trim_select_id + '_other').show();
             this.trimSelectChange();
