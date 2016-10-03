@@ -53,7 +53,7 @@ layout: default
                 <div class="form-group col-sm-6">
                   <label class="sr-only" for="make">Make *</label>
                   <input type="hidden" name="on1" value="make">
-                  <select class="form-control" name="os1" id="make" data-placeholder="Make" required>
+                  <select class="form-control" name="os1" id="make" data-placeholder="Make" data-width="100%" required>
                     <option value=""></option>
                     {% for make in site.data.makes %}
                     <option value="{{ make.make_id }}">{{ make.make_display }}</option>

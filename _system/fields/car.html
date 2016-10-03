@@ -33,9 +33,9 @@
         <button type="button" class="btn btn-danger" onclick="$('.cancel').click();">Cancel</button>
         <button type="button" class="btn btn-primary disabled" id="select_model">Select Model</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
 // modal
 APP.widgets.car = {
@@ -429,13 +429,13 @@ CarQuery.prototype = {
         if(this.cur_trim === this.other_option)
         {
             $("#"+this.trim_select_id + '_other').show();
-            $("select#"+sender.trim_select_id).trigger("carquery:change");
+            $("select#"+this.trim_select_id).trigger("carquery:change");
             return;
         }
 
         var sender = this;
 
-        $("select#"+sender.trim_select_id).trigger("carquery:change");
+        $("select#"+this.trim_select_id).trigger("carquery:change");
 
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
