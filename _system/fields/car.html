@@ -346,8 +346,8 @@ CarQuery.prototype = {
         //if no make supplied, clear models, return;
         if(this.cur_make === "")
         {
-            $("select#"+this.model_select_id).html(this.empty_option_html);
-            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            $("select#"+this.model_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
             return;
         }
 
@@ -385,7 +385,7 @@ CarQuery.prototype = {
         //if no model supplied, clear trim, return;
         if(this.cur_model === "")
         {
-            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
             return;
         }
 
