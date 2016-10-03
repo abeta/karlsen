@@ -20,10 +20,12 @@
           <div class="form-group">
             <label for="{{ element.id }}_model">Model</label>
             <select class="carquery" id="{{ element.id }}_model" required></select>
+            <input style="display:none;" class="form-control" type="text" id="{{ element.id }}_model_other" value="" />
           </div>
           <div class="form-group">
             <label for="{{ element.id }}_trim">Trim</label>
             <select class="carquery" id="{{ element.id }}_trim" required></select>
+            <input style="display:none;" class="form-control" type="text" id="{{ element.id }}_trim_other" value="" />
           </div>
         </div>
       </div>
@@ -77,6 +79,8 @@ CarQuery.prototype = {
     cur_trim:           "",
     cur_year:           "",
     default_trim_name:  "Standard",
+    other_option:       "__other__",
+    other_option_html:  "Other (not listed)",
     empty_option_html:  "",
     make_select_id:     "",
     model_select_id:    "",
@@ -231,6 +235,7 @@ CarQuery.prototype = {
 
             options += '<option value="' + models[i].model_name + '" '+s+'>' + models[i].model_name + '</option>';
         }
+        options += '<option value="__other__">' + this.other_option_html + '</option>';
 
         $("select#"+this.model_select_id).html(options);
 
@@ -253,6 +258,7 @@ CarQuery.prototype = {
 
             options += '<option value="' + trims[i].model_id + '" '+s+'>' +  trim_display + '</option>';
         }
+        options += '<option value="__other__">' + this.other_option_html + '</option>';
 
         $("select#"+this.trim_select_id).html(options);
 
@@ -383,6 +389,18 @@ CarQuery.prototype = {
             return;
         }
 
+        if(this.cur_model === this.other_option)
+        {
+            $("#"+this.model_select_id + '_other').show();
+            $("#"+this.trim_select_id + '_chosen').hide();
+            $("#"+this.trim_select_id + '_other').show();
+            return;
+        } else {
+            $("#"+this.model_select_id + '_other').hide();
+            $("#"+this.trim_select_id + '_chosen').show();
+            $("#"+this.trim_select_id + '_other').hide();
+        }
+
         //Set a loading message while we retrieve the data
         this.setMessage(this.trim_select_id, "Loading Trims...");
 
@@ -406,6 +424,12 @@ CarQuery.prototype = {
         //If value has been selected, save trim selection
         if(this.cur_trim !== "" && this.cur_trim !== null)
             this.saveSetting('trim', this.cur_trim);
+
+        if(this.cur_trim === this.other_option)
+        {
+            $("#"+this.trim_select_id + '_other').show();
+            return;
+        }
 
         var sender = this;
 
