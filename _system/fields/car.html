@@ -429,7 +429,7 @@ CarQuery.prototype = {
         if(this.cur_trim === this.other_option)
         {
             $("#"+this.trim_select_id + '_other').show();
-            $("select#"+sender.trim_select_id).trigger("carquery:updated");
+            $("select#"+sender.trim_select_id).trigger("carquery:change");
             return;
         }
 
