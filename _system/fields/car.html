@@ -87,6 +87,7 @@ CarQuery.prototype = {
     settings:           null,
     trim_select_id:     "",
     year_select_id:     "",
+    data:               {},
 
     init : function(year_select_id, make_select_id, model_select_id, trim_select_id)
     {
@@ -267,35 +268,6 @@ CarQuery.prototype = {
         this.updateChosen();
     },
 
-
-    populateCarData : function(model_data_id)
-    {
-        this.model_data_id = model_data_id;
-        this.cur_trim = $("select#"+this.trim_select_id).val();
-
-        //Make sure there is a trim selected
-        if(this.cur_trim === null || this.cur_trim === "")
-        {
-            $("#"+this.model_data_id).html("");
-            alert('Please select a year, make, and model.');
-            return;
-        }
-
-        //Set a loading message while we retrieve the data
-        $("#"+this.model_data_id).html("Loading Model Data...");
-
-        var sender = this;
-
-        //Get Car Model JSON for the selected make
-        $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
-            if(!sender.responseError(data))
-            {
-                var out = sender.carDataHTML(data[0]);
-                $("#"+sender.model_data_id).html(out);
-            }
-        });
-    },
-
     saveSetting : function(setting, value)
     {
         //JSON library is required to manage settings
@@ -389,7 +361,9 @@ CarQuery.prototype = {
             return;
         }
 
-        if(this.cur_model === this.other_option)
+        console.log(this.cur_model);
+        console.log(this.other_option);
+        if(this.cur_model == this.other_option)
         {
             $("#"+this.model_select_id + '_other').show();
             console.log($("#"+this.model_select_id + '_other'));
@@ -430,6 +404,9 @@ CarQuery.prototype = {
         if(this.cur_trim === this.other_option)
         {
             $("#"+this.trim_select_id + '_other').show();
+            this.data = {
+
+            };
             $("select#"+this.trim_select_id).trigger("carquery:change");
             return;
         }
@@ -441,15 +418,7 @@ CarQuery.prototype = {
         //Get Car Model JSON for the selected make
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
-                for (var key in data[0]) {
-                    $("#form_"+key).val("");
-                    if (data[0].hasOwnProperty(key) && data[0][key]) {
-                        if (key == 'model_engine_fuel') {
-                            data[0][key] = data[0][key].replace("Gasoline", "Petrol");
-                        }
-                        $("#form_"+key).val(data[0][key]);
-                    }
-                }
+                sender.data = data[0];
                 $("select#"+sender.trim_select_id).trigger("carquery:updated");
             }
 
@@ -534,12 +503,27 @@ CarQuery.prototype = {
     }
 };
 
+var carquery = new CarQuery();
+carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
+
+
+
 $('#select_model').bind('click', function() {
     if(!$(this).hasClass('disabled')){
         var year = $("select#{{ element.id }}_year>option:selected").val(),
             make = $("select#{{ element.id }}_make>option:selected").html(),
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
+
+            for (var key in carquery.data) {
+                $("#form_"+key).val("");
+                if (carquery.data.hasOwnProperty(key) && carquery.data[key]) {
+                    if (key == 'model_engine_fuel') {
+                        carquery.data[key] = carquery.data[key].replace("Gasoline", "Petrol");
+                    }
+                    $("#form_"+key).val(carquery.data[key]);
+                }
+            }
 
         //$("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         $("#{{ element.id }}").val(year + " " + make + " " + model + (trim ? " " + trim : ""));
@@ -548,9 +532,6 @@ $('#select_model').bind('click', function() {
     }
     return false;
 });
-
-var carquery = new CarQuery();
-carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
 
 /*
 $("select#{{ element.id }}_make").bind('change', function(){
