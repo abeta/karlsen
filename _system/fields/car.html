@@ -236,7 +236,7 @@ CarQuery.prototype = {
 
             options += '<option value="' + models[i].model_name + '" '+s+'>' + models[i].model_name + '</option>';
         }
-        options += '<option value="' + this.other_option_html + '">' + this.other_option_html + '</option>';
+        options += '<option value="' + this.other_option + '">' + this.other_option_html + '</option>';
 
         $("select#"+this.model_select_id).html(options);
 
