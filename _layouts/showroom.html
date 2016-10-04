@@ -52,7 +52,7 @@ layout: default
         <a href="{{ item.url }}">
           {% assign img = item.gallery[0].src | remove_first: '_media/' %}
           {% if assets[img] %}
-          {% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}
+          <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
           {% endif %}
           <h4>{{ item.title }}</h4>
         </a>
