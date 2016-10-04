@@ -473,11 +473,13 @@ layout: default
   </div>
 </div>
 
+{% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | where_exp: 'item', 'item.id != page.id' | sort: 'order') %}
+{% assign hasCars = cars | size %}
+{% if hasCars %}
 <div class="section well" id="related">
   <div class="container">
     <h2 class="section-header">Related Vehicles</h2>
     <div class="container section-content text-center">
-      {% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | where_exp: 'item', 'item.id != page.id' | sort: 'order') %}
       <div class="row">
         {% for item in cars limit:3 %}
         <div class="col-sm-4">
@@ -498,6 +500,7 @@ layout: default
     </div>
   </div>
 </div>
+{% endif %}
 
 <style>
   body {
