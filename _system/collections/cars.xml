@@ -108,7 +108,7 @@
             <field name="slug" type="hidden" parse="{{id}}-{{title | slugify}}" />
             <field name="image" type="hidden" parse="{{gallery[0].src}}" />
             <field name="id" type="uuid" uuid="ai" filter="integer" />
-            <field name="created" type="hidden" parse="{{created | default({{now|date('c')}})}}" />
+            <field name="created" type="hidden" parse="{{created | default('now' | date('c'))}}" />
         </fieldset>
     </fields>
 </form>
