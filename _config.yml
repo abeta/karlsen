@@ -47,7 +47,7 @@ collections:
 mediaurl: _media
 assets:
   compress:
-    css: true
+    css: false
     js: true
   digest: true
   sources:
