@@ -28,9 +28,11 @@ module Jekyll
     end
   end
 
-  module Filters
+  module BitlyFilter
     def bitly(input)
       BitlyFilterCache.instance.shorten(input)
     end
   end
 end
+
+Liquid::Template.register_filter(Jekyll::BitlyFilter)
