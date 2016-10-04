@@ -204,9 +204,9 @@ layout: default
           </figure>
         </a>
       </div>
-      {% assign index = i | modulo: 3 %}
+      {% assign index = i | modulo: 4 %}
       {% if index == 0 %}<div class="col-md-12 hidden-xs hidden-sm">&nbsp;</div>{% endif %}
-      {% if index == 2 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
+      {% if index == 3 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
       {% endif %}
       {% endfor %}
     </div><br>
