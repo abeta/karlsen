@@ -14,7 +14,7 @@ before_install:
 - npm install -g bower
 - #npm install -g svgo
 - bower install
-- [ -f "$PNGOUT_BIN" ] && echo "pngout already installed!" || wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux vendor
+- [ ! -f "$PNGOUT_BIN" ] && (wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux vendor/pngout-20150319-linux)
 
 script:
 - set -e
