@@ -463,7 +463,7 @@ $('#select_model').bind('click', function() {
             }
 
         //$("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
-        $("#{{ element.id }}").val(year + " " + make + " " + model + (trim ? " " + trim : ""));
+        $("#{{ element.id }}").val(data.model_year + " " + data.make_display + " " + data.model_name + (data.model_trim ? " " + data.model_trim : ""));
         $('#{{ element.id }}_modal').modal('hide');
         $('#adminForm').change();
     }
