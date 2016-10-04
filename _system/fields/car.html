@@ -440,6 +440,7 @@ CarQuery.prototype = {
 
 var carquery = new CarQuery();
 carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
+var carData;
 
 
 
@@ -450,13 +451,14 @@ $('#select_model').bind('click', function() {
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
 
-            for (var key in carquery.getData()) {
+            var data = carquery.getData();
+            for (var key in data) {
                 $("#form_"+key).val("");
-                if (carquery.data.hasOwnProperty(key) && carquery.data[key]) {
+                if (data.hasOwnProperty(key) && data[key]) {
                     if (key == 'model_engine_fuel') {
-                        carquery.data[key] = carquery.data[key].replace("Gasoline", "Petrol");
+                        data[key] = data[key].replace("Gasoline", "Petrol");
                     }
-                    $("#form_"+key).val(carquery.data[key]);
+                    $("#form_"+key).val(data[key]);
                 }
             }
 
@@ -474,12 +476,11 @@ $("select#{{ element.id }}_make").bind('change', function(){
 });
 */
 $(".carquery").bind('carquery:change', function(){
-    $('#select_model').removeClass('disabled');
-});
-$(".carquery").bind('change', function(){
     var $el = $("select#{{ element.id }}_trim>option:selected");
     if(!$el.length || $el.hasClass('loading')) {
         $('#select_model').addClass('disabled');
+    } else {
+      $('#select_model').removeClass('disabled');
     }
 });
 
