@@ -444,6 +444,9 @@ CarQuery.prototype = {
                 if (key == 'model_engine_fuel') {
                     data[key] = data[key].replace("Gasoline", "Petrol");
                 }
+                if (key == 'make_display') {
+                    data[key] = data[key].replace("Opel", "Vauxhall");
+                }
                 $("#form_"+key).val(data[key]);
             }
         }
@@ -457,9 +460,6 @@ CarQuery.prototype = {
 
 var carquery = new CarQuery();
 carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
-var carData;
-
-
 
 $('#select_model').bind('click', function() {
     if(!$(this).hasClass('disabled')){
