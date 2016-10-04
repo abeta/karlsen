@@ -90,13 +90,13 @@ pdf:
   <div class="page-header">
     <h2>Photos</h2>
   </div>
-  <table class="table">
+  <table>
     <tr>
       {% for photo in page.gallery %}
       {% assign img = photo.src | remove_first: '_media/' %}
       {% assign count = forloop.index | modulo: 3 %}
       {% if assets[img] %}
-      <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}">
+      <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}" style="border:none;">
         <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:x500 image_optim:optimize:1 %}" />
       </td>
       {% endif %}
