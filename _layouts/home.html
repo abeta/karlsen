@@ -43,7 +43,7 @@ layout: default
           {% if assets[img] %}
           <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
           {% endif %}
-          <h4 class="text-ellipsis">{{ item.title }}</h4>
+          <h4>{{ item.title }}</h4>
         </a>
         <p>
           <b>&pound;{{ item.price | number_format }}</b> &nbsp;
