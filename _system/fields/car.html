@@ -452,6 +452,9 @@ $('#select_model').bind('click', function() {
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
 
             var data = carquery.getData();
+
+            console.log(data);
+
             for (var key in data) {
                 $("#form_"+key).val("");
                 if (data.hasOwnProperty(key) && data[key]) {
@@ -470,11 +473,6 @@ $('#select_model').bind('click', function() {
     return false;
 });
 
-/*
-$("select#{{ element.id }}_make").bind('change', function(){
-    $("#{{ element.id }}_make").val($("select#{{ element.id }}_make>option:selected").html());
-});
-*/
 $(".carquery").bind('carquery:change', function(){
     var $el = $("select#{{ element.id }}_trim>option:selected");
     if(!$el.length || $el.hasClass('loading')) {
