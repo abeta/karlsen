@@ -484,16 +484,22 @@ CarQuery.prototype = {
 
     getData: function ()
     {
-        $("select#"+this.trim_select_id).trigger("carquery:change");
-        var sender = this;
-        //Get Car Model JSON for the selected make
+        if(this.cur_model === this.other_option || this.cur_trim === this.other_option)
+        {
+            var make = $("select#"+this.make_select_id).data();
+            return {
+                year: $("select#"+this.make_select_id).val(),
+                make_country: make.make_country,
+                make_display: make.make_display,
+                model_name: this.cur_model == this.other_option ? $("select#"+this.model_select_id + '_other').val() : this.cur_model,
+                model_trim: $("select#"+this.trim_select_id + '_other').val(),
+            };
+        }
+
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
-                sender.data = data[0];
-                $("select#"+sender.trim_select_id).trigger("carquery:updated");
+                return data[0];
             }
-
-            //sender.cur_trim = $('select#'+sender.trim_select_id).val();
         });
     }
 };
@@ -510,7 +516,7 @@ $('#select_model').bind('click', function() {
             model = $("select#{{ element.id }}_model>option:selected").html(),
             trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
 
-            for (var key in carquery.data) {
+            for (var key in carquery.getData()) {
                 $("#form_"+key).val("");
                 if (carquery.data.hasOwnProperty(key) && carquery.data[key]) {
                     if (key == 'model_engine_fuel') {
