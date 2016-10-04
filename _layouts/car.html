@@ -305,15 +305,19 @@ layout: default
         <table class="table table-striped">
           <tbody>
 
+            {% if page.model_engine_cyl %}
             <tr>
               <td width="50%">Cylinders:</td>
               <td>{{ page.model_engine_cyl }}</td>
             </tr>
+            {% endif %}
 
+            {% if page.model_engine_valves %}
             <tr>
               <td>Valves:</td>
               <td>{{ page.model_engine_valves }}</td>
             </tr>
+            {% endif %}
 
             {% if page.model_0_to_100_kph > 0 %}
             <tr>
@@ -473,7 +477,7 @@ layout: default
   <div class="container">
     <h2 class="section-header">Related Vehicles</h2>
     <div class="container section-content text-center">
-      {% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | sort: 'order') %}
+      {% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | where_exp: 'item', 'item.id != page.id' | sort: 'order') %}
       <div class="row">
         {% for item in cars limit:3 %}
         <div class="col-sm-4">
