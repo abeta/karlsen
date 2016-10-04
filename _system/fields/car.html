@@ -418,7 +418,7 @@ CarQuery.prototype = {
     {
         if(this.cur_model === this.other_option || this.cur_trim === this.other_option)
         {
-            var make = $("select#"+this.make_select_id).data();
+            var make = $("select#"+this.make_select_id + '>option:selected').data();
             return this.populate({
                 model_year: $("select#"+this.year_select_id).val(),
                 make_country: make.make_country,
