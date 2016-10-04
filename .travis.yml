@@ -3,17 +3,16 @@ rvm:
 - 2.2
 
 cache:
-- bundler
 - directories:
   - .asset-cache
   - bower_components
-  - $PNGOUT_BIN
+  - vendor
 
 before_install:
 - nvm install 4
 - npm install -g bower svgo
 - bower install
-- if [ ! -f "$PNGOUT_BIN" ]; then wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux/x86_64/pngout vendor; fi
+- if [ ! -f "$PNGOUT_BIN" ]; then wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux/x86_64 vendor/pngout; fi
 
 script:
 - set -e
@@ -38,4 +37,4 @@ notifications:
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-  - PNGOUT_BIN=vendor/pngout
+  - PNGOUT_BIN=vendor/pngout/pngout
