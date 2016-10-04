@@ -475,7 +475,9 @@ layout: default
 
 {% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | where_exp: 'item', 'item.id != page.id' | sort: 'order') %}
 {% assign hasCars = cars | size %}
-{% if hasCars %}
+{{ cars | inspect }}
+{{ hasCars | inspect }}
+{% if cars %}
 <div class="section well" id="related">
   <div class="container">
     <h2 class="section-header">Related Vehicles</h2>
