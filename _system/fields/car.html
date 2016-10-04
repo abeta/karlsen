@@ -87,7 +87,6 @@ CarQuery.prototype = {
     settings:           null,
     trim_select_id:     "",
     year_select_id:     "",
-    data:               {},
 
     init : function(year_select_id, make_select_id, model_select_id, trim_select_id)
     {
@@ -186,10 +185,6 @@ CarQuery.prototype = {
 
                 $("select#"+sender.year_select_id).html(options);
 
-                $("select#"+sender.make_select_id).html(sender.empty_option_html);
-                $("select#"+sender.model_select_id).html(sender.empty_option_html);
-
-
                 if(sender.settings.year !== null)
                 {
                     $('select#'+sender.year_select_id).val(sender.settings.year);
@@ -286,9 +281,10 @@ CarQuery.prototype = {
          //if no year supplied, clear makes, models, return;
         if(this.cur_year === "")
         {
-            $("select#"+this.make_select_id).html(this.empty_option_html).trigger("chosen:updated");
-            $("select#"+this.model_select_id).html(this.empty_option_html).trigger("chosen:updated");
-            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.make_select_id).html(this.empty_option_html);
+            $("select#"+this.model_select_id).html(this.empty_option_html);
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            this.updateChosen();
             return;
         }
 
@@ -318,8 +314,9 @@ CarQuery.prototype = {
         //if no make supplied, clear models, return;
         if(this.cur_make === "")
         {
-            $("select#"+this.model_select_id).html(this.empty_option_html).trigger("chosen:updated");
-            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.model_select_id).html(this.empty_option_html);
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            this.updateChosen();
             return;
         }
 
@@ -357,7 +354,8 @@ CarQuery.prototype = {
         //if no model supplied, clear trim, return;
         if(this.cur_model === "")
         {
-            $("select#"+this.trim_select_id).html(this.empty_option_html).trigger("chosen:updated");
+            $("select#"+this.trim_select_id).html(this.empty_option_html);
+            this.updateChosen();
             return;
         }
 
