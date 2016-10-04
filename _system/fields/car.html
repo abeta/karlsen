@@ -397,11 +397,9 @@ CarQuery.prototype = {
             this.saveSetting('trim', this.cur_trim);
 
         if(this.cur_trim === this.other_option)
-        {
             $("#"+this.trim_select_id + '_other').show();
-            $("select#"+this.trim_select_id).trigger("carquery:change");
-            return;
-        }
+
+        $("select#"+this.trim_select_id).trigger("carquery:change");
     },
 
     responseError: function (data)
@@ -421,35 +419,24 @@ CarQuery.prototype = {
         if(this.cur_model === this.other_option || this.cur_trim === this.other_option)
         {
             var make = $("select#"+this.make_select_id).data();
-            return {
+            return this.populate({
                 model_year: $("select#"+this.year_select_id).val(),
                 make_country: make.make_country,
                 make_display: make.make_display,
                 model_name: this.cur_model == this.other_option ? $("select#"+this.model_select_id + '_other').val() : this.cur_model,
                 model_trim: $("select#"+this.trim_select_id + '_other').val(),
-            };
+            });
         }
 
         $.getJSON(this.base_url+"?callback=?", {cmd:"getModel", model:this.cur_trim}, function(data) {
             if(!sender.responseError(data)) {
-                return data[0];
+                return this.populate(data[0]);
             }
         });
-    }
-};
+    },
 
-var carquery = new CarQuery();
-carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
-var carData;
-
-
-
-$('#select_model').bind('click', function() {
-    if(!$(this).hasClass('disabled')){
-        var data = carquery.getData();
-
-        console.log(data);
-
+    populate: function (data)
+    {
         for (var key in data) {
             $("#form_"+key).val("");
             if (data.hasOwnProperty(key) && data[key]) {
@@ -464,6 +451,18 @@ $('#select_model').bind('click', function() {
         $("#{{ element.id }}").val(data.model_year + " " + data.make_display + " " + data.model_name + (data.model_trim ? " " + data.model_trim : ""));
         $('#{{ element.id }}_modal').modal('hide');
         $('#adminForm').change();
+    },
+};
+
+var carquery = new CarQuery();
+carquery.init('{{ element.id }}_year', '{{ element.id }}_make', '{{ element.id }}_model', '{{ element.id }}_trim');
+var carData;
+
+
+
+$('#select_model').bind('click', function() {
+    if(!$(this).hasClass('disabled')){
+        carquery.getData();
     }
     return false;
 });
