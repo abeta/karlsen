@@ -422,7 +422,7 @@ CarQuery.prototype = {
         {
             var make = $("select#"+this.make_select_id).data();
             return {
-                model_year: $("select#"+this.make_select_id).val(),
+                model_year: $("select#"+this.year_select_id).val(),
                 make_country: make.make_country,
                 make_display: make.make_display,
                 model_name: this.cur_model == this.other_option ? $("select#"+this.model_select_id + '_other').val() : this.cur_model,
@@ -446,24 +446,19 @@ var carData;
 
 $('#select_model').bind('click', function() {
     if(!$(this).hasClass('disabled')){
-        var year = $("select#{{ element.id }}_year>option:selected").val(),
-            make = $("select#{{ element.id }}_make>option:selected").html(),
-            model = $("select#{{ element.id }}_model>option:selected").html(),
-            trim = ($("select#{{ element.id }}_trim>option:selected").val() ? $("select#{{ element.id }}_trim>option:selected").html() : "");
+        var data = carquery.getData();
 
-            var data = carquery.getData();
+        console.log(data);
 
-            console.log(data);
-
-            for (var key in data) {
-                $("#form_"+key).val("");
-                if (data.hasOwnProperty(key) && data[key]) {
-                    if (key == 'model_engine_fuel') {
-                        data[key] = data[key].replace("Gasoline", "Petrol");
-                    }
-                    $("#form_"+key).val(data[key]);
+        for (var key in data) {
+            $("#form_"+key).val("");
+            if (data.hasOwnProperty(key) && data[key]) {
+                if (key == 'model_engine_fuel') {
+                    data[key] = data[key].replace("Gasoline", "Petrol");
                 }
+                $("#form_"+key).val(data[key]);
             }
+        }
 
         //$("#form_title").val(make + " " + model + (trim ? " " + trim : ""));
         $("#{{ element.id }}").val(data.model_year + " " + data.make_display + " " + data.model_name + (data.model_trim ? " " + data.model_trim : ""));
