@@ -51,12 +51,12 @@ layout: default
     <div class="banner-container">
       <div class="container">
         <div class="banner-text">
+          {% capture logo %}car-brands/{{ page.make_display | downcase }}.png{% endcapture %}
+          {% if assets[logo] %}
           <div class="pull-left" style="line-height:87px; margin-right:20px">
-            {% assign img = 'car-brands/{{ page.make_display | downcase }}.png' %}
-            {% if assets[img] %}
-            {% img '{{ img }}' magick:resize:100x74 image_optim:optimize:1 %}
-            {% endif %}
+            {% img '{{ logo }}' magick:resize:100x74 image_optim:optimize:1 %}
           </div>
+          {% endif %}
           <div class="pull-left">
             <h1 class="h2 media-heading">{{ page.title | markdownify | strip_html }}</h1>
             <span class="h4">
