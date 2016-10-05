@@ -6,7 +6,7 @@ layout: default
     <h1 class="text-center">{{ page.title | markdownify | strip_html }}</h1>
     {% if content != "" %}{% include template/content.html %}{% endif %}
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default filter-sort">
       <div class="container-fluid">
         <form class="navbar-form navbar-left">
           <label for="filter">Manufacturer: </label>
@@ -18,7 +18,7 @@ layout: default
           </select>
         </form>
 
-        <form class="navbar-form navbar-right hidden-xs">
+        <!--form class="navbar-form navbar-right hidden-xs">
           <label for="sort">View: </label>
           <div class="btn-group" data-toggle="buttons" id="order">
             <label class="btn btn-default active">
@@ -30,41 +30,52 @@ layout: default
               <span class="sr-only">Gallery view</span>
             </label>
           </div>
-        </form>
+        </form-->
 
         <form class="navbar-form navbar-right">
           <label for="sort">Sort: </label>
           <select name="sort" id="sort" class="form-control">
-            <option value="date">Date added</option>
-            <option value="price">Price</option>
-            <option value="mileage">Mileage</option>
-            <option value="year">Year</option>
+            <option value="id">Date added</option>
+            <option value=".price">Price</option>
+            <option value=".mileage">Mileage</option>
+            <option value=".year">Year</option>
           </select>
+
+          <div class="btn-group" data-toggle="buttons" id="order">
+            <label class="btn btn-default active">
+              <input value="asc" type="radio" name="order" id="order_asc" autocomplete="off" checked="">
+              <span class="fa fa-sort-amount-asc"></span>
+              <span class="sr-only">Ascending</span>
+            </label>
+            <label class="btn btn-default">
+              <input value="desc" type="radio" name="order" id="order_desc" autocomplete="off">
+              <span class="fa fa-sort-amount-desc"></span>
+              <span class="sr-only">Descending</span>
+            </label>
+          </div>
         </form>
 
       </div>
     </nav>
 
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
-    <div class="row text-center">
+    <div class="row text-center filter-container" id="showroom">
       {% for item in cars %}
-      <div class="col-md-4 col-sm-6">
+      <div class="col-md-4 col-sm-6 filter-item" data-id="{{ item.id | split: '-' | first | split: '/' | last }}" data-make="{{ item.make_display }}">
         <a href="{{ item.url }}">
-          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+          {% assign img = item.image | remove_first: '_media/' %}
           {% if assets[img] %}
           <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
           {% endif %}
-          <h4>{{ item.title }}</h4>
+          <h4 class="title">{{ item.title }}</h4>
         </a>
         <p>
-          <b class="fa-lg">&pound;{{ item.price | number_format }}</b> &nbsp;
-          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
-          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
+          <b class="fa-lg">&pound;<span class="price">{{ item.price | number_format }}</span></b> &nbsp;
+          <i class="fa fa-fw fa-tachometer"></i> <span class="mileage">{{ item.mileage | number_format }}</span> miles &nbsp;
+          <i class="fa fa-fw fa-clock-o"></i> <span class="year">{{ item.model_year }}</span>
+        </p>
+        &nbsp;
       </div>
-
-      {% assign index = forloop.index | modulo: 3 %}
-      {% if index == 0 %}<div class="col-md-12 hidden-xs hidden-sm">&nbsp;</div>{% endif %}
-      {% if index == 2 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
 
       {% endfor %}
     </div>

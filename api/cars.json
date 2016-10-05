@@ -1,0 +1,22 @@
+---
+layout: json
+---
+{% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
+[
+  {% for car in cars %}
+  {% assign img = car.image | remove_first: '_media/' %}
+  {% if assets[img] %}
+  {% capture image %}{% image_path '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 %}{% endcapture %}
+  {% endif %}
+  {
+    "id": {{ car.id | split: '-' | first | split: '/' | last }},
+    "title": "{{ car.title }}",
+    "image": "{{ image | xml_escape }}",
+    "url": "{{ car.url | xml_escape }}",
+    "year": {{ car.model_year }},
+    "make": "{{ car.make_display }}",
+    "price": "{{ car.price | number_format }}",
+    "mileage": "{{ car.mileage | number_format }}"
+  }{% if forloop.last != true %},{% endif %}
+  {% endfor %}
+]

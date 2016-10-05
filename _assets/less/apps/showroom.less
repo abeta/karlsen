@@ -142,3 +142,19 @@
   margin-top: 3px;
   }
 }
+.filter-item {
+  figure {
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    &:nth-child(3) {
+      clear: both;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    &:nth-child(4) {
+      clear: both;
+    }
+  }
+}
