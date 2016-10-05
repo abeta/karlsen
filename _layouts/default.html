@@ -14,8 +14,7 @@
     <title>{{ page.title | markdownify | strip_html }} | {{ site.title }}</title>
     {% stylesheet app %}
     <!--[if lt IE 9]>
-      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="//cdn.jsdelivr.net/g/html5shiv@3.7.3,respond@1.4.2,selectivizr@1.0.3b"></script>
     <![endif]-->
     <meta property="og:title" content="{{ page.title | markdownify | strip_html }}" />
     <meta property="og:description" content="{{ description | xml_escape }}" />
