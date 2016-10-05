@@ -52,8 +52,9 @@ layout: default
       <div class="container">
         <div class="banner-text">
           <div class="pull-left" style="line-height:87px; margin-right:20px">
-            {% if assets['car-brands/{{ page.make_display | downcase }}.png'] %}
-            {% img 'car-brands/{{ page.make_display | downcase }}.png' magick:resize:100x74 %}
+            {% assign img = 'car-brands/{{ page.make_display | downcase }}.png' %}
+            {% if assets[img] %}
+            {% img '{{ img }}' magick:resize:100x74 image_optim:optimize:1 %}
             {% endif %}
           </div>
           <div class="pull-left">

@@ -46,6 +46,7 @@
         </a>
       </div>
       <div class="collapse navbar-collapse">
+        {% unless layout.hide_nav %}
         <ul class="nav navbar-nav">
         {% assign pages = site.pages | where: 'published', 1 | where: 'menu', 'main' | sort: 'order' %}
         {% for item in pages %}
@@ -79,6 +80,7 @@
           </li>
         {% endfor %}
         </ul>
+        {% endunless %}
       </div>
     </div>
   </div>
