@@ -6,13 +6,13 @@ hide_nav: true
 {% if assets[img] %}{% capture image %}{% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %}{% endcapture %}{% endif %}
 <div class="banner banner-fluid bg-dark" style="background-image:url({{ image }})">
   <div class="section container">
-    <h1 class="banner-heading text-center">{{ page.title }}</h1>
+    <h1 class="banner-heading text-center media-heading">{{ page.title }}</h1>
     <br>
     <div class="row">
       <div class="col-md-6 banner-heading">
         <div class="panel-body bg-darken">
-          <p>{{ page.product }}</p>
-          <span class="fa-2x" style="line-height:1"><span class="fa-2x">&pound;{{ page.price }}</span> / vehicle</span>
+          <h3 class="media-heading">{{ page.product }}</h3>
+          <span class="fa-2x" style="line-height:1"><span class="fa-2x">only &pound;{{ page.price }}</span> / vehicle</span>
         </div>
         <br>
         <ul class="list-features text-lg">
@@ -20,6 +20,7 @@ hide_nav: true
           <li>{{ feature.feature }}</li>
           {% endfor %}
         </ul>
+        <br>
       </div>
       <div class="col-md-6">
         <form role="form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="well bg-lighten">
