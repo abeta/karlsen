@@ -2,10 +2,7 @@
 layout: page
 ---
 <div class="row">
-  <div class="col-sm-5">
-    {{ content | replace_once: '<p>', '<p class="lead">' }}
-  </div>
-
+  <div class="col-sm-5 text-justify">{% include template/content.html %}</div>
   <div class="col-sm-6 col-sm-push-1">
     <form role="form" action="" method="post" class="donforms form-horizontal">
       <legend>Contact details</legend>

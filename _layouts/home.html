@@ -20,7 +20,7 @@ layout: default
 <div class="section" id="content">
   <div class="container">
     <h2 class="h1 section-header text-center">Welcome to Karlsen Auto Design</h2>
-    <div class="section-content text-justify-center">{{ content | replace_first: '<p>', '<p class="lead">' }}</div>
+    <div class="section-content text-justify-center">{% include template/content.html %}</div>
   </div>
 </div>
 
