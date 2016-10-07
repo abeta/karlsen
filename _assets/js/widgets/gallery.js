@@ -16,7 +16,8 @@ $(document).ready(function() {
   $('.gallery a').click(function(){
     var $el = $(this);
     current = $el;
-    $m.title.html($el.data("title") ? $el.data("title") : $el.attr("title"));
+    var title = $el.data("title") ? $el.data("title") : $el.attr("title");
+    $m.title.html(title || '');
     $m.body.html('<img src="' + $el.data("image") + '" class="hidden" />');
     $modal.modal('show');
     return false;
@@ -25,12 +26,12 @@ $(document).ready(function() {
   // previous/next buttons
   var previous = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      current.parent().prev().children('a').click();
+      current.parent().prev('.item').children('a').click();
     }).modal('hide');
   };
   var next = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      current.parent().next().children('a').click();
+      current.parent().next('.item').children('a').click();
     }).modal('hide');
   };
 

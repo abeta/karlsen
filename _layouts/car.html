@@ -197,17 +197,14 @@ layout: default
       {% assign i = i | plus: 1 %}
       {% assign img = photo.src | remove_first: '_media/' %}
       {% if assets[img] %}
-      <div class="col-md-3 col-sm-4">
+      <div class="col-md-3 col-sm-4 item">
         <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:868 %}">
           <figure>
             {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title }}' %}
             {% if photo.title %}<figcaption>{{ photo.title }}</figcaption>{% endif %}
           </figure>
-        </a>
+        </a><br>
       </div>
-      {% assign index = i | modulo: 4 %}
-      {% if index == 0 %}<div class="col-md-12 hidden-xs hidden-sm">&nbsp;</div>{% endif %}
-      {% if index == 3 %}<div class="col-sm-12 visible-sm-block">&nbsp;</div>{% endif %}
       {% endif %}
       {% endfor %}
     </div><br>
