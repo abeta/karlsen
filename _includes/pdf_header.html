@@ -12,7 +12,9 @@
     <div class="row">
       <div class="col-xs-9">
         <div class="h3 media-heading text-ellipsis">{{ page.title }}</div>
+        {% if page.price > 0 %}
         <span class="h4 nomargin"><strong>&pound;{{ page.price | number_format }}</strong></span> &nbsp;
+        {% endif %}
         <span class="lead nomargin">
           <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp;
           <i class="fa fa-clock-o"></i> {{ page.model_year }}

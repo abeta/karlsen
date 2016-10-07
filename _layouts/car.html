@@ -60,7 +60,7 @@ layout: default
           <div class="pull-left">
             <h1 class="h2 media-heading">{{ page.title | markdownify | strip_html }}</h1>
             <span class="h4">
-              <span class="label label-primary label-lg">&pound;{{ page.price | number_format }}</span> &nbsp;
+              <span class="label label-primary label-lg">{% if page.price > 0 %}&pound;{{ page.price | number_format }}{% else %}Price on request{% endif %}</span> &nbsp;
               <i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles &nbsp;
               <i class="fa fa-clock-o"></i> {{ page.model_year }}
             </span>
