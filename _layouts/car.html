@@ -198,7 +198,7 @@ layout: default
       <div class="col-md-3 col-sm-4 item">
         <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:868 %}">
           <figure>
-            {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title }}' %}
+            {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title | default: page.title }}' %}
             {% if photo.title %}<figcaption>{{ photo.title }}</figcaption>{% endif %}
           </figure>
         </a><br>
