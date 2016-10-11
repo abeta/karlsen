@@ -1,7 +1,7 @@
 .navbar.navbar-inverse {
     background-color: rgba(0,0,0,0.75);
     .transition(0.8s ease all);
-    
+
     &:hover {
         background-color: rgba(0,0,0,0.9);
     }
@@ -11,7 +11,7 @@
     margin-right: 10px;
 }
 
-@media (max-width:767px) {
+@media (max-width:@screen-xs-max) {
     .navbar.navbar-inverse {
         ul ul {
             padding-left: 15px;
@@ -58,16 +58,26 @@
         }
     }
 }
-@media (min-width:768px) {
-    .navbar-inverse .navbar-nav > li {
+@media (min-width:@screen-sm-min) {
+    .navbar ul.navbar-nav > li {
         position:relative;
         &>a, &>a:hover, &>a:focus {
             text-transform: uppercase;
+            padding-left: 11px;
+            padding-right: 11px;
         }
     }
 }
-@media (min-width:992px) {
-    .navbar-inverse .navbar-nav > li {
+@media (min-width:@screen-md-min) {
+    .navbar ul.navbar-nav > li {
+        &>a, &>a:hover, &>a:focus {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
+@media (min-width:@screen-lg-min) {
+    .navbar ul.navbar-nav > li {
         &>a, &>a:hover, &>a:focus {
             font-size: 18px;
         }

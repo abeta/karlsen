@@ -19,7 +19,7 @@ defaults:
       type: cars
     values:
       layout: car
-      pdf: true
+      pdf: false
   -
     scope:
       path: ''

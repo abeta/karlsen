@@ -71,7 +71,7 @@
         {% endunless %}
         {% endfor %}
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right hidden-sm">
         {% for provider in site.profiles.provider %}
           <li>
             <a href="{{ site.profiles[provider] }}" target="_blank" title="Follow us on {{ provider | capitalize }}">
