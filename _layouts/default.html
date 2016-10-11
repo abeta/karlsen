@@ -41,7 +41,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ site.url }}">
+        <a class="navbar-brand" href="{% if layout.hide_nav %}#{% else %}{{ site.url }}{% endif %}">
           <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}">
         </a>
       </div>
