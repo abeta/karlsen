@@ -100,15 +100,15 @@ hide_nav: true
   </div>
 </div>
 <div class="section well">
-  <div class="container">
-    <h3 class="section-header text-uppercase text-center">{{ page.logosheading}}</h3>
+  <div class="container text-center">
+    <h3 class="section-header text-uppercase">{{ page.logosheading}}</h3>
     {% assign logos = 'autotrader,pistonheads,facebook,instagram,twitter' | split: ',' %}
     {% assign width = 0.0 %}
     {% for logo in logos %}
     {% capture img %}logos/{{ logo }}.png{% endcapture %}
     {% assign width = width | plus: assets[img].width %}
     {% endfor %}
-    <div class="section-content">
+    <div class="section-content row row-logos">
       {% for logo in logos %}
       {% capture img %}logos/{{ logo }}.png{% endcapture %}
       <div class="col-sm-2" style="width:{{ assets[img].width | times: 100 | divided_by: width }}%;">

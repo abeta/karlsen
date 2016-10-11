@@ -6,9 +6,11 @@ layout: default
 <div class="banner bg-dark" style="background-image:url({{ image }})">
   <div class="banner-content">
     <div class="slogan">
-      <div class="container text-center text-uppercase">
-        <h1>Luxury, sports &amp; prestige vehicles</h1>
-        <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
+      <div class="container slogan-container">
+        <div class="slogan-inner">
+          <h1 class="banner-heading">Luxury, sports &amp; prestige vehicles</h1>
+          <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
+        </div>
       </div>
     </div>
   </div>
@@ -32,34 +34,34 @@ layout: default
 </div>
 
 {% assign cars = (site.cars | where: 'published', 1 | sort: 'order') %}
-<div class="section well">
-  <div class="container">
-    <h2 class="section-header text-center text-uppercase">Featured Vehicles</h2>
-    <div class="section-content text-center">
-      <div class="owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
-        {% for item in cars limit:12 %}
-        <div>
-          <a href="{{ item.url }}" title="{{ item.title }}">
-            {% assign img = item.gallery[0].src | remove_first: '_media/' %}
-            {% if assets[img] %}
-            <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
-            {% endif %}
-            <h4>{{ item.title }}</h4>
-          </a>
-          <p>
-            <b>&pound;{{ item.price | number_format }}</b> &nbsp;
-            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
-            <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
-        </div>
-        {% endfor %}
+<div class="section">
+  <div class="container text-center">
+    <h2 class="section-header text-uppercase">Featured Vehicles</h2>
+    <div class="section-content owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
+      {% for item in cars limit:12 %}
+      <div>
+        <a href="{{ item.url }}" title="{{ item.title }}">
+          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+          {% if assets[img] %}
+          <figure>{% img '{{ img }}' magick:resize:400^x250 magick:gravity:center magick:crop:400x250+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
+          {% endif %}
+          <h4>{{ item.title }}</h4>
+        </a>
+        <p>
+          <b>&pound;{{ item.price | number_format }}</b> &nbsp;
+          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
+          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
       </div>
-      <a href="/showroom.html" class="btn btn-lg btn-danger">See all vehicles</a>
+      {% endfor %}
+    </div>
+    <div class="section-content">
+      <a href="/showroom.html" class="btn btn-danger">See all vehicles</a>
     </div>
   </div>
 </div>
 
-<div class="section bg-primary text-center">
-  <div class="container">
+<div class="section bg-primary">
+  <div class="container text-center">
     <h2 class="section-header text-uppercase">Signup to our Newsletter</h2>
     <div class="section-content">
       <p class="lead">Get privy information on our upcoming vehicles delivered right to your inbox.</p>
@@ -73,5 +75,21 @@ layout: default
         </div>
       </form>
     </div>
+  </div>
+</div>
+
+{% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
+<div class="section well">
+  <div class="container text-center">
+    <h2 class="section-header text-uppercase">Browse by make</h2>
+    <div class="section-content owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":3},"480":{"items":4},"768":{"items":5},"992":{"items":6},"1200":{"items":8}}' data-margin="30" data-loop="true">
+        {% for make in makes %}
+        {% capture logo %}car-brands/{{ make.name | downcase }}.png{% endcapture %}
+        {% if assets[logo] %}
+        <a href="/showroom.html#{{ make.name | downcase }}" class="img-contain" style="display: block; height:0; padding-bottom: 100%; background-image:url({% img_path '{{ logo }}' magick:resize:125x125 image_optim:optimize:1 %})">
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
   </div>
 </div>

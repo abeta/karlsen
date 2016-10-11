@@ -42,7 +42,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{% if layout.hide_nav %}#{% else %}{{ site.url }}{% endif %}">
-          <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}">
+          {% img logo.png magick:resize:x50 image_optim:optimize:1 %}
         </a>
       </div>
       <div class="collapse navbar-collapse">
@@ -74,7 +74,7 @@
         <ul class="nav navbar-nav navbar-right">
         {% for provider in site.profiles.provider %}
           <li>
-            <a href="{{ site.profiles[provider] }}" target="_blank">
+            <a href="{{ site.profiles[provider] }}" target="_blank" title="Follow us on {{ provider | capitalize }}">
               <i class="fa fa-lg fa-{{ provider }}"></i> <span class="sr-only">Follow us on {{ provider | capitalize }}</span>
             </a>
           </li>
