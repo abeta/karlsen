@@ -31,6 +31,15 @@
     <meta name="twitter:creator" content="@abemedia"/>
   </head>
   <body>
+  {% if layout.hide_nav %}
+  <div id="nav" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        {% img logo.png magick:resize:x50 image_optim:optimize:1 %}
+      </a>
+    </div>
+  </div>
+  {% else %}
   <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
   <div id="nav" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
@@ -41,12 +50,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% if layout.hide_nav %}#{% else %}{{ site.url }}{% endif %}">
+        <a class="navbar-brand" href="{{ site.url }}">
           {% img logo.png magick:resize:x50 image_optim:optimize:1 %}
         </a>
       </div>
       <div class="collapse navbar-collapse">
-        {% unless layout.hide_nav %}
         <ul class="nav navbar-nav">
         {% assign pages = site.pages | where: 'published', 1 | where: 'menu', 'main' | sort: 'order' %}
         {% for item in pages %}
@@ -80,10 +88,10 @@
           </li>
         {% endfor %}
         </ul>
-        {% endunless %}
       </div>
     </div>
   </div>
+  {% endif %}
   {{content}}
   <footer class="footer">
     <div class="container small">
