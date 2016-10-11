@@ -13,7 +13,7 @@ before_install:
 - npm install -g bower svgo
 - bower install
 - if [ ! -f "$PNGOUT_BIN" ]; then wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux/x86_64 vendor/pngout; fi
-- if [[ $(git show --name-only) != *_assets/* ]]; then rm -rf .asset-cache/sprockets; fi
+- if [[ $(git show --name-only) == *_assets/less* ]]; then rm -rf .asset-cache/sprockets; fi
 
 script:
 - set -e
