@@ -82,7 +82,7 @@ layout: default
 <div class="section well">
   <div class="container text-center">
     <h2 class="section-header text-uppercase">Browse by make</h2>
-    <div class="section-content owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":3},"480":{"items":4},"768":{"items":5},"992":{"items":6},"1200":{"items":8}}' data-margin="30" data-loop="true">
+    <div class="section-content owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":3},"480":{"items":4},"768":{"items":5},"992":{"items":6},"1200":{"items":8}}' data-margin="40" data-loop="true">
         {% for make in makes %}
         {% capture logo %}car-brands/{{ make.name | downcase }}.png{% endcapture %}
         {% if assets[logo] %}
