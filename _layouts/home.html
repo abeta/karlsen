@@ -35,7 +35,7 @@ layout: default
 <div class="section well">
   <div class="container">
     <h2 class="section-header text-center text-uppercase">Featured Vehicles</h2>
-    <div class="section-content owl-carousel owl-theme text-center" data-autoplay="false" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
+    <div class="section-content owl-carousel owl-theme text-center" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
       {% for item in cars limit:12 %}
       <div>
         <a href="{{ item.url }}" title="{{ item.title }}">
