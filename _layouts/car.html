@@ -26,24 +26,22 @@ layout: default
 
     <div class="submenu">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <div id="submenu">
-              <ul class="nav nav-pills" role="tablist">
-                <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
-                <li><a href="#content"><i class="fa fa-info-circle"></i> Details</a></li>
-                <li><a href="#photos"><i class="fa fa-camera"></i> Photos</a></li>
-                <li><a href="#specs"><i class="fa fa-file-text-o"></i> Specifications</a></li>
-                <li class="hidden"><a href="#test_drive"></a></li>
-                <!--li><a href="#finance"><i class="fa fa-money"></i> Finance</a></li-->
-              </ul>
-            </div>
+        <div class="">
+          <div id="submenu">
+            <ul class="nav nav-pills" role="tablist">
+              <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
+              <li><a href="#content"><i class="fa fa-info-circle"></i> <span class="hidden-xs">Details</span></a></li>
+              <li><a href="#photos"><i class="fa fa-camera"></i> <span class="hidden-xs">Photos</span></a></li>
+              <li><a href="#specs"><i class="fa fa-file-text-o"></i> <span class="hidden-xs">Specifications</span></a></li>
+              <li class="hidden"><a href="#test_drive"></a></li>
+              <!--li><a href="#finance"><i class="fa fa-money"></i> <span class="hidden-xs">Finance</span></a></li-->
+            </ul>
           </div>
-          <div class="col-sm-6 text-right">
-            <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> Share</a>
-            <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print (PDF)</a>
-            <a href="#test_drive" class="btn btn-danger">Book a test drive</a>
-          </div>
+        </div>
+        <div class="navbar-right">
+          <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> <span class="hidden-xs hidden-sm">Share</span></a>
+          <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> <span class="hidden-xs hidden-sm">Print (PDF)</span></a>
+          <a href="#test_drive" class="btn btn-danger">Book a test drive</a>
         </div>
       </div>
     </div>

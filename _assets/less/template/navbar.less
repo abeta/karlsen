@@ -1,11 +1,21 @@
-.navbar.navbar-inverse {
+.navbar-default {
+    background-color: rgba(255,255,255,0.75);
+
+    &:hover {
+        background-color: rgba(255,255,255,0.9);
+    }
+}
+.navbar-inverse {
     background-color: rgba(0,0,0,0.75);
-    .transition(0.8s ease all);
 
     &:hover {
         background-color: rgba(0,0,0,0.9);
     }
 }
+.navbar {
+    .transition(0.8s ease all);
+}
+
 .navbar-brand {
     padding: 5px 15px;
     margin-right: 10px;
