@@ -35,22 +35,25 @@ layout: default
 <div class="section well">
   <div class="container">
     <h2 class="section-header text-center text-uppercase">Featured Vehicles</h2>
-    <div class="section-content owl-carousel owl-theme text-center" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
-      {% for item in cars limit:12 %}
-      <div>
-        <a href="{{ item.url }}" title="{{ item.title }}">
-          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
-          {% if assets[img] %}
-          <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
-          {% endif %}
-          <h4>{{ item.title }}</h4>
-        </a>
-        <p>
-          <b>&pound;{{ item.price | number_format }}</b> &nbsp;
-          <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
-          <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
+    <div class="section-content text-center">
+      <div class="owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
+        {% for item in cars limit:12 %}
+        <div>
+          <a href="{{ item.url }}" title="{{ item.title }}">
+            {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+            {% if assets[img] %}
+            <figure>{% img '{{ img }}' magick:resize:400^x225 magick:gravity:center magick:crop:400x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
+            {% endif %}
+            <h4>{{ item.title }}</h4>
+          </a>
+          <p>
+            <b>&pound;{{ item.price | number_format }}</b> &nbsp;
+            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
+            <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <a href="/showroom.html" class="btn btn-lg btn-danger">See all vehicles</a>
     </div>
   </div>
 </div>
