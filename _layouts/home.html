@@ -3,7 +3,7 @@ layout: default
 ---
 {% assign img = page.image | remove_first: '_media/' %}
 {% if assets[img] %}{% capture image %}{% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %}{% endcapture %}{% endif %}
-<div class="banner bg-dark" style="background-image:url({{ image }})">
+<div class="banner bg-dark img-paralax" style="background-image:url({{ image }})">
   <div class="banner-content">
     <div class="slogan">
       <div class="container slogan-container">
@@ -41,9 +41,9 @@ layout: default
       {% for item in cars limit:12 %}
       <div>
         <a href="{{ item.url }}" title="{{ item.title }}">
-          {% assign img = item.gallery[0].src | remove_first: '_media/' %}
+          {% assign img = item.image | remove_first: '_media/' %}
           {% if assets[img] %}
-          <figure>{% img '{{ img }}' magick:resize:400^x250 magick:gravity:center magick:crop:400x250+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
+          <figure>{% img '{{ img }}' magick:resize:360^x240 magick:gravity:center magick:crop:360x240+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
           {% endif %}
           <h4>{{ item.title }}</h4>
         </a>
