@@ -46,44 +46,40 @@
     }
   }
 
-  .banner-text h1 {
-    margin: 0;
-  }
-  .banner-heading {
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 10px #000, 1px 1px 0 #000;
-    font-weight: 700;
-  }
-  .slogan {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    text-align: center;
-    text-transform: uppercase;
-    &>.slogan-container {
-      display: table;
-      height: 100%;
-      &>.slogan-inner {
-        display: table-cell;
-        vertical-align: middle;
-      }
-    }
-    h1 {
-      @media (min-width:768px) {
-        font-size: 56px;
-      }
-      margin-bottom: 20px;
-    }
-    a {
-      font-weight: 700;
-    }
-  }
-
   .section {
     padding-top: @navbar-height + @section-lg-padding;
     padding-bottom: @section-lg-padding;
+  }
+}
+.banner-heading {
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 10px #000, 1px 1px 0 #000;
+  font-weight: 700;
+}
+.slogan {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  text-transform: uppercase;
+  &>.slogan-container {
+    display: table;
+    height: 100%;
+    &>.slogan-inner {
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+  h1 {
+    @media (min-width:768px) {
+      font-size: 56px;
+    }
+    margin-bottom: 20px;
+  }
+  a {
+    font-weight: 700;
   }
 }
 .banner-fluid {
@@ -110,6 +106,10 @@
   li a {
     color: #000;
   }
+  .btn {
+    font-weight: 300;
+    text-transform: none;
+  }
 }
 .banner-container {
   position: absolute;
@@ -126,32 +126,35 @@
   background: rgba(255,255,255,0.75);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   padding: 30px 15px 30px 1000px;
-  margin-left: -1000px;
-}
-.banner-text:after {
-  top: 0;
-  bottom: 0;
-  left: 100%;
-  width: 200px;
-  border-top: 200px solid transparent;
-  border-bottom: 200px solid rgba(255,255,255,0.75);
-  border-right: 200px solid transparent;
-  border-left: 200px solid rgba(255,255,255,0.75);
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 0;
+  margin: 0 200px 0 -1000px;
+  h1 {
+    margin: 0;
+  }
+  &:after {
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 200px;
+    border-top: 200px solid transparent;
+    border-bottom: 200px solid rgba(255,255,255,0.75);
+    border-right: 200px solid transparent;
+    border-left: 200px solid rgba(255,255,255,0.75);
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 0;
+  }
 }
 .list-features {
   .list-unstyled;
   padding-left: 1.5em;
   position: relative;
   li:before {
-  .fa;
-  content: "\f00c";
-  position: absolute;
-  left: 0;
-  margin-top: 3px;
+    .fa;
+    content: "\f00c";
+    position: absolute;
+    left: 0;
+    margin-top: 3px;
   }
 }
 .filter-item {

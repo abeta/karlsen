@@ -2,7 +2,7 @@
 <form>
     <fields>
         <fieldset name="advanced">
-            <field name="heading" type="text" class="form-control" filter="string" />
+            <field name="heading" label="Heading" type="text" class="form-control" filter="string" />
             <field name="menu" type="list" label="Menu" class="form-control" admintable="true">
                 <option value=""></option>
                 <option value="main">Main Menu</option>

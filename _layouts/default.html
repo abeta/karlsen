@@ -87,7 +87,7 @@
   {{content}}
   <footer class="footer">
     <div class="container small">
-      <img height="50" src="{{ 'logo.png' | asset_path }}" alt="{{site.title}}" class="center-block"><br>
+      {% img logo.png magick:resize:x50 image_optim:optimize:1 alt:'{{site.title}}' class:center-block %}<br>
       <div class="row">
         <div class="col-sm-8">
           <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }}

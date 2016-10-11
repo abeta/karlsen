@@ -2,7 +2,7 @@
 layout: default
 ---
 <div id="carousel" class="carousel banner slide" data-ride="carousel" pause="false">
-  <div class="container rel">
+  <div class="container rel hidden-xs">
     <ol class="carousel-indicators">
         {% for photo in page.gallery limit:3 %}
         {% assign img = photo.src | remove_first: '_media/' %}
@@ -26,7 +26,7 @@ layout: default
 
     <div class="submenu">
       <div class="container">
-        <div class="">
+        <div class="pull-left">
           <div id="submenu">
             <ul class="nav nav-pills" role="tablist">
               <li><a href="#"><i class="fa fa-chevron-up"></i> </a></li>
@@ -38,7 +38,7 @@ layout: default
             </ul>
           </div>
         </div>
-        <div class="navbar-right">
+        <div class="pull-right">
           <a href="#" class="btn btn-default"><i class="fa fa-share-alt"></i> <span class="hidden-xs hidden-sm">Share</span></a>
           <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> <span class="hidden-xs hidden-sm">Print (PDF)</span></a>
           <a href="#test_drive" class="btn btn-danger">Book a test drive</a>
