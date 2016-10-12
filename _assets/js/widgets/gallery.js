@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var current;
-  var $modal = $('#galleryModal');
+  var current, prev, next,
+      $modal = $('#galleryModal');
 
   if(!$modal.length) return false;
 
@@ -14,24 +14,34 @@ $(document).ready(function() {
 
   // open modal
   $('.gallery a').click(function(){
-    var $el = $(this);
+    var $el = $(this),
+        $parent = $el.parent(),
+        title = $el.data("title") ? $el.data("title") : $el.attr("title");
+
     current = $el;
-    var title = $el.data("title") ? $el.data("title") : $el.attr("title");
+    prev = $parent.prev().children('a');
+    next = $parent.next().children('a');
+
     $m.title.html(title || '');
     $m.body.html('<img src="' + $el.data("image") + '" class="hidden" />');
     $modal.modal('show');
+
+    // preload prev/next image
+    $('<img/>')[0].src = prev.data("image");
+    $('<img/>')[0].src = next.data("image");
+
     return false;
   });
 
   // previous/next buttons
   var previous = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      current.parent().prev('.item').children('a').click();
+      prev.click();
     }).modal('hide');
   };
   var next = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      current.parent().next('.item').children('a').click();
+      next.click();
     }).modal('hide');
   };
 
@@ -52,7 +62,7 @@ $(document).ready(function() {
     var maxHeight = $(window).height()-$m.header.outerHeight();
     var $img = $m.body.find('img');
     $img.css("max-height", maxHeight).removeClass('hidden');
-    $modal.find('.modal-dialog').width($img.width());
+    //$modal.find('.modal-dialog').width($img.width());
   };
   var setSizeDebounced = debounce(setSize, 250);
 
