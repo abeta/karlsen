@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var current, prev, next,
+  var $prev, $next,
       $modal = $('#galleryModal');
 
   if(!$modal.length) return false;
@@ -18,17 +18,16 @@ $(document).ready(function() {
         $parent = $el.parent(),
         title = $el.data("title") ? $el.data("title") : $el.attr("title");
 
-    current = $el;
-    prev = $parent.prev().children('a');
-    next = $parent.next().children('a');
+    $prev = $parent.prev().children('a');
+    $next = $parent.next().children('a');
 
     $m.title.html(title || '');
     $m.body.html('<img src="' + $el.data("image") + '" class="hidden" />');
     $modal.modal('show');
 
     // preload prev/next image
-    $('<img/>')[0].src = prev.data("image");
-    $('<img/>')[0].src = next.data("image");
+    $('<img/>')[0].src = $prev.data("image");
+    $('<img/>')[0].src = $next.data("image");
 
     return false;
   });
@@ -36,12 +35,12 @@ $(document).ready(function() {
   // previous/next buttons
   var previous = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      prev.click();
+      $prev.click();
     }).modal('hide');
   };
   var next = function() {
     $modal.one('hidden.bs.modal', function (e) {
-      next.click();
+      $next.click();
     }).modal('hide');
   };
 

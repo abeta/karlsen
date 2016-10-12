@@ -195,7 +195,7 @@ layout: default
       {% assign img = photo.src | remove_first: '_media/' %}
       {% if assets[img] %}
       <div class="col-md-3 col-sm-4 col-xs-6 item">
-        <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:868 %}">
+        <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:1920x1080 %}">
           <figure>
             {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title | default: page.title }}' %}
             {% if photo.title %}<figcaption>{{ photo.title }}</figcaption>{% endif %}
@@ -510,12 +510,12 @@ layout: default
         <h4 class="modal-title" id="galleryModalLabel"></h4>
       </div>
       <div class="modal-body"></div>
+      <a class="left carousel-control previous" href="#galleryModal" role="button">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control next" href="#galleryModal" role="button">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
     </div>
   </div>
-  <a class="left carousel-control previous" href="#galleryModal" role="button">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control next" href="#galleryModal" role="button">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
 </div>
