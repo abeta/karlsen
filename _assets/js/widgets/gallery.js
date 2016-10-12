@@ -22,7 +22,7 @@ $(document).ready(function() {
     $next = $parent.next().children('a');
 
     $m.title.html(title || '');
-    $m.body.html('<img src="' + $el.data("image") + '" class="hidden" />');
+    $m.body.find('img').attr('src', $el.data("image")).addClass('hidden');
     $modal.modal('show');
 
     // preload prev/next image

@@ -6,7 +6,7 @@
             <field name="subheading" type="text" label="Heading" filter="string" class="form-control" />
             <field name="walkthrough" type="multiform" filter="array" label="Columns">
               <field name="ico" type="faicon" label="Icon" filter="string" class="form-control" />
-              <field name="heading" type="text" label="Heading" filter="string" class="form-control" />
+              <field name="header" type="text" label="Heading" filter="string" class="form-control" />
               <field name="text" type="textarea" label="Text" filter="string" class="form-control" />
             </field>
 
