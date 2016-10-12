@@ -61,14 +61,14 @@
           {% unless item.parent %}
           {% assign submenu = site.pages | where: 'published', 1 | where: 'parent', item.slug | sort: 'order' %}
           <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
-            <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">
+            <a href="{{ item.url | remove: 'index.html' }}">
               {% if item.slug == 'index' %}Home{% else %}{{ item.title }}{% endif %}
             </a>
             {% if submenu %}
             <ul class="nav">
               {% for item in submenu %}
               <li {% if item.slug == page.slug or page.collection == item.slug or page.app == item.slug or page.parent == item.slug %}class="active"{% endif %}>
-                <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">
+                <a href="{{ item.url | remove: 'index.html' }}">
                   {{ item.title }}
                 </a>
               </li>
@@ -95,14 +95,14 @@
   {{content}}
   <footer class="footer">
     <div class="container small">
-      {% img logo.png magick:resize:x50 image_optim:optimize:1 alt:'{{site.title}}' class:center-block %}<br>
+      {% img logo.png magick:resize:x65 image_optim:optimize:1 alt:'{{site.title}}' class:center-block %}<br>
       <div class="row">
         <div class="col-sm-8">
           <p>&copy; {{ site.title }} {{ site.time | date: '%Y' }}
           {% assign pages = (site.pages | where: 'published', 1 | where: 'menu', 'footer' | sort: 'order') %}
           {% for item in pages %}
           {% unless item.parent %}
-          &nbsp;|&nbsp; <a href="{{ item.url | remove: 'index.html' | prepend: site.url }}">{{ item.title }}</a>
+          &nbsp;|&nbsp; <a href="{{ item.url | remove: 'index.html' }}">{{ item.title }}</a>
           {% endunless %}
           {% endfor %}
           </p>

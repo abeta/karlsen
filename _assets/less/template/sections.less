@@ -1,6 +1,9 @@
 @section-padding: 36px;
 @section-lg-padding: ceil(@section-padding*2);
 
+@section-spacing: floor(@section-padding/2);
+@section-lg-spacing: floor(@section-lg-padding/2);
+
 .section {
   .clearfix();
   padding-top: @section-padding;
@@ -8,8 +11,8 @@
 
   .section-header {
     .page-header;
-    margin-top: floor(@section-padding/2);
-    margin-bottom: floor(@section-padding/2);
+    margin-top: @section-spacing;
+    margin-bottom: @section-spacing;
   }
   .section-lead {
     padding-bottom: @section-padding;
@@ -21,8 +24,8 @@
     }
   }
   .section-content {
-    padding-top: floor(@section-padding/2);
-    padding-bottom: floor(@section-padding/2);
+    padding-top: @section-spacing;
+    padding-bottom: @section-spacing;
   }
 
   &.well {
@@ -50,12 +53,12 @@
   padding-bottom: @section-lg-padding;
 
   .section-header {
-    margin-top: ceil(@section-lg-padding/2);
-    margin-bottom: ceil(@section-lg-padding/2);
+    margin-top: @section-lg-spacing;
+    margin-bottom: @section-lg-spacing;
   }
   .section-content {
-    padding-top: ceil(@section-lg-padding/2);
-    padding-bottom: ceil(@section-lg-padding/2);
+    padding-top: @section-lg-spacing;
+    padding-bottom: @section-lg-spacing;
   }
   .section-lead {
     padding-bottom: @section-lg-padding;

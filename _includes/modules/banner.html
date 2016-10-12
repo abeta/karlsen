@@ -1,8 +1,8 @@
 {% assign img_path = page.image | remove_first: '_media/' %}
 {% if assets[img_path] %}
-{% capture image %}{% img_path '{{ img_path }}' magick:resize:1920^x1080 magick:gravity:center magick:crop:1920x1080+0+0 %}{% endcapture %}
+{% capture image %}background-image: url({% img_path '{{ img_path }}' magick:resize:1920^x600 magick:gravity:center magick:crop:1920x600+0+0 %});{% endcapture %}
 {% endif %}
-<div class="banner bg-dark bg-darken" style="background-image:url({{ image }})">
+<div class="banner bg-darken" style="{{ image }}">
   <div class="slogan">
     <div class="container slogan-container">
       <div class="slogan-inner">

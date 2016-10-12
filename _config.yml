@@ -40,10 +40,19 @@ defaults:
       type: posts
     values:
       layout: blog_post
+  -
+    scope:
+      path: ''
+      type: authors
+    values:
+      layout: blog_post
 collections:
   cars:
     output: true
     permalink: '/showroom/:path.html'
+  authors:
+    output: true
+    permalink: '/people/:path.html'
 mediaurl: _media
 assets:
   compress:

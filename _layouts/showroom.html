@@ -9,8 +9,8 @@ layout: default
     <nav class="navbar navbar-default filter-sort">
       <div class="container-fluid">
         <form class="navbar-form navbar-left">
-          <label for="filter">Manufacturer: </label>
-          <select name="filter" id="filter" class="sr-only" multiple data-placeholder="Select Manufacturers">
+          <label for="filter">Make: </label>
+          <select name="filter" id="filter" class="sr-only" multiple data-placeholder="Select Makes">
             {% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
             {% for make in makes %}
             <option value="{{ make.name }}">{{ make.name }}</option>
@@ -34,7 +34,7 @@ layout: default
 
         <form class="navbar-form navbar-right">
           <label for="sort">Sort: </label>
-          <select name="sort" id="sort" class="form-control">
+          <select name="sort" id="sort" data-width="auto" class="form-control">
             <option value="id">Date added</option>
             <option value=".price">Price</option>
             <option value=".mileage">Mileage</option>

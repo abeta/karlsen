@@ -5,14 +5,13 @@
   margin-top: -@navbar-height;
   max-height: 100%;
   min-height: 350px;
+  background-color: @gray-darker;
   .rel;
   .img-bg;
   .img-cover;
-  .img-fixed;
 
   .carousel-inner {
     position: absolute;
-    z-index: -1;
   }
 
   .well {
@@ -88,6 +87,9 @@
 .banner-content {
   height: 0;
   padding-bottom: 60%;
+  &>div {
+    z-index: 3; // fix for slideshow overlap
+  }
   //padding-bottom: 56.25%;
 }
 .submenu {
@@ -104,7 +106,7 @@
     box-shadow: 0 5px 5px -5px #000;
   }
   li a {
-    color: #000;
+    color: @text-color;
   }
   .btn {
     font-weight: 300;
@@ -113,36 +115,61 @@
 }
 .banner-container {
   position: absolute;
-  overflow: hidden;
   width: 100%;
-  bottom: 0;
-  .submenu + & {
-    bottom: @navbar-height - 2;
+  bottom: @navbar-height - 2;
+  @media (min-width: @screen-sm-min) {
+    overflow: hidden;
   }
 }
 .banner-text {
-  float: left;
   position: relative;
   background: rgba(255,255,255,0.75);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 30px 15px 30px 1000px;
-  margin: 0 200px 0 -1000px;
-  h1 {
-    margin: 0;
+  display: table;
+  padding: 20px 15px;
+  margin: 0 -15px;
+  &>div {
+    display: table-cell;
+    vertical-align: middle;
   }
-  &:after {
-    top: 0;
-    bottom: 0;
-    left: 100%;
-    width: 200px;
-    border-top: 200px solid transparent;
-    border-bottom: 200px solid rgba(255,255,255,0.75);
-    border-right: 200px solid transparent;
-    border-left: 200px solid rgba(255,255,255,0.75);
-    content: '';
+  h1 {
+    font-size: @font-size-h3;
+    .media-heading;
+  }
+  .details {
+    font-size: @font-size-h5;
+  }
+  @media (max-width: @screen-xs-max) {
     position: absolute;
-    left: 100%;
-    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  @media (min-width: @screen-sm-min) {
+    float: left;
+    padding: 30px 15px 30px 1000px;
+    margin: 0 200px 0 -1000px;
+    &:after {
+      top: 0;
+      bottom: 0;
+      left: 100%;
+      width: 200px;
+      border-top: 200px solid transparent;
+      border-bottom: 200px solid rgba(255,255,255,0.75);
+      border-right: 200px solid transparent;
+      border-left: 200px solid rgba(255,255,255,0.75);
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    h1 {
+      font-size: @font-size-h2;
+    }
+    .details {
+      font-size: @font-size-h4;
+    }
   }
 }
 .list-features {
@@ -161,6 +188,9 @@
   figure {
     height: 0;
     padding-bottom: 66.66666666666667%;
+    img {
+      width: 100%;
+    }
   }
   @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
     &:nth-child(3) {
