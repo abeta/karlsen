@@ -9,16 +9,39 @@ layout: default
 {% endif %}
 <div class="section {{ class }}" id="content">
   <div class="container">
-    <article class="section-content">{% include template/content.html %}</article>
+    <div class="section-content text-justify-center">
+      {% include template/content.html %}<br>
+      <div class="row">
+        {% assign cols = page.highlights | size %}
+        {% for item in page.highlights %}
+        <div class="col-sm-{{ 12 | divided_by: cols }}">
+          {% assign img = item.img | remove_first: '_media/' %}
+          {% if assets[img] %}
+          {% img '{{ img }}' magick:resize:360^x240 magick:gravity:center magick:crop:360x240+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.header }}' %}
+          {% endif %}
+          <h3>{{ item.header }}</h3>
+          <p>{{ item.text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
-{% for item in page.highlights %}
-<div class="col-sm-3">
-  <span class="fa-stack fa-5x">
-    <i class="fa fa-circle fa-stack-2x"></i>
-    <i class="fa fa-{{ item.ico }} fa-stack-1x fa-inverse"></i>
-  </span>
-  <h3 class="text-center">{{ forloop.index }}. {{ item.heading }}</h3>
-  <p>{{ item.text }}</p>
+
+<div class="section bg-dark cta">
+  <div class="container">
+    <div class="section-content text-justify-center">
+      {{ page.quote }}
+    </div>
+    <div class="section-content">
+      <span class="h4">{{ page.person }} <small>{{ page.position }}</small></span>
+    </div>
+  </div>
 </div>
-{% endfor %}
+
+<div class="section">
+  <div class="container">
+    <h2 class="section-header">{{ page.whyus_header }}</h2>
+    <div class="section-content text-justify-center">{{ page.whyus_content }}</div>
+  </div>
+</div>
