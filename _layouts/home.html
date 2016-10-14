@@ -105,7 +105,7 @@ layout: default
         {% for make in makes %}
         {% capture logo %}car-brands/{{ make.name | downcase }}.png{% endcapture %}
         {% if assets[logo] %}
-        <a href="/showroom.html#{{ make.name | downcase }}" class="img-contain" style="display: block; height:0; padding-bottom: 100%; background-image:url({% img_path '{{ logo }}' magick:resize:125x125 image_optim:optimize:1 %})">
+        <a href="/showroom.html#{{ make.name }}" class="img-contain" style="display: block; height:0; padding-bottom: 100%; background-image:url({% img_path '{{ logo }}' magick:resize:125x125 image_optim:optimize:1 %})">
         </a>
         {% endif %}
         {% endfor %}
