@@ -34,8 +34,16 @@
                         };
                     }
                 }
-                var valA = options.sortBy($(a));
-                var valB = options.sortBy($(b));
+                var valA = options.sortBy($(a)) || 0;
+                var valB = options.sortBy($(b)) || 0;
+
+                if($.isNumeric(valA)) {
+                  valA = Number(valA);
+                }
+                if($.isNumeric(valB)) {
+                  valB = Number(valB);
+                }
+
                 if (options.reverse) {
                     return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;
                 } else {

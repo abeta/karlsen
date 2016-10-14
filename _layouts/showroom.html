@@ -36,8 +36,8 @@ layout: default
           <label for="sort">Sort: </label>
           <select name="sort" id="sort" data-width="auto" class="form-control">
             <option value="id">Date added</option>
-            <option value=".price">Price</option>
-            <option value=".mileage">Mileage</option>
+            <option value="price">Price</option>
+            <option value="mileage">Mileage</option>
             <option value=".year">Year</option>
           </select>
 
@@ -61,7 +61,7 @@ layout: default
     {% assign cars = (site.cars | where: 'published', 1 | sort: 'id') %}
     <div class="row text-center filter-container" id="showroom">
       {% for item in cars reversed %}
-      <div class="col-md-4 col-sm-6 filter-item" data-id="{{ item.id | split: '-' | first | split: '/' | last }}" data-make="{{ item.make_display }}">
+      <div class="col-md-4 col-sm-6 filter-item" data-id="{{ item.id | split: '-' | first | split: '/' | last }}" data-make="{{ item.make_display }}" data-price="{{ item.price }}" data-mileage="{{ item.mileage }}">
         <a href="{{ item.url }}">
           {% assign img = item.image | remove_first: '_media/' %}
           {% if assets[img] %}
