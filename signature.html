@@ -1,0 +1,13 @@
+---
+layout: nil
+---
+<p><img src="{% img_base64 logo-black.png magick:resize:300 %}" alt="" /></p>
+<p>Tel: 07775955325<br>
+Follow us on
+{% for provider in site.profiles.provider %}
+<a href="{{ site.profiles[provider] }}" target="_blank" title="Follow us on {{ provider | capitalize }}">
+  <i class="fa fa-lg fa-{{ provider }}"></i> <span class="sr-only">{{ provider | capitalize }}</span>
+</a>
+{% unless forloop.last %} | {% endunless %}
+{% endfor %}
+</p>

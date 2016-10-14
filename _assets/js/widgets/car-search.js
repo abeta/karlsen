@@ -60,6 +60,11 @@ var quicksand = (function( data ) {
         $selector = '.filter-item',
         $filteredData;
 
+
+    var $data = $container.clone(),
+        $sortedData = $data.find($selector);
+    /*
+
     var source = "<div>";
     for (var i = 0; i < data.length; i++) {
         var $item = $( $($selector).clone()[0].outerHTML );
@@ -80,7 +85,6 @@ var quicksand = (function( data ) {
     var $data = $(source),
         $sortedData = $data.find($selector);
 
-    /*
     $('#loadmore_press').on('click', function() {
 
         // finally, call quicksand
@@ -130,11 +134,13 @@ var quicksand = (function( data ) {
             useScaling: true
         }, function() {
             $container.attr('style', '').find($selector).attr('style', '');
+            /*
             if($sortedData.length > $container.find($selector).length) {
                 $('#loadmore_press').show();
             } else {
                 $('#loadmore_press').hide();
             }
+            */
         });
     });
 });
@@ -158,10 +164,16 @@ function sort(prop, arr) {
 }
 
 if($('#showroom').length) {
+    quicksand();
+    if(window.location.hash) {
+      $('#filter').val(window.location.hash.substring(1)).trigger('change');
+    }
+  /*
     $.getJSON( "api/cars.json", function( data ) {
         quicksand(data);
         if(window.location.hash) {
           $('#filter').val(window.location.hash.substring(1)).trigger('change');
         }
     });
+    */
 }
