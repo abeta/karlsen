@@ -51,8 +51,7 @@ collections:
     output: true
     permalink: '/showroom/:path.html'
   authors:
-    output: true
-    permalink: '/people/:path.html'
+    output: false
 mediaurl: _media
 assets:
   compress:
@@ -84,5 +83,3 @@ exclude:
 bitly:
   username: karlsenautodesign
   api_key: R_3ea49b3df69e4af898f9662996e2b33c
-pdf:
-  debug: true
