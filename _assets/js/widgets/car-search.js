@@ -160,5 +160,8 @@ function sort(prop, arr) {
 if($('#showroom').length) {
     $.getJSON( "api/cars.json", function( data ) {
         quicksand(data);
+        if(window.location.hash) {
+          $('#filter').val(window.location.hash.substring(1)).trigger('change');
+        }
     });
 }
