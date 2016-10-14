@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'autoprefixer-rails'
   gem 'jekyll-pdf'
+  gem 'jekyll-tidy'
 end
 
 
