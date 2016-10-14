@@ -22,7 +22,7 @@ layout: default
       {% endif %}
     </a>
     <div class="media-body">
-      <p>{{ post.excerpt | markdownify }}</p>
+      <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
       <p><a title="Read more: {{ post.title }}" href="{{ post.url }}">Read more...</a></p>
     </div>
   </article>
