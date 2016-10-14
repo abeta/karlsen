@@ -2,15 +2,34 @@
 layout: default
 ---
 {% assign img = page.image | remove_first: '_media/' %}
-{% if assets[img] %}{% capture image %}{% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %}{% endcapture %}{% endif %}
-<div class="banner img-fixed" style="background-image:url({{ image }})">
-  <div class="banner-content">
-    <div class="slogan">
-      <div class="container slogan-container">
-        <div class="slogan-inner">
-          <h1 class="banner-heading">Luxury, sports &amp; prestige vehicles</h1>
-          <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
-        </div>
+{% if assets[img] %}
+<style>
+.banner {
+  background-image: url({% include img_path src=img width=375 height=667 %});
+}
+@media (min-width: 378px) {
+  .banner {
+    background-image: url({% include img_path src=img width=768 height=1024 %});
+  }
+}
+@media (min-width: 769px) {
+  .banner {
+    background-image: url({% include img_path src=img width=1366 height=800 %});
+  }
+}
+@media (min-width: 1367px) {
+  .banner {
+    background-image: url({% include img_path src=img width=1920 height=1080 %});
+  }
+}
+</style>
+{% endif %}
+<div class="banner fh">
+  <div class="slogan">
+    <div class="container slogan-container">
+      <div class="slogan-inner">
+        <h1 class="banner-heading">Luxury, sports &amp; prestige vehicles</h1>
+        <a class="btn btn-lg btn-danger" href="/showroom.html">Browse our stock</a>
       </div>
     </div>
   </div>

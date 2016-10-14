@@ -1,0 +1,7 @@
+{% capture _ %}
+{% assign img_path = include.src | remove_first: '_media/' %}
+{% if assets[img_path] %}
+{% capture gravity %}{% if include.gravity %}{{ include.gravity }}{% else %}center{% endif %}{% endcapture %}
+{% capture output %}{% img_path '{{ include.src | remove_first: "_media/" }}' magick:resize:'{{ include.width }}^x{{ include.height }}' magick:gravity:'{{ gravity }}' magick:crop:'{{ include.width }}x{{ include.height }}+0+0' image_optim:optimize:1 alt:'{{ include.title }}' class:'{{ include.class }}' %}{% endcapture %}
+{% endif %}
+{% endcapture %}{{ output }}

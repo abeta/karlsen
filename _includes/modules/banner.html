@@ -1,8 +1,30 @@
 {% assign img_path = page.image | remove_first: '_media/' %}
 {% if assets[img_path] %}
-{% capture image %}background-image: url({% img_path '{{ img_path }}' magick:resize:1920^x600 magick:gravity:center magick:crop:1920x600+0+0 %});{% endcapture %}
+<style>
+.banner {
+  background-image: url({% include img_path src=img_path width=480 height=800 %});
+}
+
+@media (min-width: 481px) {
+  .banner {
+    background-image: url({% include img_path src=img_path width=768 height=374 %});
+  }
+}
+
+@media (min-width: 1024px) {
+  .banner {
+    background-image: url({% include img_path src=img_path width=1366 height=467 %});
+  }
+}
+
+@media (min-width: 1367px) {
+  .banner {
+    background-image: url({% include img_path src=img_path width=1920 height=420 %});
+  }
+}
+</style>
 {% endif %}
-<div class="banner bg-darken" style="{{ image }}">
+<div class="banner bg-darken">
   <div class="slogan">
     <div class="container slogan-container">
       <div class="slogan-inner">
