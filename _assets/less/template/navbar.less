@@ -1,16 +1,8 @@
 .navbar-default {
-    background-color: rgba(255,255,255,0.75);
-
-    &:hover {
-        background-color: rgba(255,255,255,0.9);
-    }
+    background-color: rgba(255,255,255,0.85);
 }
 .navbar-inverse {
-    background-color: rgba(0,0,0,0.75);
-
-    &:hover {
-        background-color: rgba(0,0,0,0.9);
-    }
+    background-color: rgba(0,0,0,0.85);
 }
 .navbar {
     .transition(0.8s ease all);
@@ -27,13 +19,14 @@
             padding-left: 15px;
         }
         li + li, ul ul li {
-            border-top: 1px solid #eee;
+            border-top: 1px solid #666;
+            border-top: 1px solid rgba(255,255,255,0.15);
         }
         .nav > li > a {
-            color: #fff;
+            //color: #fff;
         }
         .nav > li > a:hover, .nav > li > a:focus {
-            background-color: #eeeeee;
+            //background-color: #eeeeee;
         }
         .navbar-collapse {
             position: fixed;
