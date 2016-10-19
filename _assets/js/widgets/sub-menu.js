@@ -2,10 +2,10 @@ if($('.submenu').length) {
   $('.submenu').affix({
     offset: {
       top: function () {
-        return (this.top = $('.banner').outerHeight(true) - $('.submenu').outerHeight(false))
+        return $('.banner').outerHeight(true) - $('.submenu').outerHeight(false);
       },
       bottom: function () {
-        return (this.bottom = $('.footer').outerHeight(true))
+        return $('.footer').outerHeight(true);
       }
     }
   });
