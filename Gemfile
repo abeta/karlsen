@@ -14,6 +14,7 @@ gem 'image_optim_pack'
 gem 'bitly'
 
 group :jekyll_plugins do
+  gem 'jekyll-widgets'
   gem 'jekyll-sitemap'
   gem 'jekyll-assets'
   gem 'autoprefixer-rails'

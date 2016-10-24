@@ -5,9 +5,10 @@ module Jekyll
     def initialize
       @result_cache = {}
       config = Jekyll.configuration({})
-      @username = config['bitly']['username']
-      @key = config['bitly']['api_key']
+      username = config['bitly']['username']
+      key = config['bitly']['api_key']
       Bitly.use_api_version_3
+      @bitly = Bitly.new(username, key)
     end
 
     @@instance = BitlyFilterCache.new
@@ -20,8 +21,7 @@ module Jekyll
       input.strip!
       return @result_cache[input] if @result_cache.has_key?(input)
       puts "Shortening #{input}..."
-      bitly = Bitly.new(@username, @key)
-      u = bitly.shorten(input, :history => 1)
+      u = @bitly.shorten(input, :history => 1)
       @result_cache[input] = u.short_url
       puts "New url: #{u.short_url}"
       return u.short_url

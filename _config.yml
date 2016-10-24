@@ -14,12 +14,9 @@ sharing:
     - linkedin
     - pinterest
     - stumbleupon
-    - delicious
-    - reddit
     - tumblr
-    - buffer
-  limit: 'false'
-  style: icons
+  limit: 3
+  style: default
 defaults:
   -
     scope:
