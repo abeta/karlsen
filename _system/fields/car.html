@@ -423,8 +423,8 @@ CarQuery.prototype = {
                 model_year: $("select#"+this.year_select_id).val(),
                 make_country: make.make_country,
                 make_display: make.make_display,
-                model_name: this.cur_model == this.other_option ? $("select#"+this.model_select_id + '_other').val() : this.cur_model,
-                model_trim: $("select#"+this.trim_select_id + '_other').val(),
+                model_name: this.cur_model == this.other_option ? $("#"+this.model_select_id + '_other').val() : this.cur_model,
+                model_trim: $("#"+this.trim_select_id + '_other').val(),
             });
             return;
         }
@@ -446,7 +446,7 @@ CarQuery.prototype = {
                 }
                 if (key == 'make_display') {
                     data[key] = data[key].replace("Opel", "Vauxhall");
-                }
+                }trim
                 $("#form_"+key).val(data[key]);
             }
         }
