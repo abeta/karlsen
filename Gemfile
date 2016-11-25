@@ -5,7 +5,6 @@ gem 'jekyll', ">= 3.0"
 gem 'less'
 gem 'therubyracer' # required for LESS
 gem 'uglifier'
-gem 'yui-compressor'
 gem 'mini_magick'
 gem 'image_optim'
 gem 'image_optim_pack'

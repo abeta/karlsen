@@ -469,7 +469,7 @@ $('#select_model').bind('click', function() {
 });
 
 $(".carquery").bind('carquery:change', function(){
-    var $el = $("select#{{ element.id }}_trim>option:selected");
+    var $el = $("select#{{ element.id }}_model>option:selected");
     if(!$el.length || $el.hasClass('loading')) {
         $('#select_model').addClass('disabled');
     } else {
