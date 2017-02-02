@@ -1,7 +1,7 @@
 ---
 layout: nil
 ---
-<p><a href="http://karlsenautodesign.com/"><img src="{% img_base64 logo-black.png magick:resize:300 %}" alt="" /></a></p>
+<p><a href="http://karlsenautodesign.com/"><img src="{% img logo-black.png magick:resize:300 %}" alt="" /></a></p>
 <p>
   <strong>Karlsen Auto Design</strong> - Your cool slogan here.<br>
   Tel: 07775955325
@@ -10,7 +10,7 @@ layout: nil
   Visit <a href="http://karlsenautodesign.com/">karlsenautodesign.com</a><br>
   Follow us on
   {% for provider in site.profiles.provider %}
-  <a href="{{ site.profiles[provider] }}" target="_blank" title="Follow us on {{ provider | capitalize }}"><img src="{% img_base64 'icons/{{ provider }}.png' magick:resize:16 %}" alt="{{ provider | capitalize }}" /> <span class="sr-only">{{ provider | capitalize }}</span></a>
+  <a href="{{ site.profiles[provider] }}" target="_blank" title="Follow us on {{ provider | capitalize }}"><img src="{% img 'icons/{{ provider }}.png' magick:resize:16 %}" alt="{{ provider | capitalize }}" /> <span class="sr-only">{{ provider | capitalize }}</span></a>
   {% unless forloop.last %} | {% endunless %}
   {% endfor %}
 </p>
