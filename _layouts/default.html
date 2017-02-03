@@ -31,12 +31,12 @@
     <meta name="twitter:creator" content="@abemedia"/>
   </head>
   <body>
+  {% capture logo %}<img src="{% img_path logo.png magick:resize:x50 image_optim:optimize:1 %}" srcset="{% img_path logo.png magick:resize:x50 image_optim:optimize:1 %} 1x, {% img_path logo.png magick:resize:x100 image_optim:optimize:1 %} 2x" alt="{{ site.title }}">{% endcapture %}
   {% if layout.hide_nav %}
   <div id="nav" class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="{% img_path logo.png magick:resize:x50 image_optim:optimize:1 %}" srcset="{% img_path logo.png magick:resize:x50 image_optim:optimize:1 %} 1x, {% img_path logo.png magick:resize:x100 image_optim:optimize:1 %} 2x" alt="{{ site.title }}">
-
+        {{ logo }}
       </a>
     </div>
   </div>
@@ -52,7 +52,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="{{ site.url }}">
-          {% img logo.png magick:resize:x50 image_optim:optimize:1 %}
+          {{ logo }}
         </a>
       </div>
       <div class="collapse navbar-collapse">
