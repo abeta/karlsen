@@ -1,0 +1,18 @@
+{% assign item_count = include.cars | size %}
+{% if item_count > 3 %}
+<div class="text-center section-content owl-carousel owl-theme" data-autoplay="true" data-items="3" data-responsive='{"0":{"items":1},"480":{"items":2},"768":{"items":3}}' data-margin="30" data-loop="true">
+  {% for item in include.cars limit:12 %}
+  <div>
+    {% include vehicle.html vehicle=item %}
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="text-center section-content row">
+  {% for item in include.cars %}
+  <div class="col-md-4 col-sm-6">
+    {% include vehicle.html vehicle=item %}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

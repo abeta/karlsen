@@ -26,7 +26,7 @@ script:
 - git config user.name "Travis-CI"
 - git config user.email "travis@karlsenautodesign.com"
 - git add .
-- git commit -m "Deployed to Github Pages"
+- git commit -am "Deployed to Github Pages" > /dev/null
 - git push --force --quiet "https://${GH_TOKEN}@github.com/karlsenauto/karlsenauto.github.io" master > /dev/null 2>&1
 
 git:
@@ -39,3 +39,4 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
   - PNGOUT_BIN=vendor/pngout/pngout
+  - JEKYLL_ENV=production

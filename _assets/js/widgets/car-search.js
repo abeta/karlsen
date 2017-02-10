@@ -12,17 +12,17 @@
 
         var $data = $(this).clone();
 
-        if(options.filter) {
+        if (options.filter) {
 
         }
 
-        if(options.sortBy) {
+        if (options.sortBy) {
             var items = $data.get();
             items.sort(function(a, b) {
-                if(typeof(options.sortBy) === 'string') {
+                if (typeof(options.sortBy) === 'string') {
                     var sortBy = options.sortBy;
                     // attribute e.g. "[data-id]"
-                    if(sortBy.match(/\[[^\]\t\n\f \/>"'=]+\]/)) {
+                    if (sortBy.match(/\[[^\]\t\n\f \/>"'=]+\]/)) {
                         options.sortBy = function(el) {
                             return $(el).attr(sortBy.replace(/\[|\]/g, ''));
                         };
@@ -37,11 +37,11 @@
                 var valA = options.sortBy($(a)) || 0;
                 var valB = options.sortBy($(b)) || 0;
 
-                if($.isNumeric(valA)) {
-                  valA = Number(valA);
+                if ($.isNumeric(valA)) {
+                    valA = Number(valA);
                 }
-                if($.isNumeric(valB)) {
-                  valB = Number(valB);
+                if ($.isNumeric(valB)) {
+                    valB = Number(valB);
                 }
 
                 if (options.reverse) {
@@ -50,7 +50,7 @@
                     return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;
                 }
             });
-            if(options.limit) {
+            if (options.limit) {
                 items = items.slice(options.start, options.start + options.limit);
             }
             $data = $(items);
@@ -60,7 +60,7 @@
     };
 })(jQuery);
 
-var quicksand = (function( data ) {
+var quicksand = (function(data) {
     var $filter = $('#filter'),
         sort = '#sort :selected',
         order = '#order :checked',
@@ -71,47 +71,6 @@ var quicksand = (function( data ) {
 
     var $data = $container.clone(),
         $sortedData = $data.find($selector);
-    /*
-
-    var source = "<div>";
-    for (var i = 0; i < data.length; i++) {
-        var $item = $( $($selector).clone()[0].outerHTML );
-        $item
-          .attr('data-id', data[i].id)
-          .attr('data-make', data[i].make);
-        $item.find('a').attr('href', data[i].url);
-        $item.find('.title').html(data[i].title);
-        $item.find('.price').html(data[i].price);
-        $item.find('.mileage').html(data[i].mileage);
-        $item.find('.year').html(data[i].year);
-        $item.find('img')
-              .attr('src', data[i].image)
-              .attr('alt', data[i].title);
-        source += $item[0].outerHTML;
-    }
-    source += "</div>";
-    var $data = $(source),
-        $sortedData = $data.find($selector);
-
-    $('#loadmore_press').on('click', function() {
-
-        // finally, call quicksand
-        $container.quicksand($sortedData.slice(0, $container.find($selector).length + 15), {
-            duration: 1000,
-            easing: "swing",
-            selector: ".filter-item",
-            adjustWidth: false,
-            attribute: "data-id",
-            useScaling: true
-        }, function() {
-            if($sortedData.length > $container.find($selector).length) {
-                $('#loadmore_press').show();
-            } else {
-                $('#loadmore_press').hide();
-            }
-        });
-    });
-    */
 
     // attempt to call Quicksand on every form change
     $('.filter-sort form').change(function(e) {
@@ -123,6 +82,10 @@ var quicksand = (function( data ) {
             $filteredData = $data.find(filter.join(","));
         } else {
             $filteredData = $data.find($selector);
+        }
+
+        if (!$('#show_sold').prop("checked")) {
+            $filteredData = $filteredData.not('[data-sold]');
         }
 
         var sortBy = $(sort).val();
@@ -142,13 +105,6 @@ var quicksand = (function( data ) {
             useScaling: true
         }, function() {
             $container.attr('style', '').find($selector).attr('style', '');
-            /*
-            if($sortedData.length > $container.find($selector).length) {
-                $('#loadmore_press').show();
-            } else {
-                $('#loadmore_press').hide();
-            }
-            */
         });
     });
 });
@@ -157,9 +113,13 @@ function sort(prop, arr) {
     prop = prop.split('.');
     var len = prop.length;
 
-    arr.sort(function (a, b) {
+    arr.sort(function(a, b) {
         var i = 0;
-        while( i < len ) { a = a[prop[i]]; b = b[prop[i]]; i++; }
+        while (i < len) {
+            a = a[prop[i]];
+            b = b[prop[i]];
+            i++;
+        }
         if (a < b) {
             return -1;
         } else if (a > b) {
@@ -171,17 +131,9 @@ function sort(prop, arr) {
     return arr;
 }
 
-if($('#showroom').length) {
+if ($('#showroom').length) {
     quicksand();
-    if(window.location.hash) {
-      $('#filter').val(window.location.hash.substring(1)).trigger('change');
+    if (window.location.hash) {
+        $('#filter').val(window.location.hash.substring(1)).trigger('change');
     }
-  /*
-    $.getJSON( "api/cars.json", function( data ) {
-        quicksand(data);
-        if(window.location.hash) {
-          $('#filter').val(window.location.hash.substring(1)).trigger('change');
-        }
-    });
-    */
 }

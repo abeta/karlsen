@@ -4,14 +4,14 @@ pdf:
   header_html: pdf_header.html
   footer_html: pdf_footer.html
   margin_top: 1.20in
-  margin_bottom: .75in
+  margin_bottom: 0.75in
 ---
 <div class="page">
   {% assign img = page.gallery[0].src | remove_first: '_media/' %}
   {% if assets[img] %}
   <div class="rel">
     <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:1920^x1200 magick:gravity:center magick:crop:1920x1200+0+0 image_optim:optimize:1 %}" />
-    {% capture logo %}car-brands/{{ page.make_display | downcase }}.png{% endcapture %}
+    {% capture logo %}car-brands/{{ page.make_display | slugify }}.png{% endcapture %}
     {% if assets[logo] %}
     <img style="position: absolute; right: 15px; top: 15px;" src="{% img_base64 '{{ logo }}' magick:resize:125x125 image_optim:optimize:1 %}" />
     {% endif %}
@@ -56,20 +56,14 @@ pdf:
 
   <br>
 
-  <div class="row">
-    <div class="col-xs-9">
-      <h3 class="sr-only">Description</h3>
-      <div class="nobreak">
-        {{ content }}
+  <div class="pull-right" style="padding: 0 0 30px 30px">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <i class="fa fa-mobile fa-lg"></i> <strong>Scan for more info</strong>
       </div>
-    </div>
-    <div class="col-xs-3 text-center" style="padding-left:30px">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <i class="fa fa-mobile fa-lg"></i> <strong>Scan for more info</strong>
-        </div>
-        <div class="panel-body">
-          <div style="overflow:hidden;">
+      <div class="panel-body">
+        <div style="width: 135px;">
+          <div style="overflow: hidden;">
             <div style="margin: 0 -19px 10px;">
               {% capture qrcode_url %}{{ site.url }}{{ page.html_url }}?utm_source=pdf&utm_medium=qrcode{% endcapture %}
               <img src="http://chart.apis.google.com/chart?cht=qr&amp;chs=165x165&amp;chl={{ qrcode_url | bitly }}" style="margin: -19px 0;" class="img-responsive">
@@ -80,36 +74,40 @@ pdf:
         </div>
       </div>
     </div>
-
   </div>
+
+  <div class="text-justify">{{ content }}</div>
 
 </div>
 
-{% if page.gallery %}
+{% assign gallery_count = page.gallery | size %}
+{% if gallery_count > 1 %}
 <div class="page">
   <div class="page-header">
     <h2>Photos</h2>
   </div>
   <br>
-  <table class="table">
-    <tr>
-      {% for photo in page.gallery %}
-      {% assign img = photo.src | remove_first: '_media/' %}
-      {% assign count = forloop.index | modulo: 3 %}
-      {% if assets[img] %}
-      <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}" style="border:none;">
-        <img class="img-responsive" src="{% img_base64 '{{ img }}' magick:resize:x500 image_optim:optimize:1 %}" />
-      </td>
+  <div class="gallerytable">
+    <table>
+      <tr>
+        {% for photo in page.gallery %}
+        {% assign img = photo.src | remove_first: '_media/' %}
+        {% assign count = forloop.index | modulo: 3 %}
+        {% if assets[img] %}
+        <td width="{{ assets[img].width | times: 100 | divided_by: assets[img].height }}">
+          <img src="{% img_base64 '{{ img }}' magick:resize:x500 image_optim:optimize:1 %}" />
+        </td>
+        {% endif %}
+        {% if count == 0 and page.gallery[forloop.index] %}
+      </tr>
+    </table>
+    <table>
+      <tr>
       {% endif %}
-      {% if count == 0 and page.gallery[forloop.index] %}
-    </tr>
-  </table>
-  <table class="table">
-    <tr>
-    {% endif %}
-    {% endfor %}
-    </tr>
-  </table>
+      {% endfor %}
+      </tr>
+    </table>
+  </div>
 </div>
 {% endif %}
 

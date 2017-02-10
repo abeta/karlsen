@@ -1,23 +1,50 @@
 ---
 layout: default
 ---
+<style>
+body { position: relative; }
+{% for photo in page.gallery limit:3 %}
+.banner-{{ forloop.index }} {
+  background-image: url({% include img_path src=photo.src width=480 height=800 %});
+}
+@media (min-width: 481px) {
+  .banner-{{ forloop.index }} {
+    background-image: url({% include img_path src=photo.src width=768 height=461 %});
+  }
+}
+@media (min-width: 769px) {
+  .banner-{{ forloop.index }} {
+    background-image: url({% include img_path src=photo.src width=1366 height=820 %});
+  }
+}
+@media (min-width: 1367px) {
+  .banner-{{ forloop.index }} {
+    background-image: url({% include img_path src=photo.src width=1920 height=1152 %});
+  }
+}
+{% endfor %}
+</style>
+
 <div id="carousel" class="carousel banner slide" data-ride="carousel" pause="false">
+  {% assign gallery_count = page.gallery | size %}
+  {% if gallery_count > 1 %}
   <div class="container rel hidden-xs">
     <ol class="carousel-indicators">
-        {% for photo in page.gallery limit:3 %}
-        {% assign img = photo.src | remove_first: '_media/' %}
-        {% if assets[img] %}
-        <li{% if forloop.first == true %} class="active"{% endif %} data-target="#carousel" data-slide-to="{{ forloop.index0 }}">{% img '{{ img }}' magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 image_optim:optimize:1 %}</li>
-        {% endif %}
-        {% endfor %}
+      {% for photo in page.gallery limit:3 %}
+      {% assign img = photo.src | remove_first: '_media/' %}
+      {% if assets[img] %}
+      <li{% if forloop.first == true %} class="active" {% endif %} data-target="#carousel" data-slide-to="{{ forloop.index0 }}">{% img '{{ img }}' magick:resize:90^x90 magick:gravity:center magick:crop:90x90+0+0 image_optim:optimize:1 %}</li>
+      {% endif %}
+      {% endfor %}
     </ol>
   </div>
+  {% endif %}
 
   <div class="carousel-inner fh" role="listbox">
     {% for photo in page.gallery limit:3 %}
     {% assign img = photo.src | remove_first: '_media/' %}
     {% if assets[img] %}
-    <div class="item img-cover img-fixed fh {% if forloop.first == true %}active{% endif %}" style="background-image:url({% img_path '{{ img }}' magick:resize:1920^x1152 magick:gravity:center magick:crop:1920x1152+0+0 image_optim:optimize:1 %});"></div>
+    <div class="item img-cover img-fixed fh banner-{{ forloop.index }} {% if forloop.first == true %}active{% endif %}"></div>
     {% endif %}
     {% endfor %}
   </div>
@@ -38,9 +65,16 @@ layout: default
           </div>
         </div>
         <div class="pull-right">
-          <a href="#" class="btn btn-default"><i class="fa fa-fw fa-share-alt"></i> <span class="hidden-xs hidden-sm">Share</span></a>
+          <a id="carShare" href="#shareModal" data-toggle="modal" class="btn btn-default">
+            <i class="fa fa-fw fa-share-alt"></i> <span class="hidden-xs hidden-sm">Share</span>
+          </a>
           <a href="{{ page.pdf_url }}" target="_blank" class="btn btn-default"><i class="fa fa-fw fa-print"></i> <span class="hidden-xs hidden-sm">Print (PDF)</span></a>
+
+          {% if page.status != "sold" %}
           <a href="#test_drive" class="btn btn-danger">Book a test drive</a>
+          {% else %}
+          <a href="#test_drive" class="btn btn-danger">Enquire</a>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -48,7 +82,7 @@ layout: default
     <div class="banner-container">
       <div class="container">
         <div class="banner-text">
-          {% capture logo %}car-brands/{{ page.make_display | downcase }}.png{% endcapture %}
+          {% capture logo %}car-brands/{{ page.make_display | slugify }}.png{% endcapture %}
           {% if assets[logo] %}
           <div class="hidden-xs">
             <img src="{% img_path '{{ logo }}' magick:resize:100x61 image_optim:optimize:1 %}" alt="{{ page.make_display }}" style="margin: 0 20px -7px 0" />
@@ -57,7 +91,14 @@ layout: default
           <div>
             <h1>{{ page.title | markdownify | strip_html }}</h1>
             <span class="details">
-              <span class="label label-primary label-lg">{% if page.price > 0 %}&pound;{{ page.price | number_format }}{% else %}Price on request{% endif %}</span> &nbsp;
+              {% if page.price > 0 %}
+              <b>&pound;{{ page.price | number_format }}</b>
+              {% elsif page.status != "sold" %}
+              <b>&pound; on request</b>
+              {% endif %}
+              {% if page.status == "under-offer" %}<div class="label label-warning">Under Offer</div>{% endif %}
+              {% if page.status == "sold" %}<div class="label label-danger">Sold</div>{% endif %}
+              &nbsp;
               <span class="text-nowrap"><i class="fa fa-tachometer"></i> {{ page.mileage | number_format }} miles</span> &nbsp;
               <span class="text-nowrap"><i class="fa fa-clock-o"></i> {{ page.model_year }}</span>
             </span>
@@ -83,7 +124,7 @@ layout: default
   <div class="container">
     <div class="row">
       <div class="col-sm-7">
-        <article class="section-content">{{ content | replace_first: '<p>', '<p class="lead">' }}</article>
+        <article class="section-content text-justify">{{ content | replace_first: '<p>', '<p class="lead">' }}</article>
       </div>
       <div class="col-sm-4 col-sm-push-1">
         <h3>Quick Specs</h3>
@@ -176,7 +217,7 @@ layout: default
           </div>
           <div class="media-body">
             <h4 class="media-heading h5">Price</h4>
-            <b class="h4">{{ page.price | number_format }}</b>
+            <b class="h4">{% if page.price > 0 %}{{ page.price | number_format }}{% else %}On request{% endif %}</b>
           </div>
         </div>
       </div>
@@ -195,9 +236,9 @@ layout: default
       {% assign img = photo.src | remove_first: '_media/' %}
       {% if assets[img] %}
       <div class="col-md-3 col-sm-4 col-xs-6 item">
-        <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:1920x1080 %}">
+        <a style="cursor: pointer;" data-title="{{ photo.title }}" data-image="{% img_path '{{ img }}' magick:resize:1920x1080 watermark:watermark:1 image_optim:optimize:1 %}">
           <figure>
-            {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title | default: page.title }}' %}
+            {% img '{{ img }}' magick:resize:300^x225 magick:gravity:center magick:crop:300x225+0+0 watermark:watermark:1 image_optim:optimize:1 class:img-responsive alt:'{{ photo.title | default: page.title }}' %}
             {% if photo.title %}<figcaption>{{ photo.title }}</figcaption>{% endif %}
           </figure>
         </a><br>
@@ -249,42 +290,36 @@ layout: default
               <td>{{ page.model_body }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_engine_fuel %}
             <tr>
               <td>Fuel Type:</td>
               <td>{{ page.model_engine_fuel }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_drive %}
             <tr>
               <td>Drive:</td>
               <td>{{ page.model_drive }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_doors > 0 %}
             <tr>
               <td>Doors:</td>
               <td>{{ page.model_doors }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_seats > 0 %}
             <tr>
               <td>Seats:</td>
               <td>{{ page.model_seats }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_engine_position %}
             <tr>
               <td>Engine Location:</td>
               <td>{{ page.model_engine_position }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_fuel_cap_l > 0 %}
             <tr>
               <td>Fuel Capacity:</td>
@@ -306,28 +341,24 @@ layout: default
               <td>{{ page.model_engine_cyl }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_engine_valves %}
             <tr>
               <td>Valves:</td>
               <td>{{ page.model_engine_valves }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_0_to_100_kph > 0 %}
             <tr>
               <td>0-100 kph (0-62mph):</td>
               <td>{{ page.model_0_to_100_kph }}</td>
             </tr>
             {% endif %}
-
             {% if page.model_top_speed_mph > 0 %}
             <tr>
               <td>Top Speed:</td>
               <td>{{ page.model_top_speed_mph }} MPH</td>
             </tr>
             {% endif %}
-
             {% if page.model_engine_power_hp > 0 %}
             <tr>
               <td>Engine Power:</td>
@@ -337,28 +368,24 @@ layout: default
               </td>
             </tr>
             {% endif %}
-
             {% if page.model_engine_torque_lbft %}
             <tr>
               <td>Engine Torque:</td>
               <td>{{ page.model_engine_torque_nm }}Nm/{{ page.model_engine_torque_lbft }}Lbs/ft</td>
             </tr>
             {% endif %}
-
             {% if page.model_lkm_city > 0 %}
             <tr>
               <td>Fuel Economy City:</td>
               <td>{{ page.model_lkm_city }} l/100km</td>
             </tr>
             {% endif %}
-
             {% if page.model_lkm_hwy > 0 %}
             <tr>
               <td>Fuel Economy HWY:</td>
               <td>{{ page.model_lkm_hwy }} l/100km</td>
             </tr>
             {% endif %}
-
             {% if page.model_lkm_mixed > 0 %}
             <tr>
               <td>Fuel Economy Mixed:</td>
@@ -380,28 +407,24 @@ layout: default
               <td>{{ page.model_weight_kg }} kg</td>
             </tr>
             {% endif %}
-
             {% if page.model_length_mm > 0 %}
             <tr>
               <td>Length:</td>
               <td>{{ page.model_length_mm }} mm</td>
             </tr>
             {% endif %}
-
             {% if page.model_width_mm > 0 %}
             <tr>
               <td>Width:</td>
               <td>{{ page.model_width_mm }} mm</td>
             </tr>
             {% endif %}
-
             {% if page.model_height_mm > 0 %}
             <tr>
               <td>Height:</td>
               <td>{{ page.model_height_mm }} mm</td>
             </tr>
             {% endif %}
-
             {% if page.model_wheelbase_mm > 0 %}
             <tr>
               <td>Wheelbase:</td>
@@ -429,10 +452,17 @@ layout: default
 
 <div class="section bg-primary" id="test_drive">
   <div class="container">
+    {% if page.status != "sold" %}
     <h2 class="section-header">Book a test drive</h2>
     <div class="section-content">
       <span class="lead">Complete this form and we'll get back to you as soon as possible to arrange a test drive.</span>
     </div>
+    {% else %}
+    <h2 class="section-header">Looking for this vehicle?</h2>
+    <div class="section-content">
+      <span class="lead">Complete this form and we'll get back to you as soon as we have matching vehicles in stock.</span>
+    </div>
+    {% endif %}
     <div class="section-content">
       <form role="form" action="https://send.abemedia.co.uk/re" method="post" class="donforms">
         <div class="row">
@@ -462,45 +492,23 @@ layout: default
             <button type="submit" class="btn btn-danger btn-lg">Enquire now</button>
           </div>
         </div>
+        <input type="hidden" name="vehicle" value="{{ page.title | markdownify | strip_html }}">
+        <input type="hidden" name="url" value="{{ page.url | prepend: site.url }}">
       </form>
     </div>
   </div>
 </div>
 
-{% assign cars = (site.cars | where: 'published', 1 | where: 'make_display', page.make_display | where_exp: 'item', 'item.id != page.id' | sort: 'order') %}
-{% if cars[0] %}
+{% assign cars = (site.cars | where_exp: 'item', 'item.make_display == page.make_display' | where_exp: 'item', 'item.url != page.url' | sort: 'order') %}
+{% assign cars_size = cars | size %}
+{% if cars_size > 0 %}
 <div class="section well" id="related">
   <div class="container">
     <h2 class="section-header">Related Vehicles</h2>
-    <div class="container section-content text-center">
-      <div class="row">
-        {% for item in cars limit:3 %}
-        <div class="col-sm-4">
-          <a href="{{ item.url }}">
-            {% assign img = item.image | remove_first: '_media/' %}
-            {% if assets[img] %}
-            <figure>{% img '{{ img }}' magick:resize:360^x240 magick:gravity:center magick:crop:360x240+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
-            {% endif %}
-            <h4>{{ item.title }}</h4>
-          </a>
-          <p>
-            <i class="fa fa-fw fa-money"></i> &pound;{{ item.price | number_format }} &nbsp;
-            <i class="fa fa-fw fa-tachometer"></i> {{ item.mileage | number_format }} miles &nbsp;
-            <i class="fa fa-fw fa-clock-o"></i> {{ item.model_year }}</p>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+    {% include vehicle-slider.html cars=cars %}
   </div>
 </div>
 {% endif %}
-
-<style>
-  body {
-    position: relative;
-  }
-</style>
-
 
 <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModalLabel">
   <div class="modal-dialog modal-lightbox" role="document">
@@ -509,14 +517,32 @@ layout: default
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="galleryModalLabel"></h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body carousel">
         <img />
         <a class="left carousel-control previous" href="#galleryModal" role="button">
-          <span class="fa fa-chevron-left"></span>
+          <span class="fa fa-chevron-left fa-3x"></span>
         </a>
         <a class="right carousel-control next" href="#galleryModal" role="button">
-          <span class="fa fa-chevron-right"></span>
+          <span class="fa fa-chevron-right fa-3x"></span>
         </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="shareModalLabel">Share {{ page.title }}</h4>
+      </div>
+      <div class="modal-body">
+        {% assign providers = site.sharing.provider | join: "," %}
+        {% widget donshare providers=providers bubbles="right" style="long" hide_total=true %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

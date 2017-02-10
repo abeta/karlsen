@@ -1,59 +1,71 @@
 /* Blog Post
 -------------------------------------------------- */
 .article-header {
-	padding-bottom: 15px;
+  padding-bottom: 15px;
 }
+
 .article-info {
-	padding-top: 15px;
+  padding-top: 15px;
 }
 @media (min-width: 768px) {
   .article-header {
-  	padding-bottom: @line-height-computed;
-  	position: relative;
+    padding-bottom: @line-height-computed;
+    position: relative;
   }
+
   .article-info {
-  	padding-top: 0;
-  	position: absolute;
-  	top: 100%;
-  	width: 130px;
-  	left: @grid-gutter-width;
-  	text-align: center;
+    padding-top: 0;
+    position: absolute;
+    top: 100%;
+    width: 130px;
+    left: @grid-gutter-width;
+    text-align: center;
   }
+
   .article-content {
-  	margin-left: 130px + (@grid-gutter-width * 2);
-  	min-height: 200px;
-  	margin-right: @grid-gutter-width;
+    margin-left: 130px + (@grid-gutter-width * 2);
+    min-height: 200px;
+    margin-right: @grid-gutter-width;
   }
-  .article-content img{
-  	padding: 20px;
+
+  .article-content img {
+    padding: 20px;
   }
 }
 
 /* Avatar
 -------------------------------------------------- */
-.avatar, .avatar:hover, .avatar:active, .avatar:focus {
-	color: @text-muted;
+.avatar,
+.avatar:active,
+.avatar:focus,
+.avatar:hover {
+  color: @text-muted;
 }
-.avatar>img {
-    display: none;
+
+.avatar > img {
+  display: none;
 }
 @media (min-width: 768px) {
-.avatar {
+  .avatar {
     display: block;
-}
-.avatar>img {
+  }
+
+  .avatar > img {
     display: inline-block;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-	margin-bottom: 10px;
-	-webkit-transition: all 0.25s ease-in;
-	-moz-transition: all 0.25s ease-in;
-	-o-transition: all 0.25s ease-in;
-	-ms-transition: all 0.25s ease-in;
-	transition: all 0.25s ease-in;
-}
-.avatar:hover>img, .avatar:active>img, .avatar:focus>img {
-	border-color: @brand-primary;
-}
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    -webkit-transition: all 0.25s ease-in;
+    -moz-transition: all 0.25s ease-in;
+    -o-transition: all 0.25s ease-in;
+    -ms-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+  }
+
+  .avatar:active > img,
+  .avatar:focus > img,
+  .avatar:hover > img {
+    border-color: @brand-primary;
+  }
 }

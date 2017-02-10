@@ -2,6 +2,7 @@ figure {
   position: relative;
   overflow: hidden;
   margin: 0;
+
   figcaption {
     padding: 20px 0;
   }
@@ -19,14 +20,17 @@ figure {
       right: 0;
       transition: all 0.8s ease;
     }
+
     img {
       transition: all 0.8s ease;
       margin: 0;
     }
+
     &:hover {
       img {
         transform: scale(1.2);
       }
+
       figcaption {
         opacity: 1;
         bottom: 0;
@@ -38,35 +42,45 @@ figure {
 .modal-lightbox {
   margin: 0 auto;
   width: 100%;
+
   .modal-content {
     box-shadow: none;
     border-radius: 0;
     border: none;
     background-color: transparent;
   }
+
   .modal-header {
     border: none;
     background-color: rgba(0,0,0,.5);
+
     .close {
       opacity: 0.75;
       color: #fff;
       text-shadow: 0;
       font-weight: 100;
       margin-top: 5px;
-      &:hover { opacity: 1; }
+
+      &:hover {
+        opacity: 1;
+      }
     }
+
     h4.modal-title {
       color: #fff;
     }
   }
+
   .modal-body {
     padding: 0;
     text-align: center;
+
     img {
       width: auto;
       max-width: 100%;
     }
   }
+
   .modal-footer {
     opacity: 0.9;
     border: 0;
@@ -74,6 +88,7 @@ figure {
     font-weight: 100;
     padding: 0;
   }
+
   &-nav-overlay {
     a {
       opacity: 0.9;

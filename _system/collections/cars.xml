@@ -10,7 +10,7 @@
             </field>
         </fieldset>
         <fieldset name="gallery">
-            <field name="gallery" type="gallery" filter="array" label="Gallery" idfield="id" path="_media/showroom" />
+            <field name="gallery" type="gallery" filter="array" label="Gallery" idfield="cid" path="_media/showroom" />
         </fieldset>
         <fieldset name="specifications">
             <field name="make_country" type="hidden" label="Country of Origin" filter="string" class="form-control" readonly="true" />
@@ -105,9 +105,9 @@
                 <option value="unlisted">Unlisted</option>
             </field>
             <field name="title" type="hidden" filter="string" admintable="true" parse="{{make_display}} {{model_name}}{% if model_trim %} {{model_trim}}{% endif %}" />
-            <field name="slug" type="hidden" parse="{{id}}-{{title | slugify}}" />
+            <field name="slug" type="hidden" parse="{{cid}}-{{title | slugify}}" />
             <field name="image" type="hidden" parse="{{gallery[0].src}}" />
-            <field name="id" type="uuid" uuid="ai" filter="integer" />
+            <field name="cid" type="uuid" uuid="ai" filter="integer" />
             <field name="created" type="hidden" parse="{{created | default('now' | date('c'))}}" />
         </fieldset>
     </fields>

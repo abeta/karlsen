@@ -9,13 +9,19 @@ layout: default
     <nav class="navbar navbar-default filter-sort">
       <div class="container-fluid">
         <form class="navbar-form navbar-left">
-          <label for="filter">Make: </label>
-          <select name="filter" id="filter" class="sr-only" multiple data-placeholder="Select Makes">
-            {% assign makes = (site.cars | where: 'published', 1 | group_by: 'make_display') %}
+          <label for="filter" class="hidden-sm">Make: </label>
+          <select name="filter" id="filter" class="sr-only" multiple data-placeholder="Filter by make">
+            {% assign makes = site.cars | group_by: 'make_display' | map: "name" | sort %}
             {% for make in makes %}
-            <option value="{{ make.name }}">{{ make.name }}</option>
+            <option value="{{ make }}">{{ make }}</option>
             {% endfor %}
           </select>
+          &nbsp;
+          <div class="checkbox">
+            <label>
+              <input id="show_sold" name="show_sold" type="checkbox" checked> Include sold vehicles
+            </label>
+          </div>
         </form>
 
         <!--form class="navbar-form navbar-right hidden-xs">
@@ -58,25 +64,13 @@ layout: default
       </div>
     </nav>
 
-    {% assign cars = (site.cars | where: 'published', 1 | sort: 'id') %}
+    {% assign cars = (site.cars | sort: 'cid') %}
     <div class="row text-center filter-container" id="showroom">
       {% for item in cars reversed %}
-      <div class="col-md-4 col-sm-6 filter-item" data-id="{{ item.id | split: '-' | first | split: '/' | last }}" data-make="{{ item.make_display }}" data-price="{{ item.price }}" data-mileage="{{ item.mileage }}">
-        <a href="{{ item.url }}">
-          {% assign img = item.image | remove_first: '_media/' %}
-          {% if assets[img] %}
-          <figure>{% img '{{ img }}' magick:resize:360^x240 magick:gravity:center magick:crop:360x240+0+0 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
-          {% endif %}
-          <h4 class="title">{{ item.title }}</h4>
-        </a>
-        <p>
-          <b class="fa-lg">&pound;<span class="price">{{ item.price | number_format }}</span></b> &nbsp;
-          <i class="fa fa-fw fa-tachometer"></i> <span class="mileage">{{ item.mileage | number_format }}</span> miles &nbsp;
-          <i class="fa fa-fw fa-clock-o"></i> <span class="year">{{ item.model_year }}</span>
-        </p>
+      <div class="col-md-4 col-sm-6 filter-item" data-id="{{ item.cid }}" data-make="{{ item.make_display }}" data-price="{{ item.price }}" data-mileage="{{ item.mileage }}" {% if item.status == 'sold' %}data-sold{% endif %}>
+        {% include vehicle.html vehicle=item %}
         &nbsp;
       </div>
-
       {% endfor %}
     </div>
   </div>

@@ -2,13 +2,12 @@
   "name": "karlsen",
   "dependencies": {
     "jquery": "1.*",
-    "bootstrap": "~3.3.6",
-    "fontawesome": "~4.5.0",
-    "toastr": "~2.1.2",
-    "select2": "~4.0.3",
+    "bootstrap": "^3.3.7",
+    "fontawesome": "^4.5.0",
+    "toastr": "^2.1.3",
+    "select2": "^4.0.3",
     "quicksand": "https://github.com/razorjack/quicksand.git#master",
-    "packery": "https://raw.github.com/metafizzy/packery/master/dist/packery.pkgd.js",
-    "owl.carousel": "^2.1.4",
+    "owl.carousel": "^2.2.0",
     "select2-bootstrap-theme": "^0.1.0-beta.9",
     "jquery-gcse": "*",
     "ekko-lightbox": "^4.0.2"

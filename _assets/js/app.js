@@ -16,7 +16,6 @@
 //= require quicksand/jquery-css-transform.js
 //= require quicksand/jquery.easing.1.3.js
 //= require quicksand/jquery.quicksand.js
-//= require packery/index.js
 //= require owl.carousel/dist/owl.carousel.js
 //= require jquery-gcse/dist/js/jquery.gcse.js
 

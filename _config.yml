@@ -5,78 +5,77 @@ permalink: none
 locale: en_GB
 timezone: Europe/London
 analytics:
-  provider: google_analytics
+    provider: google_analytics
+    tracking_id: UA-92621405-1
 sharing:
-  provider:
-    - facebook
-    - twitter
-    - google
-    - linkedin
-    - pinterest
-    - stumbleupon
-    - tumblr
-  limit: 3
-  style: default
+    provider:
+        - facebook
+        - twitter
+        - google
+        - linkedin
+        - pinterest
+        - stumbleupon
+        - tumblr
+    limit: '3'
 defaults:
-  -
-    scope:
-      path: ''
-      type: pages
-    values:
-      layout: page
-  -
-    scope:
-      path: ''
-      type: cars
-    values:
-      layout: car
-      pdf: true
-  -
-    scope:
-      path: ''
-      type: posts
-    values:
-      layout: blog_post
-  -
-    scope:
-      path: ''
-      type: authors
-    values:
-      layout: blog_post
+    -
+        scope:
+            path: ''
+            type: pages
+        values:
+            layout: page
+    -
+        scope:
+            path: ''
+            type: cars
+        values:
+            layout: car
+            pdf: true
+    -
+        scope:
+            path: ''
+            type: posts
+        values:
+            layout: blog_post
+    -
+        scope:
+            path: ''
+            type: authors
+        values:
+            layout: blog_post
 collections:
-  cars:
-    output: true
-    permalink: '/showroom/:path.html'
-  authors:
-    output: false
+    cars:
+        output: true
+        permalink: '/showroom/:path.html'
+    authors:
+        output: false
 mediaurl: _media
 assets:
-  compress:
-    css: false
-    js: true
-  digest: true
-  sources:
-    - bower_components
-    - _assets/less
-    - _assets/images
-    - _assets/js
-    - _media
+    compress:
+        css: false
+        js: true
+    digest: true
+    sources:
+        - bower_components
+        - _assets/less
+        - _assets/images
+        - _assets/js
+        - _media
 baseurl: /
 comments:
-  provider: '1'
+    provider: '1'
 profiles:
-  provider:
-    - facebook
-    - twitter
-    - instagram
-  facebook: 'https://www.facebook.com/kad911/'
-  twitter: 'https://twitter.com/karlsenautodes'
-  instagram: 'https://www.instagram.com/karlsenautodesign/'
+    provider:
+        - facebook
+        - twitter
+        - linkedin
+        - instagram
+    facebook: 'https://www.facebook.com/kad911/'
+    twitter: 'https://twitter.com/karlsenautodes'
+    instagram: 'https://www.instagram.com/karlsenautodesign/'
+    linkedin: 'https://www.linkedin.com/in/geoff-robertson-06b105133'
 exclude:
-  - Gemfile*
-  - bower*
-  - README.md
-  - vendor
-bitly:
-  username: karlsenautodesign
-  api_key: R_3ea49b3df69e4af898f9662996e2b33c
+    - 'Gemfile*'
+    - 'bower*'
+    - README.md
+    - vendor

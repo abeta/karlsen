@@ -1,29 +1,37 @@
 html, body, .fh {
   height: 100%;
 }
+
 body {
   font-weight: 300;
   margin-top: @navbar-height;
 }
+
 .container-sm {
   max-width: 849px + @grid-gutter-width;
 }
+
 .btn {
   font-weight: 700;
   text-transform: uppercase;
 }
+
 @media(min-width:768px) {
   .fh-sm {
     height: 100%;
   }
 }
+
 .rel {
   position: relative;
+  display: block;
 }
+
 .cta {
   text-align: center;
   font-size: @font-size-h2;
 }
+
 .footer {
   background-color: #111;
   color: #fff;
@@ -33,6 +41,7 @@ body {
     margin-top: 0 !important;
   }
 }
+
 @media (min-width: 768px) {
   .form-horizontal .control-label {
     text-align: left;

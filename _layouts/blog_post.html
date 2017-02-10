@@ -11,7 +11,7 @@ class: section container container-sm
       {% widget donshare params=site.sharing providers=providers %}
       {% assign img = page.image | remove_first: '_media/' %}
       {% if assets[img] %}
-      {% img '{{ img }}' magick:resize:849^x445 magick:gravity:center magick:crop:849x445+0+0 image_optim:optimize:1 alt:'{{ page.title }}' class:img-responsive %}
+      {% img '{{ img }}' magick:resize:849^x445 magick:gravity:center magick:crop:849x445+0+0 watermark:watermark:1 image_optim:optimize:1 alt:'{{ page.title }}' class:img-responsive %}
       {% endif %}
       <div class="article-info">
         <!--a href="{{ site.baseurl }}{{ author.url }}" rel="author" class="avatar"-->

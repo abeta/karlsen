@@ -1,18 +1,16 @@
 @import "bootstrap/less/bootstrap.less";
 @icon-font-path: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/";
 @import "fontawesome/less/font-awesome.less";
-@fa-font-path: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/fonts";
-
+@fa-font-path: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts";
 @import "template/backgrounds.less";
 @import "template/text.less";
 @import "template/variables.less";
-
 @font-size-base: 14px;
 
 div.page {
   page-break-before: always;
   .clearfix();
-  margin: 0 .1in;
+  margin: 0 0.1in;
   position: relative;
 }
 
@@ -23,10 +21,10 @@ div.page {
 
 .box {
   body > & {
-    margin: 0 .1in;
+    margin: 0 0.1in;
   }
   margin: 0;
-  padding: .125in .2in;
+  padding: 0.125in 0.2in;
   color: #fff;
 }
 
@@ -37,14 +35,39 @@ div.page {
 .displaytable {
   width: 100%;
   max-width: 100%;
+
   td {
-    padding: .125in .1in;
+    padding: 0.125in 0.1in;
     .text-ellipsis;
   }
+
   td:first-of-type {
-    padding-left: .2in;
+    padding-left: 0.2in;
   }
+
   td:last-of-type {
-    padding-right: .2in;
+    padding-right: 0.2in;
+  }
+}
+
+.gallerytable {
+  margin: 0 -0.125in;
+
+  table {
+    page-break-inside: avoid;
+    width: 100%;
+    max-width: 100%;
+
+    td {
+      padding: 0 0.125in;
+
+      img {
+        .img-responsive();
+      }
+    }
+
+    & + table td {
+      padding-top: 0.25in;
+    }
   }
 }

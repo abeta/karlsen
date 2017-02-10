@@ -1,0 +1,19 @@
+{% assign item = include.vehicle %}
+<a href="{{ item.url }}" class="rel">
+  {% assign img = item.image | remove_first: '_media/' %}
+  {% if assets[img] %}
+  <figure>{% img '{{ img }}' magick:resize:360^x240 magick:gravity:center magick:crop:360x240+0+0 watermark:watermark:1 image_optim:optimize:1 class:img-responsive alt:'{{ item.title }}' %}</figure>
+  {% endif %}
+  <h4 class="title">{{ item.title }}</h4>
+  {% if item.status == "under-offer" %}
+  <div class="ribbon ribbon-warning"><span class="ribbon-text">Under Offer</span></div>
+  {% endif %}
+  {% if item.status == "sold" %}
+  <div class="ribbon ribbon-danger"><span class="ribbon-text">Sold</span></div>
+  {% endif %}
+</a>
+<p>
+  <b class="fa-lg">&pound;<span class="price">{% if item.price > 0 %}{{ item.price | number_format }}{% else %} on request{% endif %}</span></b> &nbsp;
+  <i class="fa fa-fw fa-tachometer"></i> <span class="mileage">{{ item.mileage | number_format }}</span> miles &nbsp;
+  <i class="fa fa-fw fa-clock-o"></i> <span class="year">{{ item.model_year }}</span>
+</p>

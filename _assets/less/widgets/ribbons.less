@@ -1,0 +1,85 @@
+.ribbon {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  text-align: right;
+}
+
+.ribbon-text {
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  line-height: 25px;
+  transform: rotate(45deg);
+  width: 125px;
+  display: block;
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 24px;
+  right: -26px;
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    z-index: -1;
+    border: 3px solid transparent;
+  }
+
+  &:before {
+    left: 0;
+  }
+
+  &:after {
+    right: 0;
+  }
+}
+
+.ribbons(@ribbon-color) {
+  .ribbon-text {
+    background: @ribbon-color;
+    background: linear-gradient(@ribbon-color 0%, darken(@ribbon-color, 12%) 100%);
+    background-repeat: repeat-x;
+
+    &:before {
+      border-left-color: darken(@ribbon-color, 14%);
+      border-top-color: darken(@ribbon-color, 14%);
+    }
+
+    &:after {
+      border-right-color: darken(@ribbon-color, 14%);
+      border-top-color: darken(@ribbon-color, 14%);
+    }
+  }
+}
+
+.ribbon-default {
+  .ribbons(#333);
+}
+
+.ribbon-primary {
+  .ribbons(@brand-primary);
+}
+
+.ribbon-success {
+  .ribbons(@brand-success);
+}
+
+.ribbon-info {
+  .ribbons(@brand-info);
+}
+
+.ribbon-warning {
+  .ribbons(@brand-warning);
+}
+
+.ribbon-danger {
+  .ribbons(@brand-danger);
+}

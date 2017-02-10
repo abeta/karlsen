@@ -28,20 +28,21 @@ $(document).ready(function() {
     // preload prev/next image
     $('<img/>')[0].src = $prev.data("image");
     $('<img/>')[0].src = $next.data("image");
+    setSize();
 
     return false;
   });
 
   // previous/next buttons
   var previous = function() {
-    $modal.one('hidden.bs.modal', function (e) {
+    //$modal.one('hidden.bs.modal', function (e) {
       $prev.click();
-    }).modal('hide');
+    //}).modal('hide');
   };
   var next = function() {
-    $modal.one('hidden.bs.modal', function (e) {
+    //$modal.one('hidden.bs.modal', function (e) {
       $next.click();
-    }).modal('hide');
+    //}).modal('hide');
   };
 
   $modal.find('.previous').click(previous);

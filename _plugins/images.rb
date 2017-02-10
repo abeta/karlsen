@@ -1,52 +1,47 @@
-require "jekyll-assets"
+require 'jekyll-assets'
 require 'base64'
 
 module Jekyll
-
   # Inline image (base64)
   class ImageBase64 < Jekyll::Assets::Liquid::Tag
-    def initialize(tag, args, tokens)
-      super("img", args, tokens)
+    def initialize(_tag, args, tokens)
+      super('img', args, tokens)
     end
 
     private
-    def build_html(args, sprockets, asset)
+
+    def build_html(_args, _sprockets, asset)
       unless asset.content_type.nil?
-        "data:" + asset.content_type + ";base64, " + Base64.encode64(asset.source).delete("\n")
+        'data:' + asset.content_type + ';base64, ' + Base64.encode64(asset.source).delete("\n")
       end
     end
-
   end
 
   # For using proxies on images where only the path is required
   class ImagePath < Jekyll::Assets::Liquid::Tag
-    def initialize(tag, args, tokens)
-      super("img", args, tokens)
+    def initialize(_tag, args, tokens)
+      super('img', args, tokens)
     end
 
     private
-    def build_html(args, sprockets, asset, path = get_path(sprockets, asset))
-        path
-    end
 
+    def build_html(_args, sprockets, asset, path = get_path(sprockets, asset))
+      path
+    end
   end
 
   class ImageAbsolute < Jekyll::Assets::Liquid::Tag
-    def initialize(tag, args, tokens)
-      super("img", args, tokens)
+    def initialize(_tag, args, tokens)
+      super('img', args, tokens)
     end
 
     private
-    def build_html(args, sprockets, asset)
-      unless asset.filename.nil?
-        "file://" + asset.filename
-      end
+
+    def build_html(_args, _sprockets, asset)
+      'file://' + asset.filename unless asset.filename.nil?
     end
-
   end
-
 end
-
 
 Liquid::Template.register_tag('image_path', Jekyll::ImagePath)
 Liquid::Template.register_tag('img_path', Jekyll::ImagePath)
