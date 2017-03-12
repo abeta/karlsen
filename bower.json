@@ -3,13 +3,11 @@
   "dependencies": {
     "jquery": "1.*",
     "bootstrap": "^3.3.7",
-    "fontawesome": "^4.5.0",
-    "toastr": "^2.1.3",
+    "fontawesome": "^4.7.0",
     "select2": "^4.0.3",
+    "select2-bootstrap-theme": "^0.1.0-beta.9",
     "quicksand": "https://github.com/razorjack/quicksand.git#master",
     "owl.carousel": "^2.2.0",
-    "select2-bootstrap-theme": "^0.1.0-beta.9",
-    "jquery-gcse": "*",
-    "ekko-lightbox": "^4.0.2"
+    "jquery-gcse": "*"
   }
 }
