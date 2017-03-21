@@ -147,11 +147,13 @@ hide_nav: true
     <div class="section-content row text-justify-center">
       {% for item in page.walkthrough %}
       <div class="col-sm-3">
-        <span class="fa-stack fa-5x">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-{{ item.ico }} fa-stack-1x fa-inverse"></i>
-        </span>
-        <h3 class="text-center">{{ forloop.index }}. {{ item.heading }}</h3>
+        <div class="text-center">
+          <span class="fa-stack fa-5x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-{{ item.ico }} fa-stack-1x fa-inverse"></i>
+          </span>
+          <h3>{{ forloop.index }}. {{ item.heading }}</h3>
+        </div>
         <p>{{ item.text }}</p>
       </div>
       {% endfor %}
