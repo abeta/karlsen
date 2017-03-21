@@ -6,21 +6,16 @@ hide_nav: true
 {% if assets[img] %}
 <style>
 .banner {
-  background-image: url({% include img_path src=img width=375 height=667 %});
-}
-@media (min-width: 378px) {
-  .banner {
-    background-image: url({% include img_path src=img width=768 height=1024 %});
-  }
+  background-image: url({% include img_path src=img width=768 height=1024 %});
 }
 @media (min-width: 769px) {
-  .banner {
-    background-image: url({% include img_path src=img width=1366 height=800 %});
+  .banner-{{ forloop.index }} {
+    background-image: url({% include img_path src=photo.src width=1366 height=820 %});
   }
 }
 @media (min-width: 1367px) {
-  .banner {
-    background-image: url({% include img_path src=img width=1920 height=1080 %});
+  .banner-{{ forloop.index }} {
+    background-image: url({% include img_path src=photo.src width=1920 height=1152 %});
   }
 }
 </style>
