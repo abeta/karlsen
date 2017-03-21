@@ -131,9 +131,11 @@ hide_nav: true
     {% endfor %}
     <div class="section-content row row-logos">
       {% for logo in logos %}
-      {% capture img %}logos/{{ logo }}.png{% endcapture %}
-      <div class="col-sm-2" style="width:{{ assets[img].width | times: 100 | divided_by: width }}%;">
-        {% img '{{ img }}' magick:resize:x51 class:img-responsive alt:'{{ logo | capitalize }}' %}
+      {% capture img_path %}logos/{{ logo }}.png{% endcapture %}
+      {% capture img %}{% img_path '{{ img_path }}' magick:resize:x51 %}{% endcapture %}
+      {% capture img_xs %}{% img_path '{{ img_path }}' magick:resize:480x %}{% endcapture %}
+      <div class="col-sm-2" style="width:{{ assets[img_path].width | times: 100 | divided_by: width }}%;">
+        <img src="{{ img }}" srcset="{{ img_xs }} 480w" class="img-responsive" alt="{{ logo | capitalize }}">
       </div>
       {% endfor %}
     </div>
