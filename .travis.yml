@@ -9,8 +9,6 @@ cache:
   - vendor
 
 before_install:
-- echo "$TRAVIS_BUILD_NUMBER"
-- 'echo $(curl -H "Accept: application/vnd.travis-ci.2+json" https://api.travis-ci.org/repos/$TRAVIS_REPO_SLUG/branches/$TRAVIS_BRANCH | jq -r ".branch.number")'
 - 'if [ "$TRAVIS_BUILD_NUMBER" != $(curl -H "Accept: application/vnd.travis-ci.2+json" https://api.travis-ci.org/repos/$TRAVIS_REPO_SLUG/branches/$TRAVIS_BRANCH | jq -r ".branch.number") ]; then echo "There are newer queued builds for this branch, failing early."; exit 1; fi'
 - nvm install 4
 - npm install -g bower svgo
