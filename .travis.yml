@@ -10,7 +10,7 @@ cache:
 
 before_install:
 - 'if [ "$TRAVIS_BUILD_NUMBER" != $(curl -H "Accept: application/vnd.travis-ci.2+json" https://api.travis-ci.org/repos/$TRAVIS_REPO_SLUG/branches/$TRAVIS_BRANCH | jq -r ".branch.number") ]; then echo "There are newer queued builds for this branch, failing early."; exit 1; fi'
-- nvm install 4 
+- nvm install 4
 - npm install -g bower svgo
 - bower install
 - if [ ! -f "$PNGOUT_BIN" ]; then wget -q http://static.jonof.id.au/dl/kenutils/pngout-20150319-linux.tar.gz && tar -xzf pngout-20150319-linux.tar.gz && mv pngout-20150319-linux/x86_64 vendor/pngout; fi
